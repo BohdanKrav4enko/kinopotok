@@ -10,9 +10,9 @@ export const Footer = () => {
               </Subtitle>
 
               <Actions>
-                  <ActionButton $primary href="/">Смотреть фильмы</ActionButton>
-                  <ActionButton href="/favorites">Избранное</ActionButton>
-                  <ActionButton href="/login">Войти</ActionButton>
+                  <ActionButton $primary to="/">Смотреть фильмы</ActionButton>
+                  <ActionButton to="/favorites">Избранное</ActionButton>
+                  <ActionButton to="/login">Войти</ActionButton>
               </Actions>
           </Hero>
 

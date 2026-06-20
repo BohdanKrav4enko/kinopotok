@@ -40,10 +40,10 @@ export const Header = () => {
             <Logo href="/">🎬 КиноПоток</Logo>
 
             <Nav>
-                <NavLink href="/videos">Видео</NavLink>
-                <NavLink href="/gifs">Гифки</NavLink>
-                <NavLink href="/models">Модели</NavLink>
-                <NavLink href="/blog">Блог</NavLink>
+                <NavLink to="/videos">Видео</NavLink>
+                <NavLink to="/gifs">Гифки</NavLink>
+                <NavLink to="/models">Модели</NavLink>
+                <NavLink to="/blog">Блог</NavLink>
             </Nav>
 
             <SearchContainer>
@@ -51,7 +51,7 @@ export const Header = () => {
             </SearchContainer>
 
             <Actions>
-                <Bookmarks href="/favorites">
+                <Bookmarks to="/favorites">
                     <FavoriteIcon color={'primary'}/> <Label>Избранное</Label>
                     {favoritesCount > 0 &&
                         <Count $animate={animate}>
@@ -61,8 +61,8 @@ export const Header = () => {
                 </Bookmarks>
 
                 <Auth>
-                    <Login href="/login">Вход</Login>
-                    <Register href="/register">Регистрация</Register>
+                    <Login to="/login">Вход</Login>
+                    <Register to="/register">Регистрация</Register>
                 </Auth>
             </Actions>
         </Container>

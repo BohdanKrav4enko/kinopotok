@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 
 
 export const Container = styled.header`
@@ -78,7 +79,7 @@ export const SearchContainer = styled.div`
     }
 `;
 
-export const NavLink = styled.a`
+export const NavLink = styled(Link)`
     position: relative;
 
     color: #9ca3af;
@@ -131,7 +132,7 @@ export const Actions = styled.div`
         justify-self: end;
     }
 `;
-export const Bookmarks = styled.a`
+export const Bookmarks = styled(Link)`
     display: flex;
     align-items: center;
     gap: 8px;
@@ -196,7 +197,7 @@ export const Auth = styled.div`
     }
 `;
 
-export const Login = styled.a`
+export const Login = styled(Link)`
     padding: 8px 12px;
     border-radius: 10px;
 
@@ -209,7 +210,7 @@ export const Login = styled.a`
     }
 `;
 
-export const Register = styled.a`
+export const Register = styled(Link)`
     padding: 10px 14px;
     border-radius: 12px;
 

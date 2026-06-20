@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 
 export const Container = styled.footer`
     position: relative;
@@ -59,7 +60,7 @@ export const Actions = styled.div`
 
     margin-top: 30px;
 `;
-export const ActionButton = styled.a<{ $primary?: boolean }>`
+export const ActionButton = styled(Link)<{ $primary?: boolean }>`
     padding: 10px 14px;
     border-radius: 12px;
 
