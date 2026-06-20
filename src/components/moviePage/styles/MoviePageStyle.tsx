@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 
 export const Container = styled.div`
     max-width: 1200px;
@@ -78,19 +79,64 @@ export const Meta = styled.div`
     font-size: 0.95rem;
 `;
 
-export const Category = styled.span`
-  display: inline-block;
+export const Category = styled(Link)`
+    display: inline-flex;
+    width: fit-content;
 
-  width: fit-content;
+    padding: 6px 14px;
 
-  padding: 6px 14px;
-  border-radius: 999px;
+    border-radius: 999px;
 
-  background: rgba(59, 130, 246, 0.15);
-  color: #60a5fa;
+    background: rgba(59, 130, 246, 0.15);
+    color: #60a5fa;
 
-  font-size: 0.85rem;
-  font-weight: 600;
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    position: relative;
+    overflow: hidden;
+
+    transition: all 0.25s ease;
+
+    box-shadow: 0 0 0 rgba(59, 130, 246, 0);
+
+    &:hover {
+        transform: translateY(-2px) scale(1.05);
+        background: rgba(59, 130, 246, 0.25);
+        color: #93c5fd;
+
+        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.25);
+    }
+
+    &:active {
+        transform: translateY(0) scale(0.98);
+    }
+
+    &::before {
+        content: "";
+
+        position: absolute;
+        top: 0;
+        left: -100%;
+
+        width: 100%;
+        height: 100%;
+
+        background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+        );
+
+        transition: all 0.5s ease;
+    }
+
+    &:hover::before {
+        left: 100%;
+    }
 `;
 
 export const Description = styled.p`

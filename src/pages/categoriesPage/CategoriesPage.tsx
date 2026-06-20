@@ -1,19 +1,42 @@
-import {Card, Container, Grid, Title} from "./styles/CategoriesPageStyle.tsx";
-import {categoriesList} from "../../components/categoriesList.tsx";
+import { categoriesList } from "../../components/categoriesList";
+import { useNavigate } from "react-router-dom";
+import {
+    Page,
+    Header,
+    Subtitle,
+    Grid,
+    Card,
+    Glow,
+} from "./styles/CategoriesPageStyle";
+import {SectionTitle} from "../../components";
 
 export const CategoriesPage = () => {
+    const navigate = useNavigate();
+
     return (
-        <Container>
-            <Title>🎬 Все категории</Title>
+        <Page>
+            <Header>
+                <SectionTitle>Все категории</SectionTitle>
+
+                <Subtitle>
+                    Фильмы на любой вкус — от блокбастеров до нишевого кино.
+                    Выбирай жанр и погружайся в просмотр
+                </Subtitle>
+            </Header>
 
             <Grid>
-                {categoriesList.map((cat, i) => (
-                    <Card key={i} to={`/category/${cat}`}>
+                {categoriesList.map((cat) => (
+                    <Card
+                        key={cat}
+                        onClick={() =>
+                            navigate(`/category/${encodeURIComponent(cat)}`)
+                        }
+                    >
+                        <Glow />
                         {cat}
                     </Card>
                 ))}
             </Grid>
-        </Container>
+        </Page>
     );
 };
-

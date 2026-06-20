@@ -8,11 +8,10 @@ import {
     Description,
     Meta,
     Dot, BackButton, Facts, FactRow,
-    Money, Divider, HeaderRow, StarsWrapper, PosterColumn,
+    Money, Divider, HeaderRow, StarsWrapper, PosterColumn, Category,
 } from "./styles/MoviePageStyle.tsx";
 
 import {RatingStars} from "../ratingStars";
-import {Category} from "../../pages/categoriesPage/styles/CategoriesPageStyle.tsx";
 import {SimilarMovies} from "../similarMovies";
 import {FavoriteButton} from "../favoriteButton/FavoriteButton.tsx";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';

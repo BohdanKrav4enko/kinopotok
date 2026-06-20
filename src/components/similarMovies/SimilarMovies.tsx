@@ -13,7 +13,7 @@ export const SimilarMovies = ({ category, currentMovieId }: Props) => {
         .filter(
             (m) => m.category === category && m.id !== currentMovieId
         )
-        .slice(0, 6);
+        .slice(0, 5);
 
     if (similar.length === 0) {
         return null;

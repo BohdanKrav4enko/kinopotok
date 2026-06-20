@@ -1,7 +1,17 @@
 import {useNavigate} from "react-router-dom";
 import {RatingStars} from "../../ratingStars";
-import {Actions, Button, Info, Label, ListCard, Meta, Poster, Title} from "../styles/MoviesListStyle.tsx";
-import {Description} from "../../moviePage/styles/MoviePageStyle.tsx";
+import {
+    Actions,
+    Button,
+    Description,
+    Info,
+    Label,
+    ListCard,
+    Meta,
+    Poster,
+    RatingStarsWrapper,
+    Title, WatchMobileButton
+} from "../styles/MoviesListStyle.tsx";
 import PlayArrowSharpIcon from '@mui/icons-material/PlayArrowSharp';
 import {FavoriteButton} from "../../favoriteButton/FavoriteButton.tsx";
 import type {Movie} from "../../../type/type.ts";
@@ -32,13 +42,16 @@ export const MovieList = ({movies}: Props) => {
                             {movie.year} • {movie.category} • {movie.duration} мин
                         </Meta>
 
+
                         <Label>Режиссёр: {movie.director}</Label>
 
                         <Label>
                             В ролях: {movie.cast.join(", ")}
                         </Label>
+                        <RatingStarsWrapper>
+                            <RatingStars rating={movie.rating}/>
+                        </RatingStarsWrapper>
 
-                        <RatingStars rating={movie.rating}/>
 
                         <Description>
                             {movie.description}
@@ -47,11 +60,15 @@ export const MovieList = ({movies}: Props) => {
                         <Actions>
                             <Button onClick={() => movieListHandler(movie)}>
                                 <PlayArrowSharpIcon color="success"/>
-                                Смотреть
+                                <span>Смотреть</span>
                             </Button>
 
                             <FavoriteButton movie={movie}/>
                         </Actions>
+                        <WatchMobileButton onClick={() => movieListHandler(movie)}>
+                            <PlayArrowSharpIcon />
+                            Смотреть
+                        </WatchMobileButton>
                     </Info>
                 </ListCard>
             ))}

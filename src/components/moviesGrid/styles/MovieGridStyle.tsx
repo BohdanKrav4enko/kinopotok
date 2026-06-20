@@ -4,6 +4,16 @@ export const Grid = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
+
+    @media (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    @media (max-width: 480px) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
 `;
 
 export const Card = styled.div`
@@ -24,11 +34,8 @@ export const Card = styled.div`
 
     &:hover {
         transform: translateY(-8px) scale(1.02);
-
         background: rgba(255, 255, 255, 0.07);
-
         border-color: rgba(59, 130, 246, 0.3);
-
         box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4);
     }
 
@@ -36,28 +43,15 @@ export const Card = styled.div`
         transform: translateY(-3px) scale(0.99);
     }
 
-    &::before {
-        content: "";
+    @media (max-width: 768px) {
+        padding: 8px;
+        border-radius: 12px;
 
-        position: absolute;
-        top: 0;
-        left: -120%;
-
-        width: 100%;
-        height: 100%;
-
-        background: linear-gradient(
-                120deg,
-                transparent,
-                rgba(255, 255, 255, 0.12),
-                transparent
-        );
-
-        transition: 0.6s ease;
-    }
-
-    &:hover::before {
-        left: 120%;
+        /* отключаем ховер-эффекты на мобилке */
+        &:hover {
+            transform: none;
+            box-shadow: none;
+        }
     }
 `;
 
@@ -65,7 +59,7 @@ export const Poster = styled.img`
     width: 100%;
     aspect-ratio: 2 / 3;
     border-radius: 10px;
-    object-fit: contain;
+    object-fit: cover;
     margin-bottom: 10px;
 
     transition: all 0.3s ease;
@@ -76,12 +70,17 @@ export const Poster = styled.img`
         transform: scale(1.03);
         filter: saturate(1.2) brightness(1.1);
     }
+
+    @media (max-width: 768px) {
+        margin-bottom: 6px;
+    }
 `;
 
 export const Title = styled.div`
     font-weight: 600;
     font-size: 1.2rem;
     text-align: center;
+
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -93,9 +92,27 @@ export const Title = styled.div`
     ${Card}:hover & {
         color: #ffffff;
     }
+
+    @media (max-width: 768px) {
+        font-size: 0.95rem;
+    }
+
+    @media (max-width: 480px) {
+        font-size: 0.85rem;
+    }
 `;
 export const Subtitle = styled.p`
     color: #94a3b8;
     font-size: 0.95rem;
     margin-bottom: 10px;
+`;
+export const Year = styled.p`
+    font-size: 0.8rem;
+    color: #94a3b8;
+
+    text-align: center;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 `;

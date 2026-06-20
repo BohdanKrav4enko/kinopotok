@@ -1,56 +1,31 @@
-import {
-    Bottom,
-    Brand,
-    Container, Copyright,
-    Description,
-    FooterLink,
-    LinksGroup,
-    Logo, SocialLink, Socials,
-    Title,
-    Top
-} from "./styles/FooterStyle.tsx";
+import {ActionButton, Actions, Bottom, Container, Dot, Hero, Socials, Subtitle, Title} from "./styles/FooterStyle.tsx";
 
 export const Footer = () => {
   return (
-    <Container>
-      <Top>
-        <Brand>
-          <Logo href="/">🎬 КиноПоток</Logo>
-          <Description>
-            Смотри фильмы, сохраняй избранное и открывай для себя новый контент каждый день.
-          </Description>
-        </Brand>
+      <Container>
+          <Hero>
+              <Title>КиноПоток</Title>
+              <Subtitle>
+                  Твой персональный кинотеатр. Фильмы, избранное и рекомендации без лишнего шума.
+              </Subtitle>
 
-        <LinksGroup>
-          <Title>Навигация</Title>
+              <Actions>
+                  <ActionButton $primary href="/">Смотреть фильмы</ActionButton>
+                  <ActionButton href="/favorites">Избранное</ActionButton>
+                  <ActionButton href="/login">Войти</ActionButton>
+              </Actions>
+          </Hero>
 
-          <FooterLink href="/videos">Видео</FooterLink>
-          <FooterLink href="/gifs">Гифки</FooterLink>
-          <FooterLink href="/models">Модели</FooterLink>
-          <FooterLink href="/blog">Блог</FooterLink>
-        </LinksGroup>
+          <Bottom>
+              <span>© {new Date().getFullYear()} КиноПоток</span>
 
-        <LinksGroup>
-          <Title>Аккаунт</Title>
-
-          <FooterLink href="/bookmarks">Мои закладки</FooterLink>
-          <FooterLink href="/login">Вход</FooterLink>
-          <FooterLink href="/register">Регистрация</FooterLink>
-        </LinksGroup>
-      </Top>
-
-      <Bottom>
-        <Copyright>
-          © {new Date().getFullYear()} КиноПоток. Все права защищены.
-        </Copyright>
-
-        <Socials>
-          <SocialLink href="#">Telegram</SocialLink>
-          <SocialLink href="#">Discord</SocialLink>
-          <SocialLink href="#">YouTube</SocialLink>
-        </Socials>
-      </Bottom>
-    </Container>
+              <Socials>
+                  <Dot />
+                  <Dot />
+                  <Dot />
+              </Socials>
+          </Bottom>
+      </Container>
   );
 };
 

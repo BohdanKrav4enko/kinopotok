@@ -9,7 +9,7 @@ export const CategoryPage = () => {
     const decodedName = decodeURIComponent(name || "");
 
     const filteredMovies =
-        decodedName === "Фильмы"
+        decodedName === "Все фильмы"
             ? movies
             : movies.filter((m) => m.category === decodedName);
 

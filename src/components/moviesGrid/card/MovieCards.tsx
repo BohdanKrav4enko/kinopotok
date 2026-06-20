@@ -1,5 +1,5 @@
 import {useNavigate} from "react-router-dom";
-import {Card, Poster, Title} from "../styles/MovieGridStyle.tsx";
+import {Card, Poster, Title, Year} from "../styles/MovieGridStyle.tsx";
 import type {Movie} from "../../../type/type.ts";
 
 type MovieCardsProps = {
@@ -14,6 +14,7 @@ export const MovieCards = ({ movies }: MovieCardsProps) => {
                 <Card onClick={() => navigate(`/movie/${movie.slug}`)} key={movie.id}>
                     <Poster src={movie.poster}/>
                     <Title>{movie.title}</Title>
+                    <Year>{movie.year}</Year>
                 </Card>
             ))}
     </>

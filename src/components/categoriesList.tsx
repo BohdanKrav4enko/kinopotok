@@ -1,6 +1,6 @@
 import {movies} from "./movies.tsx";
 
 export const categoriesList = [
-    "Фильмы",
+    "Все фильмы",
     ...Array.from(new Set(movies.map((movie) => movie.category))),
 ];

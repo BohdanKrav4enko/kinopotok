@@ -18,7 +18,6 @@ export const ListCard = styled.div`
     border: 1px solid rgba(255, 255, 255, 0.06);
 
     transition: all 0.25s ease;
-
     &:hover {
         transform: translateY(-4px);
         background: rgba(255, 255, 255, 0.07);
@@ -26,8 +25,10 @@ export const ListCard = styled.div`
     }
 
     @media (max-width: 768px) {
-        flex-direction: column;
-        padding: 14px;
+        flex-direction: row;
+        padding: 10px;
+        gap: 10px;
+        align-items: flex-start;
     }
 `;
 
@@ -42,18 +43,10 @@ export const Poster = styled.img`
 
     object-fit: cover;
 
-    @media (max-width: 1024px) {
-        width: 180px;
-        height: 260px;
-    }
-
-    @media (max-width: 768px) {
-        width: 100%;
-        max-width: 280px;
-        height: auto;
-        aspect-ratio: 2 / 3;
-
-        align-self: center;
+    @media (max-width: 767px) {
+        width: 90px;
+        height: 135px;
+        border-radius: 10px;
     }
 `;
 
@@ -66,7 +59,9 @@ export const Title = styled.h3`
     color: #ffffff;
 
     cursor: pointer;
-
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     @media (max-width: 1024px) {
         font-size: 1.6rem;
     }
@@ -83,6 +78,9 @@ export const Info = styled.div`
 
     flex: 1;
     min-width: 0;
+    @media (max-width: 768px) {
+        gap: 4px;
+    }
 `;
 
 export const Meta = styled.div`
@@ -94,7 +92,7 @@ export const Meta = styled.div`
     color: #94a3b8;
 
     @media (max-width: 768px) {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
     }
 `;
 
@@ -104,9 +102,8 @@ export const Actions = styled.div`
 
     margin-top: auto;
 
-    @media (max-width: 480px) {
-        flex-direction: column;
-        width: 100%;
+    @media (max-width: 767px) {
+        display: none;
     }
 `;
 
@@ -161,14 +158,69 @@ export const Button = styled.button`
         width: 100%;
     }
 `;
-
+export const Description = styled.p`
+    color: #cbd5e1;
+    line-height: 1.7;
+    max-width: 600px;
+    @media (max-width: 767px) {
+        font-size: 0.85rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+`;
 export const Label = styled.span`
     font-weight: 700;
     color: #e5e7eb;
 
     line-height: 1.5;
 
-    @media (max-width: 768px) {
-        font-size: 0.95rem;
+    @media (max-width: 767px) {
+        display: none;
+    }
+`;
+export const RatingStarsWrapper = styled.div`
+    @media (max-width: 767px) {
+        display: none;
+    }
+`;
+export const WatchMobileButton = styled.button`
+    display: none;
+
+    @media (max-width: 767px) {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+
+        width: 100%;
+
+        padding: 1px 2px;
+        margin-top: 8px;
+
+        border-radius: 10px;
+
+        font-size: 0.9rem;
+        font-weight: 600;
+
+        cursor: pointer;
+        transition: all 0.25s ease;
+
+        background: rgba(59, 130, 246, 0.15);
+        color: #60a5fa;
+
+        border: 1px solid rgba(59, 130, 246, 0.4);
+
+        box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
+
+        &:hover {
+            background: rgba(59, 130, 246, 0.25);
+            box-shadow: 0 14px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        &:active {
+            transform: scale(0.98);
+        }
     }
 `;
