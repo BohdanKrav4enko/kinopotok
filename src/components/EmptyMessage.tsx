@@ -1,10 +1,10 @@
-import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
+import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
 import {Empty} from "../pages/searchPage/styles/SearchPageStyle.ts";
 
 export const EmptyMessage = () => {
     return (
         <Empty>
-            Ничего не найдено <SentimentVeryDissatisfiedIcon/>
+            Здесь пока ничего нет, но это всегда можно исправить <SentimentSatisfiedAltIcon />
         </Empty>
     );
 };
