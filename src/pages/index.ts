@@ -1,0 +1,5 @@
+export * from "./categoriesPage"
+export * from "./moviesPage"
+export * from "./searchPage"
+export * from "./favoritesPage"
+export * from "./categoriesPage/categoryPage/CategoryPage.tsx"

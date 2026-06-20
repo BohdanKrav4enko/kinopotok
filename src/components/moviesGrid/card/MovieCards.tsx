@@ -1,13 +1,18 @@
 import {useNavigate} from "react-router-dom";
-import {mockMovies} from "../../mockMovies.tsx";
 import {Card, Poster, Title} from "../styles/MovieGridStyle.tsx";
+import type {Movie} from "../../../type/type.ts";
 
-export const Card = () => {
+type MovieCardsProps = {
+    movies: Movie[];
+};
+
+export const MovieCards = ({ movies }: MovieCardsProps) => {
+
     const navigate = useNavigate();
     return <>
-        {mockMovies.map((movie) => (
-                <Card onClick={() => navigate(`/movie/${movie.id}`)} key={movie.id}>
-                    <Poster />
+        {movies.map((movie) => (
+                <Card onClick={() => navigate(`/movie/${movie.slug}`)} key={movie.id}>
+                    <Poster src={movie.poster}/>
                     <Title>{movie.title}</Title>
                 </Card>
             ))}

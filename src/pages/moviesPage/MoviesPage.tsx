@@ -1,5 +1,13 @@
-import {MoviesGrid} from "../moviesGrid";
+import {PreferencesProvider} from "../../components/preferencesProvider";
+import {movies} from "../../components/movies.tsx";
+
 
 export const MoviesPage = () => {
-    return <MoviesGrid />;
-};
+
+
+    return (
+        <>
+            <PreferencesProvider movies={movies} title={"Все фильмы"}/>
+        </>
+    );
+}

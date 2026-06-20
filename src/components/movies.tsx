@@ -1,4 +1,4 @@
-export const movie = [
+export const movies = [
     {
         id: 1,
 
@@ -7,6 +7,9 @@ export const movie = [
 
         year: 2014,
         releaseDate: "2014-11-06",
+
+        budget: 165000000,
+        boxOffice: 677471339,
 
         category: "Фантастика",
         genres: ["Фантастика", "Драма", "Приключения"],
@@ -81,6 +84,9 @@ export const movie = [
         year: 2010,
         releaseDate: "2010-07-16",
 
+        budget: 160000000,
+        boxOffice: 836836967,
+
         category: "Фантастика",
         genres: ["Фантастика", "Боевик", "Триллер"],
 
@@ -129,6 +135,9 @@ export const movie = [
 
         year: 2022,
         releaseDate: "2022-03-04",
+
+        budget: 185000000,
+        boxOffice: 772184065,
 
         category: "Боевик",
         genres: ["Боевик", "Криминал", "Детектив"],
@@ -179,6 +188,9 @@ export const movie = [
         year: 2021,
         releaseDate: "2021-10-22",
 
+        budget: 165000000,
+        boxOffice: 402064899,
+
         category: "Фантастика",
         genres: ["Фантастика", "Приключения", "Драма"],
 
@@ -227,6 +239,9 @@ export const movie = [
 
         year: 2017,
         releaseDate: "2017-10-06",
+
+        budget: 150000000,
+        boxOffice: 503979826,
 
         category: "Фантастика",
         genres: ["Фантастика", "Драма", "Триллер"],
@@ -277,6 +292,9 @@ export const movie = [
         year: 1999,
         releaseDate: "1999-10-15",
 
+        budget: 63000000,
+        boxOffice: 101209702,
+
         category: "Драма",
         genres: ["Драма", "Триллер"],
 
@@ -324,6 +342,9 @@ export const movie = [
 
         year: 2008,
         releaseDate: "2008-07-18",
+
+        budget: 185000000,
+        boxOffice: 1004558444,
 
         category: "Боевик",
         genres: ["Боевик", "Криминал", "Драма"],
@@ -374,6 +395,9 @@ export const movie = [
         year: 1994,
         releaseDate: "1994-10-14",
 
+        budget: 8000000,
+        boxOffice: 213928762,
+
         category: "Криминал",
         genres: ["Криминал", "Драма"],
 
@@ -423,6 +447,9 @@ export const movie = [
         year: 1999,
         releaseDate: "1999-03-31",
 
+        budget: 63000000,
+        boxOffice: 467222728,
+
         category: "Фантастика",
         genres: ["Фантастика", "Боевик"],
 
@@ -471,6 +498,9 @@ export const movie = [
         year: 2009,
         releaseDate: "2009-12-18",
 
+        budget: 237000000,
+        boxOffice: 2923706025,
+
         category: "Фантастика",
         genres: ["Фантастика", "Приключения", "Боевик"],
 
@@ -518,6 +548,9 @@ export const movie = [
 
         year: 2019,
         releaseDate: "2019-04-26",
+
+        budget: 356000000,
+        boxOffice: 2799439100,
 
         category: "Супергерои",
         genres: ["Супергерои", "Фантастика", "Боевик"],
@@ -568,6 +601,9 @@ export const movie = [
         year: 2019,
         releaseDate: "2019-10-04",
 
+        budget: 55000000,
+        boxOffice: 1074251311,
+
         category: "Драма",
         genres: ["Драма", "Триллер", "Криминал"],
 
@@ -615,6 +651,9 @@ export const movie = [
 
         year: 2000,
         releaseDate: "2000-05-05",
+
+        budget: 103000000,
+        boxOffice: 465500000,
 
         category: "Исторические",
         genres: ["Исторический", "Драма", "Боевик"],
@@ -664,6 +703,9 @@ export const movie = [
         year: 1997,
         releaseDate: "1997-12-19",
 
+        budget: 200000000,
+        boxOffice: 2264743305,
+
         category: "Романтика",
         genres: ["Драма", "Мелодрама"],
 
@@ -711,6 +753,9 @@ export const movie = [
 
         year: 1994,
         releaseDate: "1994-07-06",
+
+        budget: 55000000,
+        boxOffice: 678222284,
 
         category: "Драма",
         genres: ["Драма", "Комедия", "Мелодрама"],
@@ -760,6 +805,9 @@ export const movie = [
         year: 1994,
         releaseDate: "1994-09-23",
 
+        budget: 25000000,
+        boxOffice: 288558817,
+
         category: "Драма",
         genres: ["Драма", "Криминал"],
 
@@ -807,6 +855,9 @@ export const movie = [
 
         year: 1972,
         releaseDate: "1972-03-24",
+
+        budget: 6000000,
+        boxOffice: 250342198,
 
         category: "Криминал",
         genres: ["Криминал", "Драма"],
@@ -856,6 +907,9 @@ export const movie = [
         year: 1974,
         releaseDate: "1974-12-20",
 
+        budget: 13000000,
+        boxOffice: 193000000,
+
         category: "Криминал",
         genres: ["Криминал", "Драма"],
 
@@ -903,6 +957,9 @@ export const movie = [
 
         year: 2023,
         releaseDate: "2023-07-21",
+
+        budget: 100000000,
+        boxOffice: 975000000,
 
         category: "Биография",
         genres: ["Биография", "Драма", "Исторический"],
@@ -952,6 +1009,9 @@ export const movie = [
         year: 2021,
         releaseDate: "2021-12-17",
 
+        budget: 200000000,
+        boxOffice: 1921847111,
+
         category: "Супергерои",
         genres: ["Супергерои", "Фантастика", "Боевик"],
 
@@ -999,6 +1059,9 @@ export const movie = [
 
         year: 2016,
         releaseDate: "2016-02-12",
+
+        budget: 58000000,
+        boxOffice: 782836791,
 
         category: "Супергерои",
         genres: ["Супергерои", "Боевик", "Комедия"],
@@ -1048,6 +1111,9 @@ export const movie = [
         year: 2018,
         releaseDate: "2018-05-18",
 
+        budget: 110000000,
+        boxOffice: 785896609,
+
         category: "Супергерои",
         genres: ["Супергерои", "Боевик", "Комедия"],
 
@@ -1095,6 +1161,9 @@ export const movie = [
 
         year: 2016,
         releaseDate: "2016-11-04",
+
+        budget: 165000000,
+        boxOffice: 677796076,
 
         category: "Супергерои",
         genres: ["Супергерои", "Фэнтези", "Боевик"],
@@ -1144,6 +1213,9 @@ export const movie = [
         year: 2008,
         releaseDate: "2008-05-02",
 
+        budget: 140000000,
+        boxOffice: 585174222,
+
         category: "Супергерои",
         genres: ["Супергерои", "Фантастика", "Боевик"],
 
@@ -1191,6 +1263,9 @@ export const movie = [
 
         year: 2013,
         releaseDate: "2013-12-25",
+
+        budget: 100000000,
+        boxOffice: 406878233,
 
         category: "Криминал",
         genres: ["Криминал", "Драма", "Комедия"],
@@ -1240,6 +1315,9 @@ export const movie = [
         year: 2015,
         releaseDate: "2015-05-15",
 
+        budget: 150000000,
+        boxOffice: 380436354,
+
         category: "Постапокалипсис",
         genres: ["Постапокалипсис", "Боевик", "Приключения"],
 
@@ -1287,6 +1365,9 @@ export const movie = [
 
         year: 2014,
         releaseDate: "2014-10-24",
+
+        budget: 20000000,
+        boxOffice: 86000000,
 
         category: "Боевик",
         genres: ["Боевик", "Триллер", "Криминал"],

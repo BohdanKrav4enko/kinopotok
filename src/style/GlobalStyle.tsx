@@ -1,13 +1,22 @@
-```jsx id="global-style"
 import { createGlobalStyle } from "styled-components";
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
 *,
 *::before,
 *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+html {
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
+}
+html,
+    body,
+    #root {
+    min-height: 100vh;
+    font-family: "Roboto", sans-serif;
 }
 
 html {
@@ -16,13 +25,18 @@ html {
 }
 
 body {
-    min-height: 100vh;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background-color: #0f172a;
+    background: linear-gradient(180deg, #020617 0%, #0f172a 100%);
     color: #ffffff;
     line-height: 1.5;
+
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
 }
 
 img,
@@ -42,6 +56,7 @@ input,
     border: none;
     outline: none;
     background: none;
+    color: inherit;
 }
 
 button {
@@ -57,11 +72,4 @@ ul,
     ol {
     list-style: none;
 }
-
-#root {
-    min-height: 100vh;
-}
 `;
-
-export default GlobalStyle;
-```
