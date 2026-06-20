@@ -1,29 +1,35 @@
-import {useNavigate, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {
+    Category,
     Container,
-    Top,
-    Info,
-    Poster,
-    Title,
     Description,
+    Divider,
+    Dot,
+    FactRow,
+    Facts,
+    HeaderRow,
+    Info,
     Meta,
-    Dot, BackButton, Facts, FactRow,
-    Money, Divider, HeaderRow, StarsWrapper, PosterColumn, Category,
+    Money,
+    Poster,
+    PosterColumn,
+    StarsWrapper,
+    Title,
+    Top,
 } from "./styles/MoviePageStyle.tsx";
 
 import {RatingStars} from "../ratingStars";
 import {SimilarMovies} from "../similarMovies";
 import {FavoriteButton} from "../favoriteButton/FavoriteButton.tsx";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {EmptyMessage} from "../EmptyMessage.tsx";
 import {movies} from "../movies.tsx";
 import {TrailerFrame, TrailerSection, TrailerTitle} from "./styles/TrailerStyle.tsx";
 import {getYouTubeEmbedUrl} from "../../utils";
 import {MovieReactions} from "../movieReactions/MovieReactions.tsx";
+import {Breadcrumbs} from "../breadcrumbs";
 
 export const MoviePage = () => {
     const {slug} = useParams();
-    const navigate = useNavigate();
 
     const movie = movies.find((m) => m.slug === slug);
 
@@ -33,9 +39,7 @@ export const MoviePage = () => {
 
     return (
         <Container>
-            <BackButton onClick={() => navigate(-1)}>
-                <ArrowBackIcon/> Назад
-            </BackButton>
+            <Breadcrumbs movies={movies}/>
             <Top>
                 <PosterColumn>
                     <Poster src={movie.poster} />
