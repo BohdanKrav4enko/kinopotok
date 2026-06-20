@@ -37,7 +37,7 @@ export const Header = () => {
 
     return (
         <Container>
-            <Logo href="/">🎬 КиноПоток</Logo>
+            <Logo to="/">🎬 КиноПоток</Logo>
 
             <Nav>
                 <NavLink to="/videos">Видео</NavLink>

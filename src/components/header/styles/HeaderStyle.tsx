@@ -35,7 +35,7 @@ export const Container = styled.header`
     }
 `;
 
-export const Logo = styled.a`
+export const Logo = styled(Link)`
     font-size: 1.7rem;
     font-weight: 800;
     color: #fff;
