@@ -1,18 +1,18 @@
 import {Grid, Subtitle} from "./styles/MovieGridStyle.tsx";
 import {SectionTitle} from "../sectionTitle";
 import {MovieCards} from "./card/MovieCards.tsx";
-import type {PreferencesProviderProps} from "../preferencesProvider/PreferencesProvider.tsx";
+import type {PreferencesProviderProps} from "../allContent.ts";
 
 
 export const MoviesGrid = (props: PreferencesProviderProps) => {
 
-    const {movies, title, subtitle} = props;
+    const {items, title, subtitle} = props;
 
     return <>
         {title && <SectionTitle>{title}</SectionTitle>}
         {subtitle && <Subtitle>{subtitle}</Subtitle>}
         <Grid>
-          <MovieCards movies={movies}/>
+          <MovieCards items={items}/>
         </Grid>
     </>;
 };

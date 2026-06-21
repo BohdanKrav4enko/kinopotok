@@ -1,6 +1,24 @@
-import styled from "styled-components";
-import {Link} from "react-router-dom";
+import styled, {keyframes} from "styled-components";
+import {Link, NavLink} from "react-router-dom";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
+const glow = keyframes`
+  0%, 100% {
+    filter:
+      drop-shadow(0 0 4px #00e5ff)
+      drop-shadow(0 0 8px #7c4dff)
+      drop-shadow(0 0 12px #ff2bd6);
+    transform: scale(1);
+  }
+
+  50% {
+    filter:
+      drop-shadow(0 0 8px #00e5ff)
+      drop-shadow(0 0 16px #7c4dff)
+      drop-shadow(0 0 24px #ff2bd6);
+    transform: scale(1.03);
+  }
+`;
 
 export const Container = styled.header`
     position: sticky;
@@ -36,6 +54,8 @@ export const Container = styled.header`
 `;
 
 export const Logo = styled(Link)`
+    display: flex;
+    align-items: center;
     font-size: 1.7rem;
     font-weight: 800;
     color: #fff;
@@ -51,6 +71,11 @@ export const Logo = styled(Link)`
     @media (max-width: 768px) {
         grid-column: 2;
         justify-self: center;
+    }
+    img {
+        width: 60px;
+        height: 60px;
+        animation: ${glow} 2.5s ease-in-out infinite;
     }
 `;
 
@@ -79,43 +104,32 @@ export const SearchContainer = styled.div`
     }
 `;
 
-export const NavLink = styled(Link)`
+export const StyledNavLink = styled(NavLink)`
     position: relative;
 
     color: #9ca3af;
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 500;
 
-    transition: color 0.25s ease;
+    &.active {
+        color: #fff;
+    }
 
     &::after {
         content: "";
-
         position: absolute;
         left: 0;
         bottom: -8px;
-
         width: 100%;
         height: 2px;
 
         background: linear-gradient(90deg, #3b82f6, #8b5cf6);
 
         transform: scaleX(0);
-        transform-origin: center;
-
         transition: transform 0.25s ease;
     }
 
-    &:hover {
-        color: #ffffff;
-    }
-
+    &.active::after,
     &:hover::after {
         transform: scaleX(1);
-    }
-    @media (max-width: 768px) {
-        display: none;
     }
 `;
 
@@ -144,11 +158,50 @@ export const Bookmarks = styled(Link)`
     border-radius: 12px;
 
     background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 
     color: #d1d5db;
     text-decoration: none;
 
+    cursor: pointer;
+
     transition: all 0.25s ease;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+        transform: translateY(-2px);
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(96, 165, 250, 0.35);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+        color: #ffffff;
+    }
+
+    &:active {
+        transform: translateY(0px) scale(0.97);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    &:focus-visible {
+        outline: 2px solid #60a5fa;
+        outline-offset: 2px;
+    }
+`;
+export const StyledFavoriteIcon = styled(FavoriteIcon)`
+    z-index: 2;
+
+    cursor: pointer;
+
+    color: #60a5fa;
+
+    transition: all 0.2s ease;
+
+    &:hover {
+        transform: scale(1.15);
+    @media (max-width: 768px) {
+        opacity: 1;
+    }
+    
 `;
 export const Label = styled.span`
     @media (max-width: 768px) {

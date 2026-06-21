@@ -1,5 +1,5 @@
-import {useNavigate} from "react-router-dom";
-import {RatingStars} from "../../ratingStars";
+import { useNavigate } from "react-router-dom";
+import { RatingStars } from "../../ratingStars";
 import {
     Actions,
     Button,
@@ -10,62 +10,64 @@ import {
     Meta,
     Poster,
     RatingStarsWrapper,
-    Title, WatchMobileButton
-} from "../styles/MoviesListStyle.tsx";
-import PlayArrowSharpIcon from '@mui/icons-material/PlayArrowSharp';
-import {FavoriteButton} from "../../favoriteButton/FavoriteButton.tsx";
-import type {Movie} from "../../../type/type.ts";
-
+    Title,
+    WatchMobileButton
+} from "../styles/MoviesListStyle";
+import PlayArrowSharpIcon from "@mui/icons-material/PlayArrowSharp";
+import { FavoriteButton } from "../../favoriteButton/FavoriteButton";
+import type {MediaItem} from "../../allContent.ts";
 
 type Props = {
-    movies: Movie[];
+    items: MediaItem[];
 };
 
-export const MovieList = ({movies}: Props) => {
+export const MovieList = ({ items }: Props) => {
     const navigate = useNavigate();
 
-    const movieListHandler = (movie: Movie) =>
-        navigate(`/movie/${movie.slug}`);
+    const handleOpen = (item: MediaItem) => {
+        navigate(`/${item.type}/${item.slug}`);
+    };
 
     return (
         <>
-            {movies.map((movie) => (
-                <ListCard key={movie.id}>
-                    <Poster onClick={() => movieListHandler(movie)} src={movie.poster}/>
+            {items.map((item) => (
+                <ListCard key={item.id}>
+                    <Poster
+                        onClick={() => handleOpen(item)}
+                        src={item.poster}
+                    />
 
                     <Info>
-                        <Title onClick={() => movieListHandler(movie)}>
-                            {movie.title}
+                        <Title onClick={() => handleOpen(item)}>
+                            {item.title}
                         </Title>
 
                         <Meta>
-                            {movie.year} • {movie.category} • {movie.duration} мин
+                            {item.year} • {item.category} • {item.duration} мин
                         </Meta>
 
+                        <Label>Режиссёр: {item.director}</Label>
 
-                        <Label>Режиссёр: {movie.director}</Label>
+                        <Label>В ролях: {item.cast.join(", ")}</Label>
 
-                        <Label>
-                            В ролях: {movie.cast.join(", ")}
-                        </Label>
                         <RatingStarsWrapper>
-                            <RatingStars rating={movie.rating}/>
+                            <RatingStars rating={item.rating} />
                         </RatingStarsWrapper>
 
-
                         <Description>
-                            {movie.description}
+                            {item.description}
                         </Description>
 
                         <Actions>
-                            <Button onClick={() => movieListHandler(movie)}>
-                                <PlayArrowSharpIcon color="success"/>
+                            <Button onClick={() => handleOpen(item)}>
+                                <PlayArrowSharpIcon color="success" />
                                 <span>Смотреть</span>
                             </Button>
 
-                            <FavoriteButton movie={movie}/>
+                            <FavoriteButton movie={item} />
                         </Actions>
-                        <WatchMobileButton onClick={() => movieListHandler(movie)}>
+
+                        <WatchMobileButton onClick={() => handleOpen(item)}>
                             <PlayArrowSharpIcon />
                             Смотреть
                         </WatchMobileButton>
@@ -73,4 +75,5 @@ export const MovieList = ({movies}: Props) => {
                 </ListCard>
             ))}
         </>
-    );}
+    );
+};

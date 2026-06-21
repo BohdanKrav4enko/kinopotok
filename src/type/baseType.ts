@@ -1,12 +1,12 @@
-export interface Movie {
+export interface BaseMedia {
     id: number;
+    type: string;
+
     title: string;
     originalTitle: string;
+
     year: number;
     releaseDate: string;
-
-    budget: number;
-    boxOffice: number;
 
     category: string;
     genres: string[];
@@ -21,20 +21,17 @@ export interface Movie {
     language: string;
 
     director: string;
-    writers?: string[];
-    cast: string[];
 
-    studio?: string[];
+    cast: string[];
 
     description: string;
 
     poster: string;
     backdrop: string;
+
     trailer: string;
 
     tags: string[];
-
-    awards?: string[];
 
     featured: boolean;
     trending: boolean;

@@ -1,4 +1,5 @@
 import {useParams} from "react-router-dom";
+
 import {
     Category,
     Container,
@@ -22,96 +23,122 @@ import {RatingStars} from "../ratingStars";
 import {SimilarMovies} from "../similarMovies";
 import {FavoriteButton} from "../favoriteButton/FavoriteButton.tsx";
 import {EmptyMessage} from "../EmptyMessage.tsx";
-import {movies} from "../movies.tsx";
-import {TrailerFrame, TrailerSection, TrailerTitle} from "./styles/TrailerStyle.tsx";
+import {allContent} from "../allContent.ts";
+import {TrailerFrame, TrailerSection, TrailerTitle,} from "./styles/TrailerStyle.tsx";
 import {getYouTubeEmbedUrl} from "../../utils";
 import {MovieReactions} from "../movieReactions/MovieReactions.tsx";
 import {Breadcrumbs} from "../breadcrumbs";
 
 export const MoviePage = () => {
-    const {slug} = useParams();
+    const {type, slug} = useParams();
 
-    const movie = movies.find((m) => m.slug === slug);
+    const item = allContent.find(
+        (i) => i.type === type && i.slug === slug
+    );
 
-    if (!movie) {
+    if (!item) {
         return <EmptyMessage/>;
     }
 
     return (
         <Container>
-            <Breadcrumbs movies={movies}/>
+            <Breadcrumbs/>
+
             <Top>
                 <PosterColumn>
-                    <Poster src={movie.poster} />
-                    <MovieReactions movieId={movie.id} />
+                    <Poster src={item.poster}/>
+                    <MovieReactions movieId={item.id}/>
                 </PosterColumn>
+
                 <Info>
-                    <Title>{movie.title}</Title>
-                    <Category to={`/category/${encodeURIComponent(movie.category)}`}>{movie.category}</Category>
+                    <Title>{item.title}</Title>
+
+                    <Category to={`/${item.type}/category/${encodeURIComponent(item.category)}`}>
+                        {item.category}
+                    </Category>
+
                     <Facts>
                         <HeaderRow>
                             <Meta>
-                                <span>{movie.year}</span>
+                                <span>{item.year}</span>
                                 <Dot>•</Dot>
-                                <span>{movie.duration} мин</span>
+                                <span>{item.duration} мин</span>
                             </Meta>
+
                             <StarsWrapper>
-                                <RatingStars rating={movie.rating}/>
+                                <RatingStars rating={item.rating}/>
                             </StarsWrapper>
                         </HeaderRow>
+
                         <FactRow>
-                            <b>Страна:</b> {movie.country.join(", ")}
+                            <b>Страна:</b> {item.country.join(", ")}
                         </FactRow>
 
                         <FactRow>
-                            <b>Язык:</b> {movie.language}
+                            <b>Язык:</b> {item.language}
                         </FactRow>
 
                         <FactRow>
-                            <b>Режиссёр:</b> {movie.director}
+                            <b>Режиссёр:</b> {item.director}
                         </FactRow>
 
-                        {movie.writers && (
+                        {"writers" in item && item.writers && (
                             <FactRow>
-                                <b>Сценарий:</b> {movie.writers.join(", ")}
+                                <b>Сценарий:</b>{" "}
+                                {item.writers.join(", ")}
                             </FactRow>
                         )}
-                        <FactRow>
-                            <b>Студии:</b> {movie.studio?.join(", ")}
-                        </FactRow>
+
+                        {"studio" in item && item.studio && (
+                            <FactRow>
+                                <b>Студии:</b>{" "}
+                                {item.studio.join(", ")}
+                            </FactRow>
+                        )}
+
+                        {"budget" in item && (
+                            <FactRow>
+                                <b>Бюджет:</b>{" "}
+                                <Money>
+                                    ${item.budget.toLocaleString()}
+                                </Money>
+                            </FactRow>
+                        )}
+
+                        {"boxOffice" in item && (
+                            <FactRow>
+                                <b>Касса:</b>{" "}
+                                <Money>
+                                    ${item.boxOffice.toLocaleString()}
+                                </Money>
+                            </FactRow>
+                        )}
 
                         <Divider/>
 
-                        <FactRow>
-                            <b>Бюджет:</b>{" "}
-                            <Money>${movie.budget?.toLocaleString()}</Money>
-                        </FactRow>
+                        <Description>{item.description}</Description>
+                    </Facts>
 
-                        <FactRow>
-                            <b>Касса:</b>{" "}
-                            <Money>${movie.boxOffice?.toLocaleString()}</Money>
-                        </FactRow>
-                    </Facts>
-                    <Facts>
-                        <Description>{movie.description}</Description>
-                    </Facts>
-                    <FavoriteButton movie={movie}/>
+                    <FavoriteButton movie={item}/>
                 </Info>
             </Top>
-            {movie.trailer && (
+
+            {item.trailer && (
                 <TrailerSection>
                     <TrailerTitle>Трейлер</TrailerTitle>
 
                     <TrailerFrame
-                        src={getYouTubeEmbedUrl(movie.trailer)}
+                        src={getYouTubeEmbedUrl(item.trailer)}
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                     />
                 </TrailerSection>
             )}
+
             <SimilarMovies
-                category={movie.category}
-                currentMovieId={movie.id}
+                type={item.type}
+                category={item.category}
+                currentId={item.id}
             />
         </Container>
     );

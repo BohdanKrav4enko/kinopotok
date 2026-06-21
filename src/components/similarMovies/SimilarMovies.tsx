@@ -1,30 +1,33 @@
-import {Grid, Title, Wrapper} from "./styles/SimilarMoviesStyle.tsx";
-import {movies} from "../movies.tsx";
-import {MovieCards} from "../moviesGrid";
+import { Grid, Title, Wrapper } from "./styles/SimilarMoviesStyle";
+import { allContent } from "../allContent";
+import { MovieCards } from "../moviesGrid";
+import type { MediaItem } from "../allContent";
 
 type Props = {
+    type: MediaItem["type"];
     category: string;
-    currentMovieId: number;
+    currentId: number;
 };
 
-export const SimilarMovies = ({ category, currentMovieId }: Props) => {
+export const SimilarMovies = ({ type, category, currentId }: Props) => {
 
-    const similar = movies
+    const similar: MediaItem[] = allContent
         .filter(
-            (m) => m.category === category && m.id !== currentMovieId
+            (item) =>
+                item.type === type &&
+                item.category === category &&
+                item.id !== currentId
         )
         .slice(0, 5);
 
-    if (similar.length === 0) {
-        return null;
-    }
+    if (similar.length === 0) return null;
 
     return (
         <Wrapper>
-            <Title>🎬 Похожие фильмы</Title>
+            <Title>🎬 Похожие {type === "movie" ? "фильмы" : type === "series" ? "сериалы" : "мультфильмы"}</Title>
 
             <Grid>
-                <MovieCards movies={similar}/>
+                <MovieCards items={similar} />
             </Grid>
         </Wrapper>
     );

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {NavLink} from "react-router-dom";
 
 export const Bar = styled.div`
     display: flex;
@@ -27,7 +28,7 @@ export const Bar = styled.div`
         z-index: 1000;
     }
 `;
-export const NavButton = styled.button<{ $active?: boolean }>`
+export const NavButton = styled(NavLink)<{ $active?: boolean }>`
     display: inline-flex;
     align-items: center;
     justify-content: center;

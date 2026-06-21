@@ -1,31 +1,63 @@
-import {useNavigate, useParams} from "react-router-dom";
-import {Crumb, Separator, Wrapper} from "./styles/BreadcrumbsStyle";
-import type {Movie} from "../../type/type";
+import { useNavigate, useParams } from "react-router-dom";
+import { Crumb, Separator, Wrapper } from "./styles/BreadcrumbsStyle";
+import { allContent } from "../allContent.ts";
+import {setType} from "../../features/filterSlice/filterSlice.ts";
+import {useAppDispatch} from "../../hooks";
 
-type Props = {
-    movies: Movie[];
-};
-
-export const Breadcrumbs = ({ movies }: Props) => {
+export const Breadcrumbs = () => {
     const navigate = useNavigate();
-    const { slug } = useParams();
+    const dispatch = useAppDispatch();
+    const { type, slug } = useParams();
 
-    const movie = movies?.find(
-        (m) => m.slug?.toLowerCase() === slug?.toLowerCase()
+    const item = allContent.find(
+        (i) =>
+            i.type === type &&
+            i.slug?.toLowerCase() === slug?.toLowerCase()
     );
 
     return (
         <Wrapper>
-            <Crumb onClick={() => navigate("/")}>
+            <Crumb onClick={() => {
+                navigate("/")
+                dispatch(setType('all'))
+            }}>
                 Главная
             </Crumb>
 
-            {movie && (
+            <Separator>/</Separator>
+
+            <Crumb onClick={() => navigate(`/${type}`)}>
+                {type === "movie"
+                    ? "Фильмы"
+                    : type === "series"
+                        ? "Сериалы"
+                        : "Мультфильмы"}
+            </Crumb>
+
+            {item?.category && (
+                <>
+                    <Separator>/</Separator>
+
+                    <Crumb
+                        onClick={() =>
+                            navigate(
+                                `/${type}/category/${encodeURIComponent(
+                                    item.category
+                                )}`
+                            )
+                        }
+                    >
+                        {item.category}
+                    </Crumb>
+                </>
+            )}
+
+            {item && (
                 <>
                     <Separator>/</Separator>
 
                     <Crumb $active>
-                        {movie.title}
+                        {item.title}
                     </Crumb>
                 </>
             )}

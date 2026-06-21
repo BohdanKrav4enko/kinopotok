@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  padding: 40px;
-`;
 export const Empty = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
     margin-top: 40px;
     padding: 24px 32px;
 

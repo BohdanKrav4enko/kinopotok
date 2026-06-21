@@ -9,27 +9,34 @@ import {
     Glow,
 } from "./styles/CategoriesPageStyle";
 import {SectionTitle} from "../../components";
+import {ROUTES} from "../../router/paths.ts";
+import {subtitlesByType} from "./contentMeta.ts";
+import {useAppSelector} from "../../hooks";
 
 export const CategoriesPage = () => {
     const navigate = useNavigate();
+
+    const list = categoriesList();
+    const type = useAppSelector((state) => state.filter.type);
+
+    const subtitle = subtitlesByType[type];
 
     return (
         <Page>
             <Header>
                 <SectionTitle>Все категории</SectionTitle>
 
-                <Subtitle>
-                    Фильмы на любой вкус — от блокбастеров до нишевого кино.
-                    Выбирай жанр и погружайся в просмотр
-                </Subtitle>
+                <Subtitle>{subtitle}</Subtitle>
             </Header>
 
             <Grid>
-                {categoriesList.map((cat) => (
+                {list.map((cat) => (
                     <Card
                         key={cat}
                         onClick={() =>
-                            navigate(`/category/${encodeURIComponent(cat)}`)
+                            navigate(
+                                ROUTES.CATEGORY_DETAILS(type, cat)
+                            )
                         }
                     >
                         <Glow />

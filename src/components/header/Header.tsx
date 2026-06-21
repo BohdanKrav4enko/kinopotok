@@ -3,26 +3,30 @@ import {
     Auth,
     Bookmarks,
     Container,
-    Count, Label,
+    Count,
+    Label,
     Login,
     Logo,
     Nav,
-    NavLink,
-    Register, SearchContainer,
+    Register,
+    SearchContainer,
+    StyledFavoriteIcon,
+    StyledNavLink,
 } from "./styles/HeaderStyle.tsx";
-import FavoriteIcon from '@mui/icons-material/Favorite';
-
+import img from '../../../public/icons.svg'
 import {Search} from "../search/Search.tsx";
-import {useAppSelector} from "../../hooks";
+import {useAppDispatch, useAppSelector} from "../../hooks";
 import {useEffect, useRef, useState} from "react";
+import {setType} from "../../features/filterSlice/filterSlice.ts";
 
 export const Header = () => {
     const favoritesCount = useAppSelector(
         (state) => state.favorites.items.length
     );
-
     const prevCount = useRef(favoritesCount);
     const [animate, setAnimate] = useState(false);
+
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         if (favoritesCount !== prevCount.current) {
@@ -37,13 +41,14 @@ export const Header = () => {
 
     return (
         <Container>
-            <Logo to="/">🎬 КиноПоток</Logo>
+            <Logo onClick={() => dispatch(setType('all'))} to="/"><img src={img} alt={"Logo"}/> КиноПоток</Logo>
 
             <Nav>
-                <NavLink to="/videos">Видео</NavLink>
-                <NavLink to="/gifs">Гифки</NavLink>
-                <NavLink to="/models">Модели</NavLink>
-                <NavLink to="/blog">Блог</NavLink>
+                <StyledNavLink onClick={() => dispatch(setType('all'))} to="/all">Все</StyledNavLink>
+                <StyledNavLink onClick={() => dispatch(setType('movie'))} to="/movie">Фильмы</StyledNavLink>
+                <StyledNavLink onClick={() => dispatch(setType('series'))} to="/series">Сериалы</StyledNavLink>
+                <StyledNavLink onClick={() => dispatch(setType('cartoon'))} to="/cartoon">Мультфильмы</StyledNavLink>
+                <StyledNavLink to="/actors">Актеры</StyledNavLink>
             </Nav>
 
             <SearchContainer>
@@ -52,7 +57,7 @@ export const Header = () => {
 
             <Actions>
                 <Bookmarks to="/favorites">
-                    <FavoriteIcon color={'primary'}/> <Label>Избранное</Label>
+                    <StyledFavoriteIcon color={'primary'}/> <Label>Избранное</Label>
                     {favoritesCount > 0 &&
                         <Count $animate={animate}>
                             {favoritesCount}

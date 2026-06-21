@@ -9,7 +9,7 @@ export const FavoritesPage = () => {
             {favorites.length === 0 ? (
                 <EmptyMessage/>
             ) : (
-                <PreferencesProvider subtitle={"Твои сохранённые фильмы"} title={"Избранное"} movies={favorites}/>
+                <PreferencesProvider subtitle={"Все твои сохранённые фильмы и сериалы в одном месте."} title={"Избранное"} items={favorites}/>
             )}
         </>
     );

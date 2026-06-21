@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks";
 import { toggleFavorite } from "../../features/favorites/favoritesSlice";
 
 import { FavButton } from "./styles/FavoriteButtonStyle";
-import type {Movie} from "../../type/type.ts";
+import type {Movie} from "../../type/baseType.ts";
 
 
 type Props = {

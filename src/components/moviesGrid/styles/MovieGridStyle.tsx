@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 export const Grid = styled.div`
     display: grid;
@@ -115,4 +116,59 @@ export const Year = styled.p`
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+`;
+export const StyledFavoriteIcon = styled(FavoriteIcon)<{
+    $active?: boolean;
+}>`
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    z-index: 2;
+
+    cursor: pointer;
+
+    color: ${({ $active }) =>
+            $active ? "#60a5fa" : "rgba(203, 213, 225, 0.6)"};
+
+    opacity: 0;
+
+    transition: all 0.2s ease;
+
+    ${({ $active }) =>
+            $active &&
+            `
+        color: #60a5fa;
+        filter: drop-shadow(0 0 6px #60a5fa)
+                drop-shadow(0 0 12px #3b82f6);
+        animation: pulseGlow 1.5s infinite ease-in-out;
+    `}
+
+    ${Card}:hover & {
+        opacity: 1;
+    }
+
+    &:hover {
+        color: #60a5fa;
+        transform: scale(1.15);
+        filter: drop-shadow(0 0 8px #60a5fa);
+    }
+
+    @media (max-width: 768px) {
+        opacity: 1;
+    }
+
+    @keyframes pulseGlow {
+        0% {
+            filter: drop-shadow(0 0 5px #60a5fa)
+            drop-shadow(0 0 10px #3b82f6);
+        }
+        50% {
+            filter: drop-shadow(0 0 10px #60a5fa)
+            drop-shadow(0 0 18px #3b82f6);
+        }
+        100% {
+            filter: drop-shadow(0 0 5px #60a5fa)
+            drop-shadow(0 0 10px #3b82f6);
+        }
+    }
 `;

@@ -1,4 +1,5 @@
 import {ActionButton, Actions, Bottom, Container, Dot, Hero, Socials, Subtitle, Title} from "./styles/FooterStyle.tsx";
+import {ROUTES} from "../../router/paths.ts";
 
 export const Footer = () => {
   return (
@@ -10,8 +11,8 @@ export const Footer = () => {
               </Subtitle>
 
               <Actions>
-                  <ActionButton $primary to="/">Смотреть фильмы</ActionButton>
-                  <ActionButton to="/favorites">Избранное</ActionButton>
+                  <ActionButton $primary to={ROUTES.HOME}>Смотреть фильмы</ActionButton>
+                  <ActionButton to={ROUTES.FAVORITES}>Избранное</ActionButton>
                   <ActionButton to="/login">Войти</ActionButton>
               </Actions>
           </Hero>

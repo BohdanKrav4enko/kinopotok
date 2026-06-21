@@ -1,26 +1,48 @@
 import {useParams} from "react-router-dom";
 import {Empty} from "./styles/CategoryPageStyle.tsx";
-import {movies} from "../../../components/movies.tsx";
 import {PreferencesProvider} from "../../../components/preferencesProvider";
+import {allContent} from "../../../components/allContent";
+import {useAppSelector} from "../../../hooks";
 
 export const CategoryPage = () => {
-    const {name} = useParams();
+    const { name } = useParams();
+
+    const { type } = useAppSelector((state) => state.filter);
 
     const decodedName = decodeURIComponent(name || "");
 
-    const filteredMovies =
-        decodedName === "Все фильмы"
-            ? movies
-            : movies.filter((m) => m.category === decodedName);
+    const filteredItems = allContent.filter((item) => {
+        const matchType =
+            type === "all" || item.type === type;
 
-    return <>
-        {filteredMovies.length > 0 ? (
-            <PreferencesProvider
-                subtitle={`Лучшие фильмы категории ${decodedName.toLowerCase()} в отличном качестве, доступные для просмотра прямо сейчас`}
-                title={decodedName} movies={filteredMovies}/>
-        ) : (
-            <Empty style={{gridColumn: "1 / -1"}}>😢 Нет фильмов в этой категории</Empty>
-        )}
-    </>
+        const isAllCategory =
+            decodedName.startsWith("Все");
+
+        const matchCategory =
+            isAllCategory || item.category === decodedName;
+
+        return matchType && matchCategory;
+    });
+
+    return (
+        <>
+            {filteredItems.length > 0 ? (
+                <PreferencesProvider
+                    subtitle={`Лучшие ${
+                        type === "movie"
+                            ? "фильмы"
+                            : type === "series"
+                                ? "сериалы"
+                                : "мультфильмы"
+                    } категории ${decodedName.toLowerCase()} в отличном качестве`}
+                    title={decodedName}
+                    items={filteredItems}
+                />
+            ) : (
+                <Empty style={{ gridColumn: "1 / -1" }}>
+                    Нет контента в этой категории
+                </Empty>
+            )}
+        </>
+    );
 };
-

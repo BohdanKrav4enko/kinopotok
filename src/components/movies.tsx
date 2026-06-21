@@ -1,7 +1,7 @@
 export const movies = [
     {
         id: 1,
-
+        type: "movie",
         title: "Интерстеллар",
         originalTitle: "Interstellar",
 
@@ -77,7 +77,7 @@ export const movies = [
     },
     {
         id: 2,
-
+        type: "movie",
         title: "Начало",
         originalTitle: "Inception",
 
@@ -129,7 +129,7 @@ export const movies = [
     },
     {
         id: 3,
-
+        type: "movie",
         title: "Бэтмен",
         originalTitle: "The Batman",
 
@@ -181,7 +181,7 @@ export const movies = [
     },
     {
         id: 4,
-
+        type: "movie",
         title: "Дюна",
         originalTitle: "Dune",
 
@@ -233,7 +233,7 @@ export const movies = [
     },
     {
         id: 5,
-
+        type: "movie",
         title: "Бегущий по лезвию 2049",
         originalTitle: "Blade Runner 2049",
 
@@ -285,7 +285,7 @@ export const movies = [
     },
     {
         id: 6,
-
+        type: "movie",
         title: "Бойцовский клуб",
         originalTitle: "Fight Club",
 
@@ -336,7 +336,7 @@ export const movies = [
     },
     {
         id: 7,
-
+        type: "movie",
         title: "Тёмный рыцарь",
         originalTitle: "The Dark Knight",
 
@@ -388,7 +388,7 @@ export const movies = [
     },
     {
         id: 8,
-
+        type: "movie",
         title: "Криминальное чтиво",
         originalTitle: "Pulp Fiction",
 
@@ -440,7 +440,7 @@ export const movies = [
     },
     {
         id: 9,
-
+        type: "movie",
         title: "Матрица",
         originalTitle: "The Matrix",
 
@@ -491,7 +491,7 @@ export const movies = [
     },
     {
         id: 10,
-
+        type: "movie",
         title: "Аватар",
         originalTitle: "Avatar",
 
@@ -542,7 +542,7 @@ export const movies = [
     },
     {
         id: 11,
-
+        type: "movie",
         title: "Мстители: Финал",
         originalTitle: "Avengers: Endgame",
 
@@ -594,7 +594,7 @@ export const movies = [
     },
     {
         id: 12,
-
+        type: "movie",
         title: "Джокер",
         originalTitle: "Joker",
 
@@ -645,7 +645,7 @@ export const movies = [
     },
     {
         id: 13,
-
+        type: "movie",
         title: "Гладиатор",
         originalTitle: "Gladiator",
 
@@ -696,7 +696,7 @@ export const movies = [
     },
     {
         id: 14,
-
+        type: "movie",
         title: "Титаник",
         originalTitle: "Titanic",
 
@@ -747,7 +747,7 @@ export const movies = [
     },
     {
         id: 15,
-
+        type: "movie",
         title: "Форрест Гамп",
         originalTitle: "Forrest Gump",
 
@@ -798,7 +798,7 @@ export const movies = [
     },
     {
         id: 16,
-
+        type: "movie",
         title: "Побег из Шоушенка",
         originalTitle: "The Shawshank Redemption",
 
@@ -849,7 +849,7 @@ export const movies = [
     },
     {
         id: 17,
-
+        type: "movie",
         title: "Крёстный отец",
         originalTitle: "The Godfather",
 
@@ -900,7 +900,7 @@ export const movies = [
     },
     {
         id: 18,
-
+        type: "movie",
         title: "Крёстный отец 2",
         originalTitle: "The Godfather Part II",
 
@@ -951,7 +951,7 @@ export const movies = [
     },
     {
         id: 19,
-
+        type: "movie",
         title: "Оппенгеймер",
         originalTitle: "Oppenheimer",
 
@@ -1002,7 +1002,7 @@ export const movies = [
     },
     {
         id: 20,
-
+        type: "movie",
         title: "Человек-паук: Нет пути домой",
         originalTitle: "Spider-Man: No Way Home",
 
@@ -1053,7 +1053,7 @@ export const movies = [
     },
     {
         id: 21,
-
+        type: "movie",
         title: "Дэдпул",
         originalTitle: "Deadpool",
 
@@ -1104,7 +1104,7 @@ export const movies = [
     },
     {
         id: 22,
-
+        type: "movie",
         title: "Дэдпул 2",
         originalTitle: "Deadpool 2",
 
@@ -1155,7 +1155,7 @@ export const movies = [
     },
     {
         id: 23,
-
+        type: "movie",
         title: "Доктор Стрэндж",
         originalTitle: "Doctor Strange",
 
@@ -1206,7 +1206,7 @@ export const movies = [
     },
     {
         id: 24,
-
+        type: "movie",
         title: "Железный человек",
         originalTitle: "Iron Man",
 
@@ -1257,7 +1257,7 @@ export const movies = [
     },
     {
         id: 25,
-
+        type: "movie",
         title: "Волк с Уолл-стрит",
         originalTitle: "The Wolf of Wall Street",
 
@@ -1308,7 +1308,7 @@ export const movies = [
     },
     {
         id: 26,
-
+        type: "movie",
         title: "Безумный Макс: Дорога ярости",
         originalTitle: "Mad Max: Fury Road",
 
@@ -1359,7 +1359,7 @@ export const movies = [
     },
     {
         id: 27,
-
+        type: "movie",
         title: "Джон Уик",
         originalTitle: "John Wick",
 
@@ -1407,6 +1407,162 @@ export const movies = [
         trending: false,
 
         slug: "john-wick"
-    }
+    },
+    {
+        id: 28,
+        type: "movie",
 
+        title: "Зелёная миля",
+        originalTitle: "The Green Mile",
+
+        year: 1999,
+        releaseDate: "1999-12-10",
+
+        budget: 60000000,
+        boxOffice: 286801374,
+
+        category: "Драма",
+        genres: ["Драма", "Криминал", "Фэнтези"],
+
+        rating: 8.6,
+        votes: 1500000,
+
+        duration: 189,
+        ageRating: "16+",
+
+        country: ["США"],
+        language: "Английский",
+
+        director: "Фрэнк Дарабонт",
+
+        cast: [
+            "Том Хэнкс",
+            "Майкл Кларк Дункан",
+            "Дэвид Морс",
+            "Бонни Хант"
+        ],
+
+        description:
+            "Начальник блока смертников в тюрьме сталкивается с необычным заключённым, обладающим загадочными способностями.",
+
+        poster:
+            "https://image.tmdb.org/t/p/w500/velWPhVMQeQKcxggNEU8YmIo52R.jpg",
+
+        backdrop:
+            "https://image.tmdb.org/t/p/original/l6hQWH9eDksNJNiXWYRkWqikOdu.jpg",
+
+        trailer: "https://www.youtube.com/watch?v=Ki4haFrqSrw",
+
+        tags: ["тюрьма", "драма", "мистика", "культовый"],
+
+        featured: true,
+        trending: false,
+
+        slug: "the-green-mile"
+    },
+    {
+        id: 29,
+        type: "movie",
+
+        title: "Остров проклятых",
+        originalTitle: "Shutter Island",
+
+        year: 2010,
+        releaseDate: "2010-02-19",
+
+        budget: 80000000,
+        boxOffice: 294804195,
+
+        category: "Триллер",
+        genres: ["Триллер", "Детектив", "Драма"],
+
+        rating: 8.2,
+        votes: 1500000,
+
+        duration: 138,
+        ageRating: "18+",
+
+        country: ["США"],
+        language: "Английский",
+
+        director: "Мартин Скорсезе",
+
+        cast: [
+            "Леонардо ДиКаприо",
+            "Марк Руффало",
+            "Бен Кингсли",
+            "Мишель Уильямс"
+        ],
+
+        description:
+            "Федеральный маршал прибывает в психиатрическую клинику на удалённом острове, чтобы расследовать исчезновение пациентки.",
+
+        poster:
+            "https://image.tmdb.org/t/p/w500/4GDy0PHYX3VRXUtwK5ysFbg3kEx.jpg",
+
+        backdrop:
+            "https://image.tmdb.org/t/p/original/kve20tXwUZpu4GUX8l6X7Z4jmL6.jpg",
+
+        trailer: "https://www.youtube.com/watch?v=5iaYLCiq5RM",
+
+        tags: ["психология", "детектив", "психиатрия", "неожиданный финал"],
+
+        featured: true,
+        trending: false,
+
+        slug: "shutter-island"
+    },
+    {
+        id: 30,
+        type: "movie",
+
+        title: "Властелин колец: Братство Кольца",
+        originalTitle: "The Lord of the Rings: The Fellowship of the Ring",
+
+        year: 2001,
+        releaseDate: "2001-12-19",
+
+        budget: 93000000,
+        boxOffice: 897690072,
+
+        category: "Фэнтези",
+        genres: ["Фэнтези", "Приключения", "Боевик"],
+
+        rating: 8.9,
+        votes: 2100000,
+
+        duration: 178,
+        ageRating: "12+",
+
+        country: ["Новая Зеландия", "США"],
+        language: "Английский",
+
+        director: "Питер Джексон",
+
+        cast: [
+            "Элайджа Вуд",
+            "Иэн Маккеллен",
+            "Вигго Мортенсен",
+            "Орландо Блум",
+            "Шон Бин"
+        ],
+
+        description:
+            "Молодой хоббит Фродо отправляется в опасное путешествие, чтобы уничтожить Кольцо Всевластия и спасти Средиземье.",
+
+        poster:
+            "https://image.tmdb.org/t/p/w500/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg",
+
+        backdrop:
+            "https://image.tmdb.org/t/p/original/pIUvQ9Ed35wlWhY2oU6OmwEsmzG.jpg",
+
+        trailer: "https://www.youtube.com/watch?v=V75dMMIW2B4",
+
+        tags: ["фэнтези", "Средиземье", "хоббиты", "эпик"],
+
+        featured: true,
+        trending: true,
+
+        slug: "the-lord-of-the-rings-the-fellowship-of-the-ring"
+    },
 ]

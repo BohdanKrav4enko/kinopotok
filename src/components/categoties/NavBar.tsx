@@ -1,44 +1,51 @@
-import { useNavigate, useLocation } from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import {Bar, NavButton} from "./styles/NavBarStyle.tsx";
 import MovieFilterIcon from "@mui/icons-material/MovieFilter";
 import CategoryIcon from "@mui/icons-material/Category";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import {ROUTES} from "../../router/paths.ts";
+import {config} from "./contentMeta.ts";
+import {useAppSelector} from "../../hooks";
 
 export const NavBar = () => {
-    const navigate = useNavigate();
     const location = useLocation();
-
+    const type = useAppSelector((state) => state.filter.type);
+    const current = config[type];
     const isActive = (path: string) => location.pathname === path;
+    const topRoute = `/${type}/top`;
+    const newRoute = `/${type}/new`;
 
     return (
         <Bar>
             <NavButton
-                $active={isActive("/")}
-                onClick={() => navigate("/")}
-            >
-                <MovieFilterIcon/> Все фильмы
-            </NavButton>
-
-            <NavButton
-                $active={isActive("/categories")}
-                onClick={() => navigate("/categories")}
+                to={ROUTES.CATEGORIES}
+                $active={isActive(ROUTES.CATEGORIES)}
             >
                 <CategoryIcon/> Категории
             </NavButton>
 
             <NavButton
-                $active={isActive("/top")}
-                onClick={() => navigate("/top")}
+                to={current.route}
+                $active={isActive(current.route)}
             >
-                <WhatshotIcon/> Топ
+                <MovieFilterIcon />
+                {current.label}
+            </NavButton>
+
+
+            <NavButton
+                to={topRoute}
+                $active={isActive(topRoute)}
+            >
+                <WhatshotIcon /> Топ
             </NavButton>
 
             <NavButton
-                $active={isActive("/new")}
-                onClick={() => navigate("/new")}
+                to={newRoute}
+                $active={isActive(newRoute)}
             >
-                <TrendingUpIcon/> Новинки
+                <TrendingUpIcon /> Новинки
             </NavButton>
         </Bar>
     );

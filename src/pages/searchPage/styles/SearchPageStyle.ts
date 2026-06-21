@@ -36,22 +36,3 @@ export const Count = styled.div`
   color: #94a3b8;
   font-size: 0.9rem;
 `;
-
-export const MovieTitle = styled.div`
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #e5e7eb;
-`;
-
-export const Empty = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    margin-top: 60px;
-
-    text-align: center;
-
-    font-size: 1.2rem;
-    color: #94a3b8;
-`;

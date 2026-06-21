@@ -1,26 +1,30 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type {Movie} from "../../type/type.ts";
+import type {MediaItem} from "../../components/allContent.ts";
 
 type FavoritesState = {
-    items: Movie[];
+    items: MediaItem[];
 };
 
 const initialState: FavoritesState = {
     items: [],
 };
 
+const getKey = (item: MediaItem) => `${item.type}-${item.id}`;
+
 const favoritesSlice = createSlice({
     name: "favorites",
     initialState,
     reducers: {
-        toggleFavorite: (state, action: PayloadAction<Movie>) => {
+        toggleFavorite: (state, action: PayloadAction<MediaItem>) => {
             const exists = state.items.some(
-                (movie) => movie.id === action.payload.id
+                (item) =>
+                    getKey(item) === getKey(action.payload)
             );
 
             if (exists) {
                 state.items = state.items.filter(
-                    (movie) => movie.id !== action.payload.id
+                    (item) =>
+                        getKey(item) !== getKey(action.payload)
                 );
             } else {
                 state.items.push(action.payload);
