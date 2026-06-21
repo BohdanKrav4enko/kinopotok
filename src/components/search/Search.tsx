@@ -1,28 +1,30 @@
 import {useEffect, useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import * as React from "react";
-import { useDebounce } from "../../hooks";
-import { SearchInput, Wrapper, Dropdown, Suggestion } from "./styles/SearchStyle";
-import SearchIcon from '@mui/icons-material/Search';
-import {movies} from "../movies.tsx";
+import {useDebounce} from "../../hooks";
+import {SearchInput, Wrapper, Dropdown, Suggestion} from "./styles/SearchStyle";
+import SearchIcon from "@mui/icons-material/Search";
+import {allContent} from "../allContent";
 
 export const Search = () => {
     const [value, setValue] = useState("");
     const navigate = useNavigate();
+    const location = useLocation();
 
     const debouncedValue = useDebounce(value, 300);
-    const clearSearch = () => setValue("");
 
-    const location = useLocation();
+    const clearSearch = () => setValue("");
 
     useEffect(() => {
         setValue("");
     }, [location.pathname]);
 
     const suggestions = debouncedValue
-        ? movies
-            .filter((m) =>
-                m.title.toLowerCase().includes(debouncedValue.toLowerCase())
+        ? allContent
+            .filter((item) =>
+                item.title
+                    .toLowerCase()
+                    .includes(debouncedValue.toLowerCase())
             )
             .slice(0, 5)
         : [];
@@ -30,31 +32,35 @@ export const Search = () => {
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter" && value.trim()) {
             navigate(`/search?q=${encodeURIComponent(value)}`);
-            clearSearch()
+            clearSearch();
         }
     };
 
     return (
         <Wrapper>
-            <SearchIcon/>
+            <SearchIcon style={{cursor: 'pointer'}} onClick={() => {
+                navigate(`/search?q=${encodeURIComponent(value)}`);
+                clearSearch();
+            }}/>
+
             <SearchInput
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Поиск фильмов..."
+                placeholder="Поиск..."
             />
 
             {debouncedValue && suggestions.length > 0 && (
                 <Dropdown>
-                    {suggestions.map((movie) => (
+                    {suggestions.map((item) => (
                         <Suggestion
-                            key={movie.id}
+                            key={`${item.type}-${item.id}`}
                             onClick={() => {
-                                navigate(`/movie/${movie.slug}`);
+                                navigate(`/${item.type}/${item.slug}`);
                                 clearSearch();
                             }}
                         >
-                           {movie.title}
+                            {item.title}
                         </Suggestion>
                     ))}
                 </Dropdown>

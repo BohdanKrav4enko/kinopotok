@@ -1,17 +1,17 @@
 import {useSearchParams} from "react-router-dom";
 import {Container, Count, Header, Query, TitleText} from "./styles/SearchPageStyle.ts";
 import {EmptyMessage} from "../../components/EmptyMessage.tsx";
-import {movies} from "../../components/movies.tsx";
 import {PreferencesProvider} from "../../components/preferencesProvider";
 import SearchIcon from '@mui/icons-material/Search';
+import {allContent} from "../../components/allContent.ts";
 
 export const SearchPage = () => {
     const [params] = useSearchParams();
 
     const query = params.get("q") || "";
 
-    const results = movies.filter((movie) =>
-        movie.title.toLowerCase().includes(query.toLowerCase())
+    const results = allContent.filter((item) =>
+        item.title.toLowerCase().includes(query.toLowerCase())
     );
 
     return (
@@ -28,7 +28,7 @@ export const SearchPage = () => {
                 </Count>
             </Header>
             {results.length > 0 ? (
-                <PreferencesProvider movies={results}/>
+                <PreferencesProvider items={results}/>
             ) : (
                 <EmptyMessage/>
             )}

@@ -4,11 +4,11 @@ import { useAppDispatch, useAppSelector } from "../../hooks";
 import { toggleFavorite } from "../../features/favorites/favoritesSlice";
 
 import { FavButton } from "./styles/FavoriteButtonStyle";
-import type {Movie} from "../../type/baseType.ts";
+import type {MediaItem} from "../allContent.ts";
 
 
 type Props = {
-    movie: Movie;
+    movie: MediaItem ;
 };
 
 export const FavoriteButton = ({ movie }: Props) => {
