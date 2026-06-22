@@ -14,7 +14,7 @@ export const Bar = styled.div`
 
     backdrop-filter: blur(12px);
 
-    @media (max-width: 768px) {
+    @media (max-width: 1150px) {
         position: fixed;
         bottom: 0;
         left: 0;

@@ -85,7 +85,7 @@ export const Nav = styled.nav`
     gap: 28px;
     flex-shrink: 0;
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1150px) {
         display: none;
     }
 `;
@@ -245,7 +245,7 @@ export const Auth = styled.div`
     align-items: center;
     gap: 12px;
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1360px) {
         display: none;
     }
 `;
@@ -279,5 +279,46 @@ export const Register = styled(Link)`
     }
     @media (max-width: 1024px) {
         display: none;
+    }
+`;
+
+export const MobileNavWrapper = styled.nav`
+    display: none;
+
+    @media (max-width: 1150px) {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        position: sticky;
+        top: 88px;
+
+        z-index: 99;
+
+        padding: 10px 12px;
+
+        background: rgba(10, 15, 28, 0.92);
+        backdrop-filter: blur(20px);
+
+        border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+`;
+
+export const MobileNavLink = styled(NavLink)`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+
+    color: #9ca3af;
+
+    font-size: 12px;
+
+    &.active {
+        color: #60a5fa;
+    }
+
+    svg {
+        font-size: 22px;
     }
 `;
