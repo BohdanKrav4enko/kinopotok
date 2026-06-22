@@ -1,24 +1,10 @@
-import {Actions, Auth, Bookmarks, Count, Label, Login, Register, StyledFavoriteIcon,} from "../styles/HeaderStyle";
-import {useFavoritesAnimation} from "../../../hooks/useFavoritesAnimation.ts";
+import {Actions, Auth, Login, Register} from "../styles/HeaderStyle";
 
 export const HeaderActions = () => {
-    const { favoritesCount, animate } = useFavoritesAnimation();
 
 
     return (
         <Actions>
-            <Bookmarks to="/favorites">
-                <StyledFavoriteIcon color="primary" />
-
-                <Label>Избранное</Label>
-
-                {favoritesCount > 0 && (
-                    <Count $animate={animate}>
-                        {favoritesCount}
-                    </Count>
-                )}
-            </Bookmarks>
-
             <Auth>
                 <Login to="/login">
                     Вход

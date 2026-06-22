@@ -1,5 +1,5 @@
 import {useLocation} from "react-router-dom";
-import {Bar, NavButton} from "./styles/NavBarStyle.tsx";
+import {Bar, Count, NavButton} from "./styles/NavBarStyle.tsx";
 import MovieFilterIcon from "@mui/icons-material/MovieFilter";
 import CategoryIcon from "@mui/icons-material/Category";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
@@ -7,14 +7,18 @@ import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import {ROUTES} from "../../router/paths.ts";
 import {config} from "./contentMeta.ts";
 import {useAppSelector} from "../../hooks";
+import {useFavoritesAnimation} from "../../hooks/useFavoritesAnimation.ts";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 export const NavBar = () => {
     const location = useLocation();
     const type = useAppSelector((state) => state.filter.type);
     const current = config[type];
     const isActive = (path: string) => location.pathname === path;
+    const { favoritesCount, animate } = useFavoritesAnimation();
     const topRoute = `/${type}/top`;
     const newRoute = `/${type}/new`;
+    const favoriteRoute = `/favorites`;
 
     return (
         <Bar>
@@ -46,6 +50,18 @@ export const NavBar = () => {
                 $active={isActive(newRoute)}
             >
                 <TrendingUpIcon /> Новинки
+            </NavButton>
+
+            <NavButton
+                to={favoriteRoute}
+                $active={isActive(favoriteRoute)}
+            >
+                <FavoriteIcon /> Избранное
+                {favoritesCount > 0 && (
+                    <Count $animate={animate}>
+                        {favoritesCount}
+                    </Count>
+                )}
             </NavButton>
         </Bar>
     );

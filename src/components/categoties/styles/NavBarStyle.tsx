@@ -32,6 +32,7 @@ export const NavButton = styled(NavLink)<{ $active?: boolean }>`
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 
     gap: 8px;
 
@@ -76,4 +77,34 @@ export const NavButton = styled(NavLink)<{ $active?: boolean }>`
 
         min-width: 60px;
     }
+`;
+export const Count = styled.span<{ $animate?: boolean }>`
+    position: absolute;
+    top: -6px;
+    right: -6px;
+
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+
+    border-radius: 999px;
+
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: #fff;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.35);
+
+    border: 2px solid rgba(10, 15, 28, 0.85);
+    
+    transform: scale(${({ $animate }) => ($animate ? 1.2 : 1)});
+    transition: transform 0.2s ease;
+
+    pointer-events: none;
 `;

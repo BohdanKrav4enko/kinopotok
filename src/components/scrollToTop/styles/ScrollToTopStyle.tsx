@@ -54,6 +54,6 @@ export const Button = styled.button`
 
     @media (max-width: 768px) {
         right: 14px;
-        bottom: 80px; /* чтобы не мешала bottom navbar */
+        bottom: 90px;
     }
 `;

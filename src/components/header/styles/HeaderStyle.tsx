@@ -1,6 +1,5 @@
 import styled, {keyframes} from "styled-components";
 import {Link, NavLink} from "react-router-dom";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const glow = keyframes`
   0%, 100% {
@@ -85,7 +84,7 @@ export const Nav = styled.nav`
     gap: 28px;
     flex-shrink: 0;
 
-    @media (max-width: 1150px) {
+    @media (max-width: 1200px) {
         display: none;
     }
 `;
@@ -146,106 +145,13 @@ export const Actions = styled.div`
         justify-self: end;
     }
 `;
-export const Bookmarks = styled(Link)`
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    position: relative;
-    white-space: nowrap;
-    flex-shrink: 0;
-
-    padding: 10px 14px;
-    border-radius: 12px;
-
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-
-    color: #d1d5db;
-    text-decoration: none;
-
-    cursor: pointer;
-
-    transition: all 0.25s ease;
-
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-
-    &:hover {
-        transform: translateY(-2px);
-        background: rgba(255, 255, 255, 0.08);
-        border-color: rgba(96, 165, 250, 0.35);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
-        color: #ffffff;
-    }
-
-    &:active {
-        transform: translateY(0px) scale(0.97);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
-    }
-
-    &:focus-visible {
-        outline: 2px solid #60a5fa;
-        outline-offset: 2px;
-    }
-`;
-export const StyledFavoriteIcon = styled(FavoriteIcon)`
-    z-index: 2;
-
-    cursor: pointer;
-
-    color: #60a5fa;
-
-    transition: all 0.2s ease;
-
-    &:hover {
-        transform: scale(1.15);
-    @media (max-width: 768px) {
-        opacity: 1;
-    }
-    
-`;
-export const Label = styled.span`
-    @media (max-width: 768px) {
-        display: none;
-    }
-`;
-
-export const Count = styled.span<{ $animate?: boolean }>`
-    position: absolute;
-    top: -6px;
-    right: -6px;
-
-    min-width: 18px;
-    height: 18px;
-    padding: 0 5px;
-
-    border-radius: 999px;
-
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
-    color: #fff;
-
-    font-size: 11px;
-    font-weight: 700;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.35);
-
-    border: 2px solid rgba(10, 15, 28, 0.85);
-    
-    transform: scale(${({ $animate }) => ($animate ? 1.2 : 1)});
-    transition: transform 0.2s ease;
-
-    pointer-events: none;
-`;
 
 export const Auth = styled.div`
     display: flex;
     align-items: center;
     gap: 12px;
 
-    @media (max-width: 1360px) {
+    @media (max-width: 1200px) {
         display: none;
     }
 `;
