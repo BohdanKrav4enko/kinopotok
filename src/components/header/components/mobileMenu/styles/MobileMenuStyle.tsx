@@ -23,7 +23,7 @@ export const Panel = styled.div<{ $open: boolean }>`
     display: flex;
     flex-direction: column;
 
-    padding: 80px 20px 20px;
+    padding: 10px 20px 20px;
 
     transform: translateX(${({ $open }) => ($open ? "0" : "-100%")});
     transition: 0.35s ease;
@@ -31,8 +31,8 @@ export const Panel = styled.div<{ $open: boolean }>`
 
 export const CloseBtn = styled.button`
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 16px;
+    left: 4px;
 
     z-index: 1102;
 
@@ -169,4 +169,13 @@ export const MenuFooter = styled.div`
     font-size: 12px;
 
     color: rgba(255,255,255,0.4);
+`;
+export const TopBar = styled.div`
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 0;
 `;

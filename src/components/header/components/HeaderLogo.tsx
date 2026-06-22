@@ -1,15 +1,16 @@
 import img from "../../../../public/icons.svg";
 import {Logo} from "../styles/HeaderStyle.tsx";
-import {setType} from "../../../features/filterSlice/filterSlice.ts";
-import {useAppDispatch} from "../../../hooks";
 
-export const HeaderLogo = () => {
-    const dispatch = useAppDispatch();
+type Props = {
+    onClick: () => void;
+}
+
+export const HeaderLogo = ({onClick}: Props) => {
 
     return (
         <Logo
             to="/"
-            onClick={() => dispatch(setType("all"))}
+            onClick={onClick}
         >
             <img src={img} alt="Logo" />
             КиноПоток
