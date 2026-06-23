@@ -148,9 +148,7 @@ export const StyledFavoriteIcon = styled(FavoriteIcon)<{
     }
 
     &:hover {
-        color: #60a5fa;
         transform: scale(1.15);
-        filter: drop-shadow(0 0 8px #60a5fa);
     }
 
     @media (max-width: 768px) {
