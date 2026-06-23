@@ -9,20 +9,32 @@ import {
     ListCard,
     Meta,
     Poster,
-    RatingStarsWrapper,
+    RatingStarsWrapper, StyledFavoriteIcon,
     Title,
     WatchMobileButton
 } from "../styles/MoviesListStyle";
 import PlayArrowSharpIcon from "@mui/icons-material/PlayArrowSharp";
 import { FavoriteButton } from "../../favoriteButton/FavoriteButton";
 import type {MediaItem} from "../../allContent.ts";
+import {toggleFavorite} from "../../../features/favorites/favoritesSlice.ts";
+import {useAppDispatch, useAppSelector} from "../../../hooks";
 
 type Props = {
     items: MediaItem[];
 };
 
 export const MovieList = ({ items }: Props) => {
+
+    const dispatch = useAppDispatch();
+
     const navigate = useNavigate();
+
+    const favorites = useAppSelector((state) => state.favorites.items);
+
+    const getKey = (item: MediaItem) => `${item.type}-${item.id}`;
+
+    const isFavorite = (item: MediaItem) =>
+        favorites.some((m) => getKey(m) === getKey(item));
 
     const handleOpen = (item: MediaItem) => {
         navigate(`/${item.type}/${item.slug}`);
@@ -36,7 +48,12 @@ export const MovieList = ({ items }: Props) => {
                         onClick={() => handleOpen(item)}
                         src={item.poster}
                     />
-
+                    <StyledFavoriteIcon
+                        $active={isFavorite(item)}
+                        onClick={(e) => {
+                        e.stopPropagation();
+                        dispatch(toggleFavorite(item));
+                    }}/>
                     <Info>
                         <Title onClick={() => handleOpen(item)}>
                             {item.title}

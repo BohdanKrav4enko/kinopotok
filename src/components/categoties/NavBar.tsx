@@ -1,47 +1,57 @@
-import {useLocation} from "react-router-dom";
-import {Bar, Count, NavButton} from "./styles/NavBarStyle.tsx";
+import { useLocation } from "react-router-dom";
+import {
+    Bar,
+    Count,
+    NavButton
+} from "./styles/NavBarStyle.tsx";
+
 import MovieFilterIcon from "@mui/icons-material/MovieFilter";
 import CategoryIcon from "@mui/icons-material/Category";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import {useFavoritesAnimation} from "../../hooks/useFavoritesAnimation.ts";
-import {config} from "./contentMeta.ts";
 
+import { useFavoritesAnimation } from "../../hooks/useFavoritesAnimation.ts";
+import { config } from "./contentMeta.ts";
+
+const validTypes = ["movie", "series", "cartoon", "all"] as const;
+
+type ContentType = typeof validTypes[number];
 
 export const NavBar = () => {
     const location = useLocation();
-
-    const isActive = (path: string) =>
-        location.pathname.startsWith(path);
-
     const { favoritesCount, animate } = useFavoritesAnimation();
 
     const raw = location.pathname.split("/")[1];
 
-    const validTypes = ["movie", "series", "cartoon", "all"] as const;
-
-    const type = validTypes.includes(raw as any)
-        ? (raw as (typeof validTypes)[number])
-        : "all";
+    const type: ContentType =
+        validTypes.includes(raw as ContentType)
+            ? (raw as ContentType)
+            : "all";
 
     const current = config[type] ?? config.all;
 
+    const baseRoute = `/${type}`;
+    const categoriesRoute = `/${type}/categories`;
     const topRoute = `/${type}/top`;
     const newRoute = `/${type}/new`;
+
+    const isActive = (path: string) =>
+        location.pathname === path;
 
     return (
         <Bar>
             <NavButton
-                to={`/${type}/categories`}
-                $active={isActive(`/${type}/categories`)}
+                to={categoriesRoute}
+                $active={isActive(categoriesRoute)}
             >
-                <CategoryIcon /> Категории
+                <CategoryIcon />
+                Категории
             </NavButton>
 
             <NavButton
-                to={current.route}
-                $active={isActive(current.route)}
+                to={baseRoute}
+                $active={isActive(baseRoute)}
             >
                 <MovieFilterIcon />
                 {current.label}
@@ -51,21 +61,24 @@ export const NavBar = () => {
                 to={topRoute}
                 $active={isActive(topRoute)}
             >
-                <WhatshotIcon /> Топ
+                <WhatshotIcon />
+                Топ
             </NavButton>
 
             <NavButton
                 to={newRoute}
                 $active={isActive(newRoute)}
             >
-                <TrendingUpIcon /> Новинки
+                <TrendingUpIcon />
+                Новинки
             </NavButton>
 
             <NavButton
                 to="/favorites"
                 $active={isActive("/favorites")}
             >
-                <FavoriteIcon /> Избранное
+                <FavoriteIcon />
+                Избранное
 
                 {favoritesCount > 0 && (
                     <Count $animate={animate}>

@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import {Card} from "../../moviesGrid/styles/MovieGridStyle.tsx";
 
 export const List = styled.div`
     display: flex;
@@ -9,6 +11,7 @@ export const List = styled.div`
 export const ListCard = styled.div`
     display: flex;
     gap: 16px;
+    position: relative;
 
     padding: 16px;
 
@@ -64,6 +67,7 @@ export const Title = styled.h3`
     text-overflow: ellipsis;
     @media (max-width: 1024px) {
         font-size: 1.6rem;
+        width: 90%;
     }
 
     @media (max-width: 768px) {
@@ -221,6 +225,61 @@ export const WatchMobileButton = styled.button`
 
         &:active {
             transform: scale(0.98);
+        }
+    }
+`;
+export const StyledFavoriteIcon = styled(FavoriteIcon)<{
+    $active?: boolean;
+}>`
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+
+    cursor: pointer;
+
+    color: ${({ $active }) =>
+    $active ? "#60a5fa" : "rgba(203, 213, 225, 0.6)"};
+
+    opacity: 0;
+
+    transition: all 0.2s ease;
+
+    ${({ $active }) =>
+    $active &&
+    `
+        color: #60a5fa;
+        filter: drop-shadow(0 0 6px #60a5fa)
+                drop-shadow(0 0 12px #3b82f6);
+        animation: pulseGlow 1.5s infinite ease-in-out;
+    `}
+
+    ${Card}:hover & {
+        opacity: 1;
+    }
+
+    &:hover {
+        color: #60a5fa;
+        transform: scale(1.15);
+        filter: drop-shadow(0 0 8px #60a5fa);
+    }
+
+    @media (max-width: 768px) {
+        opacity: 1;
+    }
+
+    @keyframes pulseGlow {
+        0% {
+            filter: drop-shadow(0 0 5px #60a5fa)
+            drop-shadow(0 0 10px #3b82f6);
+        }
+        50% {
+            filter: drop-shadow(0 0 10px #60a5fa)
+            drop-shadow(0 0 18px #3b82f6);
+        }
+        100% {
+            filter: drop-shadow(0 0 5px #60a5fa)
+            drop-shadow(0 0 10px #3b82f6);
         }
     }
 `;
