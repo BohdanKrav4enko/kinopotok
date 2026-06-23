@@ -7,9 +7,11 @@ type Reaction = {
     dislikes: number;
 };
 
+type ReactionKey = string; // "movie:interstellar"
+
 type ReactionsState = {
-    items: Record<number, Reaction>;
-    userVotes: Record<number, UserVote>;
+    items: Record<ReactionKey, Reaction>;
+    userVotes: Record<ReactionKey, UserVote>;
 };
 
 const initialState: ReactionsState = {
@@ -17,52 +19,83 @@ const initialState: ReactionsState = {
     userVotes: {},
 };
 
+const makeKey = (type: string, slug: string): ReactionKey =>
+    `${type}:${slug}`;
+
 const movieReactionsSlice = createSlice({
     name: "reactions",
     initialState,
 
     reducers: {
-        initMovie: (state, action: PayloadAction<number>) => {
-            const id = action.payload;
+        initItem: (
+            state,
+            action: PayloadAction<{ type: string; slug: string }>
+        ) => {
+            const key = makeKey(
+                action.payload.type,
+                action.payload.slug
+            );
 
-            if (!state.items[id]) {
-                state.items[id] = {
+            if (!state.items[key]) {
+                state.items[key] = {
                     likes: 0,
                     dislikes: 0,
                 };
             }
 
-            if (!(id in state.userVotes)) {
-                state.userVotes[id] = null;
+            if (!(key in state.userVotes)) {
+                state.userVotes[key] = null;
             }
         },
 
-        like: (state, action: PayloadAction<number>) => {
-            const id = action.payload;
-            const vote = state.userVotes[id];
+        like: (
+            state,
+            action: PayloadAction<{ type: string; slug: string }>
+        ) => {
+            const key = makeKey(
+                action.payload.type,
+                action.payload.slug
+            );
+
+            const vote = state.userVotes[key];
 
             if (vote === "like") return;
 
             if (vote === "dislike") {
-                state.items[id].dislikes -= 1;
+                state.items[key].dislikes -= 1;
             }
 
-            state.items[id].likes += 1;
-            state.userVotes[id] = "like";
+            if (!state.items[key]) {
+                state.items[key] = { likes: 0, dislikes: 0 };
+            }
+
+            state.items[key].likes += 1;
+            state.userVotes[key] = "like";
         },
 
-        dislike: (state, action: PayloadAction<number>) => {
-            const id = action.payload;
-            const vote = state.userVotes[id];
+        dislike: (
+            state,
+            action: PayloadAction<{ type: string; slug: string }>
+        ) => {
+            const key = makeKey(
+                action.payload.type,
+                action.payload.slug
+            );
+
+            const vote = state.userVotes[key];
 
             if (vote === "dislike") return;
 
             if (vote === "like") {
-                state.items[id].likes -= 1;
+                state.items[key].likes -= 1;
             }
 
-            state.items[id].dislikes += 1;
-            state.userVotes[id] = "dislike";
+            if (!state.items[key]) {
+                state.items[key] = { likes: 0, dislikes: 0 };
+            }
+
+            state.items[key].dislikes += 1;
+            state.userVotes[key] = "dislike";
         },
 
         resetReactions: (state) => {
@@ -73,7 +106,7 @@ const movieReactionsSlice = createSlice({
 });
 
 export const {
-    initMovie,
+    initItem,
     like,
     dislike,
     resetReactions,
