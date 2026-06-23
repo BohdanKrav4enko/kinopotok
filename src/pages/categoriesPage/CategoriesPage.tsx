@@ -1,5 +1,5 @@
 import { categoriesList } from "../../components/categoriesList";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
     Page,
     Header,
@@ -8,24 +8,28 @@ import {
     Card,
     Glow,
 } from "./styles/CategoriesPageStyle";
-import {SectionTitle} from "../../components";
-import {ROUTES} from "../../router/paths.ts";
-import {subtitlesByType} from "./contentMeta.ts";
-import {useAppSelector} from "../../hooks";
+import { SectionTitle } from "../../components";
+import { ROUTES } from "../../router/paths.ts";
+import { subtitlesByType } from "./contentMeta.ts";
+
+type ContentType = keyof typeof subtitlesByType;
 
 export const CategoriesPage = () => {
     const navigate = useNavigate();
+    const { type } = useParams();
 
-    const list = categoriesList();
-    const type = useAppSelector((state) => state.filter.type);
+    const safeType: ContentType =
+        (type as ContentType) ?? "all";
 
-    const subtitle = subtitlesByType[type];
+    const list = categoriesList(safeType)
+
+    const subtitle =
+        subtitlesByType[safeType] ?? subtitlesByType.all;
 
     return (
         <Page>
             <Header>
                 <SectionTitle>Все категории</SectionTitle>
-
                 <Subtitle>{subtitle}</Subtitle>
             </Header>
 
@@ -35,7 +39,7 @@ export const CategoriesPage = () => {
                         key={cat}
                         onClick={() =>
                             navigate(
-                                ROUTES.CATEGORY_DETAILS(type, cat)
+                                ROUTES.CATEGORY_DETAILS(safeType, cat)
                             )
                         }
                     >

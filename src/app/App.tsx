@@ -17,7 +17,7 @@ export const App = () => {
                 open={isMenuOpen}
                 onClose={() => setIsMenuOpen(false)}
             />
-            <MobileNav />
+            <MobileNav/>
             <NavBar/>
             <ScrollWindowToTop/>
             <ScrollToTop/>

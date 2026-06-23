@@ -8,7 +8,7 @@ export const ROUTES = {
     TOP: "/:type/top",
     CATEGORY_DETAILS: (type: string, name: string) =>
         `/${type}/category/${encodeURIComponent(name)}`,
-    CATEGORIES: "/categories",
+    CATEGORIES: "/:type/categories",
     CATEGORY: "/:type/category/:name",
 
     SEARCH: "/search",

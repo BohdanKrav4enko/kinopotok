@@ -1,14 +1,21 @@
-import {PreferencesProvider} from "../../components/preferencesProvider";
-import {useFilteredMedia} from "../../hooks/useFiltredMediaTop.tsx";
-import {allContent} from "../../components/allContent.ts";
-import {useAppSelector} from "../../hooks";
-import {contentMeta} from "./contentMeta.ts";
+import { PreferencesProvider } from "../../components/preferencesProvider";
+import { useFilteredMedia } from "../../hooks/useFiltredMediaTop.tsx";
+import { allContent } from "../../components/allContent.ts";
+import { useParams } from "react-router-dom";
+import { contentMeta } from "./contentMeta.ts";
+
+type ContentType = keyof typeof contentMeta;
 
 export const TopPage = () => {
-    const filteredMovies = useFilteredMedia(allContent)
-    const type = useAppSelector((state) => state.filter.type);
+    const { type } = useParams();
+
+    const safeType: ContentType =
+        (type as ContentType) ?? "all";
+
+    const filteredMovies = useFilteredMedia(allContent, safeType);
+
     const meta =
-        contentMeta[type] ?? contentMeta.all;
+        contentMeta[safeType] ?? contentMeta.all;
 
     return (
         <PreferencesProvider

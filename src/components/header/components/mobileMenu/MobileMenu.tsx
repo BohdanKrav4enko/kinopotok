@@ -1,5 +1,4 @@
-import { useAppDispatch } from "../../../../hooks";
-import { setType } from "../../../../features/filterSlice/filterSlice";
+import { useNavigate } from "react-router-dom";
 
 import { Overlay, Panel, MenuGroup } from "./styles/MobileMenuStyle";
 
@@ -15,15 +14,15 @@ type Props = {
 };
 
 export const MobileMenu = ({ open, onClose }: Props) => {
-    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
-    const handleNav = (type: any) => {
-        dispatch(setType(type));
+    const handleNav = (path: string) => {
+        navigate(path);
         onClose();
     };
 
     const handleLogo = () => {
-        dispatch(setType("all"));
+        navigate("/all");
         onClose();
     };
 

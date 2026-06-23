@@ -1,5 +1,4 @@
 export * from "./categoriesPage"
-export * from "./allMoviesPage"
 export * from "./contentPage"
 export * from "./searchPage"
 export * from "./notFound"

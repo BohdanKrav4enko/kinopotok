@@ -1,9 +1,11 @@
-import { useAppSelector } from "../hooks";
-import type {MediaItem} from "../components/allContent.ts";
+import type { MediaItem } from "../components/allContent.ts";
 
-export const useFilteredMedia = (items: MediaItem[]) => {
-    const type = useAppSelector((state) => state.filter.type);
+type ContentType = "movie" | "series" | "cartoon" | "all";
 
+export const useFilteredMedia = (
+    items: MediaItem[],
+    type: ContentType
+) => {
     return items
         .filter((item) => type === "all" || item.type === type)
         .sort((a, b) => b.rating - a.rating);

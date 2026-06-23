@@ -1,20 +1,25 @@
-import { useAppSelector } from "../../hooks";
 import { PreferencesProvider } from "../../components/preferencesProvider";
 import { allContent } from "../../components/allContent";
 import { useNewMedia } from "../../hooks/useNewMedia";
-import {newContentMeta} from "./newContentMeta.ts";
+import { newContentMeta } from "./newContentMeta.ts";
+import { useParams } from "react-router-dom";
+
+type ContentType = keyof typeof newContentMeta;
 
 export const NewPage = () => {
+    const { type } = useParams();
 
-    const type = useAppSelector((state) => state.filter.type);
+    const safeType: ContentType =
+        (type as ContentType) ?? "all";
 
     const filtered = allContent.filter(
-        (item) => type === "all" || item.type === type
+        (item) => safeType === "all" || item.type === safeType
     );
 
     const items = useNewMedia(filtered);
+
     const meta =
-        newContentMeta[type] ?? newContentMeta.all;
+        newContentMeta[safeType] ?? newContentMeta.all;
 
     return (
         <PreferencesProvider

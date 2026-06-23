@@ -1,11 +1,10 @@
-import { useAppSelector } from "../hooks";
-import { movies } from "./movies.tsx";
-import { series } from "./series.tsx";
-import { cartoon } from "./cartoon.tsx";
+import { movies } from "./movies";
+import { series } from "./series";
+import { cartoon } from "./cartoon";
 
-export const categoriesList = () => {
-    const type = useAppSelector((state) => state.filter.type);
+type ContentType = "movie" | "series" | "cartoon" | "all";
 
+export const categoriesList = (type: ContentType) => {
     const data =
         type === "movie"
             ? movies
@@ -15,15 +14,17 @@ export const categoriesList = () => {
                     ? cartoon
                     : [...movies, ...series, ...cartoon];
 
-    return [
+    const title =
         type === "movie"
             ? "Все фильмы"
             : type === "series"
                 ? "Все сериалы"
                 : type === "cartoon"
                     ? "Все мультфильмы"
-                    : "Все",
+                    : "Все";
 
+    return [
+        title,
         ...Array.from(new Set(data.map((i) => i.category))),
     ];
 };

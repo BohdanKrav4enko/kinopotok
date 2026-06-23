@@ -1,19 +1,21 @@
-import {useParams} from "react-router-dom";
-import {Empty} from "./styles/CategoryPageStyle.tsx";
-import {PreferencesProvider} from "../../../components/preferencesProvider";
-import {allContent} from "../../../components/allContent";
-import {useAppSelector} from "../../../hooks";
+import { useParams } from "react-router-dom";
+import { Empty } from "./styles/CategoryPageStyle.tsx";
+import { PreferencesProvider } from "../../../components/preferencesProvider";
+import { allContent } from "../../../components/allContent";
+
+type ContentType = "movie" | "series" | "cartoon" | "all";
 
 export const CategoryPage = () => {
-    const { name } = useParams();
+    const { type, name } = useParams();
 
-    const { type } = useAppSelector((state) => state.filter);
+    const safeType: ContentType =
+        (type as ContentType) ?? "all";
 
     const decodedName = decodeURIComponent(name || "");
 
     const filteredItems = allContent.filter((item) => {
         const matchType =
-            type === "all" || item.type === type;
+            safeType === "all" || item.type === safeType;
 
         const isAllCategory =
             decodedName.startsWith("Все");
@@ -24,18 +26,22 @@ export const CategoryPage = () => {
         return matchType && matchCategory;
     });
 
+    const title = decodedName;
+
+    const subtitle = `Лучшие ${
+        safeType === "movie"
+            ? "фильмы"
+            : safeType === "series"
+                ? "сериалы"
+                : "мультфильмы"
+    } категории ${decodedName.toLowerCase()} в отличном качестве`;
+
     return (
         <>
             {filteredItems.length > 0 ? (
                 <PreferencesProvider
-                    subtitle={`Лучшие ${
-                        type === "movie"
-                            ? "фильмы"
-                            : type === "series"
-                                ? "сериалы"
-                                : "мультфильмы"
-                    } категории ${decodedName.toLowerCase()} в отличном качестве`}
-                    title={decodedName}
+                    subtitle={subtitle}
+                    title={title}
                     items={filteredItems}
                 />
             ) : (

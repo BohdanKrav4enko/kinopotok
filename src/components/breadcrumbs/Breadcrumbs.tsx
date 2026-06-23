@@ -1,12 +1,9 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { Crumb, Separator, Wrapper } from "./styles/BreadcrumbsStyle";
 import { allContent } from "../allContent.ts";
-import {setType} from "../../features/filterSlice/filterSlice.ts";
-import {useAppDispatch} from "../../hooks";
 
 export const Breadcrumbs = () => {
     const navigate = useNavigate();
-    const dispatch = useAppDispatch();
     const { type, slug } = useParams();
 
     const item = allContent.find(
@@ -17,10 +14,7 @@ export const Breadcrumbs = () => {
 
     return (
         <Wrapper>
-            <Crumb onClick={() => {
-                navigate("/")
-                dispatch(setType('all'))
-            }}>
+            <Crumb onClick={() => navigate("/")}>
                 Главная
             </Crumb>
 

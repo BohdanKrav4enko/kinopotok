@@ -1,34 +1,41 @@
-import {Navigate, useParams} from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { PreferencesProvider } from "../../components/preferencesProvider";
 
 import { movies } from "../../components/movies";
 import { series } from "../../components/series";
 import { cartoon } from "../../components/cartoon";
 
+const contentMap = {
+    movie: movies,
+    series: series,
+    cartoon: cartoon,
+};
+
+const titles = {
+    movie: "Все фильмы",
+    series: "Все сериалы",
+    cartoon: "Все мультфильмы",
+    all: "Все",
+} as const;
+
+const validTypes = ["movie", "series", "cartoon", "all"] as const;
+
 export const ContentPage = () => {
     const { type } = useParams();
 
-    const all = [...movies, ...series, ...cartoon];
+    if (!type || !validTypes.includes(type as any)) {
+        return <Navigate to="/error" replace />;
+    }
+
+    const all = Object.values(contentMap).flat();
 
     const filtered =
         type === "all"
             ? all
-            : all.filter((item) => item.type === type);
+            : contentMap[type as keyof typeof contentMap];
 
-    const titles = {
-        movie: "Все фильмы",
-        series: "Все сериалы",
-        cartoon: "Все мультфильмы",
-        all: "Все",
-    } as const;
-
-    const validTypes = ["movie", "series", "cartoon", "all"];
-
-    if (!type || !validTypes.includes(type)) {
-        return <Navigate to="/error" replace />;
-    }
-
-    const title = titles[type as keyof typeof titles] ?? "Контент";
+    const title =
+        titles[type as keyof typeof titles] ?? "Контент";
 
     return (
         <PreferencesProvider

@@ -4,29 +4,39 @@ import MovieFilterIcon from "@mui/icons-material/MovieFilter";
 import CategoryIcon from "@mui/icons-material/Category";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
-import {ROUTES} from "../../router/paths.ts";
-import {config} from "./contentMeta.ts";
-import {useAppSelector} from "../../hooks";
-import {useFavoritesAnimation} from "../../hooks/useFavoritesAnimation.ts";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import {useFavoritesAnimation} from "../../hooks/useFavoritesAnimation.ts";
+import {config} from "./contentMeta.ts";
+
 
 export const NavBar = () => {
     const location = useLocation();
-    const type = useAppSelector((state) => state.filter.type);
-    const current = config[type];
-    const isActive = (path: string) => location.pathname === path;
+
+    const isActive = (path: string) =>
+        location.pathname === path;
+
     const { favoritesCount, animate } = useFavoritesAnimation();
+
+    const raw = location.pathname.split("/")[1];
+
+    const validTypes = ["movie", "series", "cartoon", "all"] as const;
+
+    const type = validTypes.includes(raw as any)
+            ? (raw as (typeof validTypes)[number])
+            : "all";
+
+    const current = config[type];
+
     const topRoute = `/${type}/top`;
     const newRoute = `/${type}/new`;
-    const favoriteRoute = `/favorites`;
 
     return (
         <Bar>
             <NavButton
-                to={ROUTES.CATEGORIES}
-                $active={isActive(ROUTES.CATEGORIES)}
+                to={`/${type}/categories`}
+                $active={isActive(`/${type}/categories`)}
             >
-                <CategoryIcon/> Категории
+                <CategoryIcon /> Категории
             </NavButton>
 
             <NavButton
@@ -36,7 +46,6 @@ export const NavBar = () => {
                 <MovieFilterIcon />
                 {current.label}
             </NavButton>
-
 
             <NavButton
                 to={topRoute}
@@ -53,10 +62,11 @@ export const NavBar = () => {
             </NavButton>
 
             <NavButton
-                to={favoriteRoute}
-                $active={isActive(favoriteRoute)}
+                to="/favorites"
+                $active={isActive("/favorites")}
             >
                 <FavoriteIcon /> Избранное
+
                 {favoritesCount > 0 && (
                     <Count $animate={animate}>
                         {favoritesCount}
