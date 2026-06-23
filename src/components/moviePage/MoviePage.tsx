@@ -47,7 +47,7 @@ export const MoviePage = () => {
             <Top>
                 <PosterColumn>
                     <Poster src={item.poster}/>
-                    <MovieReactions movieId={item.id}/>
+                    <MovieReactions item={item}/>
                 </PosterColumn>
 
                 <Info>

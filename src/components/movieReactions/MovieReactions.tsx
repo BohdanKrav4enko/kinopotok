@@ -2,9 +2,16 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
+
 import { showNotification } from "../../features/error/notificationSlice";
 import { useAppSelector } from "../../hooks";
-import {dislike, initMovie, like,} from "../../features/favorites/movieReactionsSlice";
+
+import {
+    initItem,
+    like,
+    dislike,
+} from "../../features/favorites/movieReactionsSlice";
+
 import {
     Button,
     Count,
@@ -15,25 +22,30 @@ import {
     Wrapper,
 } from "./styles/MovieReactionsStyle";
 
-
 type Props = {
-    movieId: number;
+    item: {
+        type: string;
+        slug: string;
+        id: number;
+    };
 };
 
-export const MovieReactions = ({ movieId }: Props) => {
+export const MovieReactions = ({ item }: Props) => {
     const dispatch = useDispatch();
 
+    const key = `${item.type}:${item.slug}`;
+
     const reactions = useAppSelector(
-        (state) => state.reactions.items[movieId]
+        (state) => state.reactions.items[key]
     );
 
     const userVote = useAppSelector(
-        (state) => state.reactions.userVotes[movieId]
+        (state) => state.reactions.userVotes[key]
     );
 
     useEffect(() => {
-        dispatch(initMovie(movieId));
-    }, [movieId, dispatch]);
+        dispatch(initItem({ type: item.type, slug: item.slug }));
+    }, [item.type, item.slug, dispatch]);
 
     if (!reactions) return null;
 
@@ -56,7 +68,7 @@ export const MovieReactions = ({ movieId }: Props) => {
             return;
         }
 
-        dispatch(like(movieId));
+        dispatch(like({ type: item.type, slug: item.slug }));
     };
 
     const handleDislike = () => {
@@ -71,7 +83,7 @@ export const MovieReactions = ({ movieId }: Props) => {
             return;
         }
 
-        dispatch(dislike(movieId));
+        dispatch(dislike({ type: item.type, slug: item.slug }));
     };
 
     return (
