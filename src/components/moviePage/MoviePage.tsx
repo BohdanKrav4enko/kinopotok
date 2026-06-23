@@ -30,10 +30,10 @@ import {MovieReactions} from "../movieReactions/MovieReactions.tsx";
 import {Breadcrumbs} from "../breadcrumbs";
 
 export const MoviePage = () => {
-    const {type, slug} = useParams();
+    const {slug} = useParams();
 
     const item = allContent.find(
-        (i) => i.type === type && i.slug === slug
+        (i) => i.slug === slug
     );
 
     if (!item) {

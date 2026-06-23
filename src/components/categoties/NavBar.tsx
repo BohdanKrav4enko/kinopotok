@@ -13,7 +13,7 @@ export const NavBar = () => {
     const location = useLocation();
 
     const isActive = (path: string) =>
-        location.pathname === path;
+        location.pathname.startsWith(path);
 
     const { favoritesCount, animate } = useFavoritesAnimation();
 
@@ -22,10 +22,10 @@ export const NavBar = () => {
     const validTypes = ["movie", "series", "cartoon", "all"] as const;
 
     const type = validTypes.includes(raw as any)
-            ? (raw as (typeof validTypes)[number])
-            : "all";
+        ? (raw as (typeof validTypes)[number])
+        : "all";
 
-    const current = config[type];
+    const current = config[type] ?? config.all;
 
     const topRoute = `/${type}/top`;
     const newRoute = `/${type}/new`;

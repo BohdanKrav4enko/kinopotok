@@ -7,9 +7,7 @@ export const Breadcrumbs = () => {
     const { type, slug } = useParams();
 
     const item = allContent.find(
-        (i) =>
-            i.type === type &&
-            i.slug?.toLowerCase() === slug?.toLowerCase()
+        (i) => i.slug?.toLowerCase() === slug?.toLowerCase()
     );
 
     return (

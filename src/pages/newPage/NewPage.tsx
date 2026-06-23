@@ -4,16 +4,21 @@ import { useNewMedia } from "../../hooks/useNewMedia";
 import { newContentMeta } from "./newContentMeta.ts";
 import { useParams } from "react-router-dom";
 
-type ContentType = keyof typeof newContentMeta;
+const validTypes = ["movie", "series", "cartoon", "all"] as const;
+
+type ContentType = typeof validTypes[number];
 
 export const NewPage = () => {
     const { type } = useParams();
 
     const safeType: ContentType =
-        (type as ContentType) ?? "all";
+        validTypes.includes(type as ContentType)
+            ? (type as ContentType)
+            : "all";
 
     const filtered = allContent.filter(
-        (item) => safeType === "all" || item.type === safeType
+        (item) =>
+            safeType === "all" || item.type === safeType
     );
 
     const items = useNewMedia(filtered);
