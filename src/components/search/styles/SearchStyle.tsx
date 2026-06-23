@@ -3,11 +3,12 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
     display: flex;
     align-items: center;
+
     gap: 8px;
 
     position: relative;
 
-    height: 36px;
+    height: 38px;
 
     padding: 0 12px;
 
@@ -16,12 +17,11 @@ export const Wrapper = styled.div`
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.08);
 
+    width: clamp(220px, 18vw, 320px);
+
+    flex-shrink: 1;
+
     transition: all 0.2s ease;
-
-    width: 240px;
-    max-width: 240px;
-
-    flex-shrink: 0;
 
     &:focus-within {
         border-color: rgba(59, 130, 246, 0.5);
@@ -30,7 +30,6 @@ export const Wrapper = styled.div`
 
     @media (max-width: 768px) {
         width: 100%;
-        max-width: 100%;
     }
 `;
 
@@ -45,6 +44,8 @@ export const SearchInput = styled.input`
     color: #fff;
 
     transition: all 0.25s ease;
+
+    font-size: clamp(14px, 1vw, 16px);
 
     &::placeholder {
         color: #9ca3af;
@@ -73,16 +74,95 @@ export const Dropdown = styled.div`
 `;
 
 export const Suggestion = styled.div`
-  padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 
-  cursor: pointer;
+    padding: 10px 12px;
 
-  color: #e5e7eb;
+    cursor: pointer;
 
-  transition: all 0.2s ease;
+    color: #e5e7eb;
 
-  &:hover {
-    background: rgba(59, 130, 246, 0.2);
+    transition: all 0.2s ease;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    &:hover {
+        background: rgba(59, 130, 246, 0.15);
+        transform: translateX(2px);
+    }
+`;
+export const Poster = styled.img`
+    width: 42px;
+    height: 60px;
+
+    border-radius: 6px;
+
+    object-fit: cover;
+
+    flex-shrink: 0;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+`;
+export const Info = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    min-width: 0;
+`;
+export const Title = styled.div`
+    font-size: 14px;
+    font-weight: 600;
     color: #fff;
-  }
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+`;
+export const Meta = styled.div`
+    font-size: 12px;
+    color: #9ca3af;
+
+    display: flex;
+    gap: 6px;
+
+    flex-wrap: wrap;
+`;
+export const AllResultsButton = styled.button`
+    width: 100%;
+
+    padding: 12px 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    background: rgba(59, 130, 246, 0.12);
+
+    color: #e5e7eb;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+    transition: all 0.2s ease;
+
+    &:hover {
+        background: rgba(59, 130, 246, 0.25);
+        color: #fff;
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
 `;

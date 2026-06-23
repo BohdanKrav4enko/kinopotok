@@ -2,12 +2,23 @@ import {useEffect, useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import * as React from "react";
 import {useDebounce} from "../../hooks";
-import {SearchInput, Wrapper, Dropdown, Suggestion} from "./styles/SearchStyle";
+import {
+    SearchInput,
+    Wrapper,
+    Dropdown,
+    Suggestion,
+    Poster,
+    Info,
+    Title,
+    Meta,
+    AllResultsButton
+} from "./styles/SearchStyle";
 import SearchIcon from "@mui/icons-material/Search";
 import {allContent} from "../allContent";
 
 export const Search = () => {
     const [value, setValue] = useState("");
+    const [isFocused, setIsFocused] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -35,7 +46,9 @@ export const Search = () => {
             clearSearch();
         }
     };
-
+    const handleBlur = () => {
+        setTimeout(() => setIsFocused(false), 200);
+    };
     return (
         <Wrapper>
             <SearchIcon style={{cursor: 'pointer'}} onClick={() => {
@@ -48,21 +61,42 @@ export const Search = () => {
                 onChange={(e) => setValue(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="Поиск..."
+                onFocus={() => setIsFocused(true)}
+                onBlur={handleBlur}
             />
 
-            {debouncedValue && suggestions.length > 0 && (
+            {isFocused && debouncedValue && suggestions.length > 0 && (
                 <Dropdown>
                     {suggestions.map((item) => (
                         <Suggestion
                             key={`${item.type}-${item.id}`}
-                            onClick={() => {
+                            onClick={(e) => {
+                                e.preventDefault();
                                 navigate(`/${item.type}/${item.slug}`);
                                 clearSearch();
                             }}
                         >
-                            {item.title}
+                            <Poster src={item.poster}/>
+
+                            <Info>
+                                <Title>{item.title}</Title>
+
+                                <Meta>
+                                    <span>{item.year}</span>
+                                    <span>•</span>
+                                    <span>{item.category}</span>
+                                </Meta>
+                            </Info>
                         </Suggestion>
+
                     ))}
+                    <AllResultsButton onClick={() => {
+                        navigate(`/search?q=${encodeURIComponent(value)}`);
+                        clearSearch()
+                    }}
+                    >
+                        Все результаты
+                    </AllResultsButton>
                 </Dropdown>
             )}
         </Wrapper>
