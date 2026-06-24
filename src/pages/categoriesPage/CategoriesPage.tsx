@@ -14,14 +14,24 @@ import { subtitlesByType } from "./contentMeta.ts";
 
 type ContentType = keyof typeof subtitlesByType;
 
+const validTypes: ContentType[] = [
+    "movie",
+    "series",
+    "cartoon",
+    "all",
+];
+
 export const CategoriesPage = () => {
     const navigate = useNavigate();
     const { type } = useParams();
 
-    const safeType: ContentType =
-        (type as ContentType) ?? "all";
+    const safeType: ContentType = validTypes.includes(
+        type as ContentType
+    )
+        ? (type as ContentType)
+        : "all";
 
-    const list = categoriesList(safeType)
+    const list = categoriesList(safeType);
 
     const subtitle =
         subtitlesByType[safeType] ?? subtitlesByType.all;
@@ -39,7 +49,10 @@ export const CategoriesPage = () => {
                         key={cat}
                         onClick={() =>
                             navigate(
-                                ROUTES.CATEGORY_DETAILS(safeType, cat)
+                                ROUTES.CATEGORY_DETAILS(
+                                    safeType,
+                                    cat
+                                )
                             )
                         }
                     >

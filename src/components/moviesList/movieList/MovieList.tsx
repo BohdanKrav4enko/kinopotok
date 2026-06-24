@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
-import { RatingStars } from "../../ratingStars";
+import {useNavigate} from "react-router-dom";
+import {RatingStars} from "../../ratingStars";
 import {
     Actions,
     Button,
@@ -9,12 +9,14 @@ import {
     ListCard,
     Meta,
     Poster,
-    RatingStarsWrapper, StyledFavoriteIcon,
+    RatingStarsWrapper,
+    StyledFavoriteIcon,
+    StyledLink,
     Title,
     WatchMobileButton
 } from "../styles/MoviesListStyle";
 import PlayArrowSharpIcon from "@mui/icons-material/PlayArrowSharp";
-import { FavoriteButton } from "../../favoriteButton/FavoriteButton";
+import {FavoriteButton} from "../../favoriteButton/FavoriteButton";
 import type {MediaItem} from "../../allContent.ts";
 import {toggleFavorite} from "../../../features/favorites/favoritesSlice.ts";
 import {useAppDispatch, useAppSelector} from "../../../hooks";
@@ -42,8 +44,8 @@ export const MovieList = ({ items }: Props) => {
 
     return (
         <>
-            {items.map((item) => (
-                <ListCard key={item.id}>
+            {items.map((item, index) => (
+                <ListCard key={`${item.type}-${item.slug}-${index}`}>
                     <Poster
                         onClick={() => handleOpen(item)}
                         src={item.poster}
@@ -60,7 +62,7 @@ export const MovieList = ({ items }: Props) => {
                         </Title>
 
                         <Meta>
-                            {item.year} • {item.category} • {item.duration} мин
+                            {item.year} • <StyledLink to={`/${item.type}/category/${encodeURIComponent(item.category)}`}>{item.category}</StyledLink>/ • {item.duration} мин
                         </Meta>
 
                         <Label>Режиссёр: {item.director}</Label>

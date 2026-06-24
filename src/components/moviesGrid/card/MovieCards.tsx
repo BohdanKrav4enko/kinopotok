@@ -26,9 +26,9 @@ export const MovieCards = ({ items }: Props) => {
 
     return (
         <>
-            {items.map((item) => (
+            {items.map((item, index) => (
                 <Card
-                    key={item.id}
+                    key={`${item.type}-${item.slug}-${index}`}
                     onClick={() => handleOpen(item)}
                 >
                     <Poster src={item.poster} />

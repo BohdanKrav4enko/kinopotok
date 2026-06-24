@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import {Card} from "../../moviesGrid/styles/MovieGridStyle.tsx";
+import {Link} from "react-router-dom";
 
 export const List = styled.div`
     display: flex;
@@ -281,3 +282,9 @@ export const StyledFavoriteIcon = styled(FavoriteIcon)<{
         }
     }
 `;
+export const StyledLink = styled(Link)`
+&:hover {
+    text-decoration: underline;
+    color: white;
+}
+`

@@ -1,7 +1,7 @@
-import { useParams } from "react-router-dom";
-import { Empty } from "./styles/CategoryPageStyle.tsx";
-import { PreferencesProvider } from "../../../components/preferencesProvider";
-import { allContent } from "../../../components/allContent";
+import {useParams} from "react-router-dom";
+import {Empty} from "./styles/CategoryPageStyle.tsx";
+import {PreferencesProvider} from "../../../components/preferencesProvider";
+import {allContent} from "../../../components/allContent";
 
 type ContentType = "movie" | "series" | "cartoon" | "all";
 
@@ -13,39 +13,33 @@ export const CategoryPage = () => {
 
     const decodedName = decodeURIComponent(name || "");
 
-    const filteredItems = allContent.filter((item) => {
-        const matchType =
-            safeType === "all" || item.type === safeType;
+    const filteredItems = allContent.filter(
+        (item) => {
+            const matchType =
+                safeType === "all" ||
+                item.type === safeType;
 
-        const isAllCategory =
-            decodedName.startsWith("Все");
+            const isAllCategory =
+                decodedName.startsWith("Все");
 
-        const matchCategory =
-            isAllCategory || item.category === decodedName;
+            const matchCategory =
+                isAllCategory ||
+                item.category === decodedName;
 
-        return matchType && matchCategory;
-    });
+            return matchType && matchCategory;
+        }
+    );
 
-    const title = decodedName;
-
-    const subtitle = `Лучшие ${
-        safeType === "movie"
-            ? "фильмы"
-            : safeType === "series"
-                ? "сериалы"
-                : "мультфильмы"
-    } категории ${decodedName.toLowerCase()} в отличном качестве`;
 
     return (
         <>
             {filteredItems.length > 0 ? (
                 <PreferencesProvider
-                    subtitle={subtitle}
-                    title={title}
+                    title={decodedName}
                     items={filteredItems}
                 />
             ) : (
-                <Empty style={{ gridColumn: "1 / -1" }}>
+                <Empty>
                     Нет контента в этой категории
                 </Empty>
             )}

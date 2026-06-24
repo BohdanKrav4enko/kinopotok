@@ -9,7 +9,7 @@ const contentMap = {
     movie: movies,
     series: series,
     cartoon: cartoon,
-};
+} as const;
 
 const titles = {
     movie: "Все фильмы",
@@ -20,6 +20,12 @@ const titles = {
 
 const validTypes = ["movie", "series", "cartoon", "all"] as const;
 
+const allContent = [
+    ...movies,
+    ...series,
+    ...cartoon,
+];
+
 export const ContentPage = () => {
     const { type } = useParams();
 
@@ -27,11 +33,9 @@ export const ContentPage = () => {
         return <Navigate to="/error" replace />;
     }
 
-    const all = Object.values(contentMap).flat();
-
-    const filtered =
+    const source =
         type === "all"
-            ? all
+            ? allContent
             : contentMap[type as keyof typeof contentMap];
 
     const title =
@@ -39,7 +43,7 @@ export const ContentPage = () => {
 
     return (
         <PreferencesProvider
-            items={filtered}
+            items={source}
             title={title}
         />
     );
