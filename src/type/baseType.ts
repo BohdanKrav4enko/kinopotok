@@ -7,7 +7,7 @@ export interface BaseMedia {
 
     year: number;
     releaseDate: string;
-
+    slug: string;
     category: string;
     genres: string[];
 
