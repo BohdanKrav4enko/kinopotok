@@ -1,25 +1,11 @@
 import {useNavigate} from "react-router-dom";
-import {RatingStars} from "../../ratingStars";
-import {
-    Actions,
-    Button,
-    Description,
-    Info,
-    Label,
-    ListCard,
-    Meta,
-    Poster,
-    RatingStarsWrapper,
-    StyledFavoriteIcon,
-    StyledLink,
-    Title,
-    WatchMobileButton
-} from "../styles/MoviesListStyle";
-import PlayArrowSharpIcon from "@mui/icons-material/PlayArrowSharp";
-import {FavoriteButton} from "../../favoriteButton/FavoriteButton";
+import * as S from "../styles/MoviesListStyle";
 import type {MediaItem} from "../../allContent.ts";
 import {toggleFavorite} from "../../../features/favorites/favoritesSlice.ts";
 import {useAppDispatch, useAppSelector} from "../../../hooks";
+import {MovieBadges} from "../../movieBadges";
+import {MetaItem} from "../styles/MoviesListStyle";
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 type Props = {
     items: MediaItem[];
@@ -45,53 +31,40 @@ export const MovieList = ({ items }: Props) => {
     return (
         <>
             {items.map((item, index) => (
-                <ListCard key={`${item.type}-${item.slug}-${index}`}>
-                    <Poster
-                        onClick={() => handleOpen(item)}
-                        src={item.poster}
-                    />
-                    <StyledFavoriteIcon
+                <S.ListCard onClick={() => handleOpen(item)} key={`${item.type}-${item.slug}-${index}`}>
+                    <S.PosterWrapper>
+                    <S.Poster src={item.poster}/>
+                        <MovieBadges year={item.year} rating={item.rating} />
+                    </S.PosterWrapper>
+                    <S.StyledFavoriteIcon
                         $active={isFavorite(item)}
                         onClick={(e) => {
                         e.stopPropagation();
                         dispatch(toggleFavorite(item));
                     }}/>
-                    <Info>
-                        <Title onClick={() => handleOpen(item)}>
+                    <S.Info>
+                        <S.Title>
                             {item.title}
-                        </Title>
+                        </S.Title>
 
-                        <Meta>
-                            {item.year} • <StyledLink to={`/${item.type}/category/${encodeURIComponent(item.category)}`}>{item.category}</StyledLink>/ • {item.duration} мин
-                        </Meta>
+                        <S.Meta>
+                             <S.StyledLink to={`/${item.type}/category/${encodeURIComponent(item.category)}`}>{item.category}</S.StyledLink>
+                        </S.Meta>
 
-                        <Label>Режиссёр: {item.director}</Label>
+                        <S.Label>Режиссёр: {item.director}</S.Label>
 
-                        <Label>В ролях: {item.cast.join(", ")}</Label>
+                        <S.Label>В ролях: {item.cast.join(", ")}</S.Label>
 
-                        <RatingStarsWrapper>
-                            <RatingStars rating={item.rating} />
-                        </RatingStarsWrapper>
-
-                        <Description>
+                        <S.Description>
                             {item.description}
-                        </Description>
+                        </S.Description>
+                        <MetaItem>
+                            <AccessTimeIcon/>
+                            {item.duration} мин
+                        </MetaItem>
 
-                        <Actions>
-                            <Button onClick={() => handleOpen(item)}>
-                                <PlayArrowSharpIcon color="success" />
-                                <span>Смотреть</span>
-                            </Button>
-
-                            <FavoriteButton movie={item} />
-                        </Actions>
-
-                        <WatchMobileButton onClick={() => handleOpen(item)}>
-                            <PlayArrowSharpIcon />
-                            Смотреть
-                        </WatchMobileButton>
-                    </Info>
-                </ListCard>
+                    </S.Info>
+                </S.ListCard>
             ))}
         </>
     );

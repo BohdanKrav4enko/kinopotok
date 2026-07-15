@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import {Card} from "../../moviesGrid/styles/MovieGridStyle.tsx";
 import {Link} from "react-router-dom";
 
 export const List = styled.div`
@@ -13,9 +12,8 @@ export const ListCard = styled.div`
     display: flex;
     gap: 16px;
     position: relative;
-
-    padding: 16px;
-
+    cursor: pointer;
+    
     border-radius: 16px;
 
     background: rgba(255, 255, 255, 0.04);
@@ -30,8 +28,6 @@ export const ListCard = styled.div`
 
     @media (max-width: 768px) {
         flex-direction: row;
-        padding: 10px;
-        gap: 10px;
         align-items: flex-start;
     }
 `;
@@ -42,15 +38,17 @@ export const Poster = styled.img`
 
     cursor: pointer;
 
-    border-radius: 12px;
+    border-radius: 12px 0 0 12px;
     flex-shrink: 0;
 
     object-fit: cover;
-
+    @media (max-width: 1024px) {
+        width: 170px;
+        height: 250px;
+    }   
     @media (max-width: 767px) {
-        width: 90px;
-        height: 135px;
-        border-radius: 10px;
+        width: 120px;
+        height: 180px;
     }
 `;
 
@@ -59,13 +57,20 @@ export const Title = styled.h3`
 
     font-size: 2rem;
     font-weight: 800;
-
     color: #ffffff;
 
     cursor: pointer;
+
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    transition: color 0.2s ease;
+
+    ${ListCard}:hover & {
+        color: #f8fafc;
+    }
+
     @media (max-width: 1024px) {
         font-size: 1.6rem;
         width: 90%;
@@ -77,14 +82,23 @@ export const Title = styled.h3`
 `;
 
 export const Info = styled.div`
+    padding: 24px 30px 24px 0;
+
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
 
     flex: 1;
     min-width: 0;
-    @media (max-width: 768px) {
-        gap: 4px;
+
+    @media (max-width: 1024px) {
+        padding: 6px 20px 6px 0;
+        gap: 10px;
+    }
+
+    @media (max-width: 767px) {
+        padding: 8px 12px 8px 0;
+        gap: 6px;
     }
 `;
 
@@ -100,7 +114,32 @@ export const Meta = styled.div`
         font-size: 0.8rem;
     }
 `;
+export const MetaItem = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 6px;
 
+    color: #94a3b8;
+    font-size: 0.95rem;
+    line-height: 1;
+
+    svg {
+        color: inherit;
+        font-size: 18px;
+        flex-shrink: 0;
+
+        position: relative;
+        top: -1px;
+    }
+
+    @media (max-width: 767px) {
+        font-size: 0.85rem;
+
+        svg {
+            font-size: 16px;
+        }
+    }
+`;
 export const Actions = styled.div`
     display: flex;
     gap: 10px;
@@ -164,22 +203,32 @@ export const Button = styled.button`
     }
 `;
 export const Description = styled.p`
+    margin: 0;
+
     color: #cbd5e1;
     line-height: 1.7;
-    max-width: 600px;
+
+    width: 100%;
+    min-width: 0;
+
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+
     @media (max-width: 767px) {
         font-size: 0.85rem;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
     }
 `;
 export const Label = styled.span`
-    font-weight: 700;
-    color: #e5e7eb;
+    color: #e2e8f0;
+    font-weight: 600;
+    line-height: 1.6;
 
-    line-height: 1.5;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
 
     @media (max-width: 767px) {
         display: none;
@@ -190,6 +239,9 @@ export const RatingStarsWrapper = styled.div`
         display: none;
     }
 `;
+export const PosterWrapper = styled.div`
+    position: relative;
+`
 export const WatchMobileButton = styled.button`
     display: none;
 
@@ -229,12 +281,13 @@ export const WatchMobileButton = styled.button`
         }
     }
 `;
+
 export const StyledFavoriteIcon = styled(FavoriteIcon)<{
     $active?: boolean;
 }>`
     position: absolute;
-    top: 10px;
-    right: 10px;
+    bottom: 20px;
+    right: 20px;
     z-index: 2;
 
     cursor: pointer;
@@ -255,17 +308,14 @@ export const StyledFavoriteIcon = styled(FavoriteIcon)<{
         animation: pulseGlow 1.5s infinite ease-in-out;
     `}
 
-    ${Card}:hover & {
+    ${ListCard}:hover & {
         opacity: 1;
     }
 
     &:hover {
         transform: scale(1.15);
     }
-
-    @media (max-width: 768px) {
-        opacity: 1;
-    }
+    
 
     @keyframes pulseGlow {
         0% {
@@ -281,10 +331,18 @@ export const StyledFavoriteIcon = styled(FavoriteIcon)<{
             drop-shadow(0 0 10px #3b82f6);
         }
     }
+    @media (max-width: 768px) {
+        opacity: 1;
+    }
 `;
 export const StyledLink = styled(Link)`
-&:hover {
-    text-decoration: underline;
-    color: white;
-}
-`
+    color: #60a5fa;
+    font-weight: 600;
+
+    transition: color 0.2s ease;
+
+    &:hover {
+        color: #93c5fd;
+        text-decoration: underline;
+    }
+`;

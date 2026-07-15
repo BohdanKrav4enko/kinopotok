@@ -25,7 +25,6 @@ export const Card = styled.div`
     border: 1px solid rgba(255, 255, 255, 0.06);
 
     border-radius: 14px;
-    padding: 12px;
 
     cursor: pointer;
 
@@ -45,10 +44,7 @@ export const Card = styled.div`
     }
 
     @media (max-width: 768px) {
-        padding: 8px;
-        border-radius: 12px;
 
-        /* отключаем ховер-эффекты на мобилке */
         &:hover {
             transform: none;
             box-shadow: none;
@@ -59,7 +55,7 @@ export const Card = styled.div`
 export const Poster = styled.img`
     width: 100%;
     aspect-ratio: 2 / 3;
-    border-radius: 10px;
+    border-radius: 14px 14px 0 0 ;
     object-fit: cover;
     margin-bottom: 10px;
 
@@ -73,11 +69,11 @@ export const Poster = styled.img`
     }
 
     @media (max-width: 768px) {
-        margin-bottom: 6px;
+        margin-bottom: 8px;
     }
 `;
 
-export const Title = styled.div`
+export const Title = styled.h2`
     font-weight: 600;
     font-size: 1.2rem;
     text-align: center;
@@ -96,6 +92,7 @@ export const Title = styled.div`
 
     @media (max-width: 768px) {
         font-size: 0.95rem;
+        margin-bottom: 8px;
     }
 
     @media (max-width: 480px) {
@@ -107,7 +104,34 @@ export const Subtitle = styled.p`
     font-size: 0.95rem;
     margin-bottom: 10px;
 `;
-export const Year = styled.p`
+export const MetaItem = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+
+    color: #94a3b8;
+    font-size: 0.95rem;
+    line-height: 1;
+
+    svg {
+        color: inherit;
+        font-size: 18px;
+        flex-shrink: 0;
+
+        position: relative;
+        top: -1px;
+    }
+
+    @media (max-width: 767px) {
+        font-size: 0.85rem;
+
+        svg {
+            font-size: 16px;
+        }
+    }
+`;
+export const Duration = styled.p`
     font-size: 0.8rem;
     color: #94a3b8;
 
@@ -154,7 +178,11 @@ export const StyledFavoriteIcon = styled(FavoriteIcon)<{
     @media (max-width: 768px) {
         opacity: 1;
     }
-
+    @media (max-width: 480px) {
+        bottom: 2px;
+        right: 2px;
+    }
+   
     @keyframes pulseGlow {
         0% {
             filter: drop-shadow(0 0 5px #60a5fa)
@@ -169,4 +197,7 @@ export const StyledFavoriteIcon = styled(FavoriteIcon)<{
             drop-shadow(0 0 10px #3b82f6);
         }
     }
+`;
+export const PosterWrapper = styled.div`
+    position: relative;
 `;
