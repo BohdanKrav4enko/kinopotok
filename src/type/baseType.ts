@@ -1,25 +1,25 @@
 export interface BaseMedia {
     id: number;
-
-    type: "movie" | "series" | "cartoon";
+    type: string;
 
     title: string;
     originalTitle: string;
 
+    year: number;
     releaseDate: string;
 
+    category: string;
     genres: string[];
 
     rating: number;
     votes: number;
-
+    duration: number;
     ageRating: string;
 
-    countries: string[];
-    languages: string[];
+    country: string[];
+    language: string;
 
-    directors: string[];
-    cast: string[];
+    director: string;
 
     description: string;
 
@@ -29,12 +29,6 @@ export interface BaseMedia {
     trailer: string;
 
     tags: string[];
-
-    slug: string;
-
-    isFeatured: boolean;
-    isTrending: boolean;
-
-    createdAt?: string;
-    updatedAt?: string;
+    featured: boolean;
+    trending: boolean;
 }
