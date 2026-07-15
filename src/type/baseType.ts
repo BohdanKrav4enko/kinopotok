@@ -10,7 +10,7 @@ export interface BaseMedia {
     slug: string;
     category: string;
     genres: string[];
-
+    cast: string[];
     rating: number;
     votes: number;
     duration: number;
