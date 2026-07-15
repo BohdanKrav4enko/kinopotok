@@ -1,145 +1,212 @@
 import {useParams} from "react-router-dom";
 
-import {
-    Category,
-    Container,
-    Description,
-    Divider,
-    Dot,
-    FactRow,
-    Facts,
-    HeaderRow,
-    Info,
-    Meta,
-    Money,
-    Poster,
-    PosterColumn,
-    StarsWrapper,
-    Title,
-    Top,
-} from "./styles/MoviePageStyle.tsx";
+import * as S from "./styles/MoviePageStyle";
 
-import {RatingStars} from "../ratingStars";
+import {EmptyMessage} from "../EmptyMessage";
+import {FavoriteButton} from "../favoriteButton/FavoriteButton";
 import {SimilarMovies} from "../similarMovies";
-import {FavoriteButton} from "../favoriteButton/FavoriteButton.tsx";
-import {EmptyMessage} from "../EmptyMessage.tsx";
-import {allContent} from "../allContent.ts";
-import {TrailerFrame, TrailerSection, TrailerTitle,} from "./styles/TrailerStyle.tsx";
+import {allContent} from "../allContent";
 import {getYouTubeEmbedUrl} from "../../utils";
-import {MovieReactions} from "../movieReactions/MovieReactions.tsx";
+import {MovieReactions} from "../movieReactions";
 import {Breadcrumbs} from "../breadcrumbs";
 
 export const MoviePage = () => {
     const {slug} = useParams();
 
-    const item = allContent.find(
-        (i) => i.slug === slug
-    );
+    const item = allContent.find((i) => i.slug === slug);
 
     if (!item) {
         return <EmptyMessage/>;
     }
 
+    const hours = Math.floor(item.duration / 60);
+    const minutes = item.duration % 60;
+
     return (
-        <Container>
-            <Breadcrumbs/>
+        <S.Container>
+            <S.Hero>
+                <S.HeroBackground src={item.backdrop} alt={item.title}/>
 
-            <Top>
-                <PosterColumn>
-                    <Poster src={item.poster}/>
-                    <MovieReactions item={item}/>
-                </PosterColumn>
+                <S.HeroOverlay/>
+                <S.HeroGradient/>
 
-                <Info>
-                    <Title>{item.title}</Title>
+                <S.HeroContent>
+                    <Breadcrumbs/>
+                    <S.Title>{item.title}</S.Title>
 
-                    <Category to={`/${item.type}/category/${encodeURIComponent(item.category)}`}>
+                    <S.Meta>
+                        <S.RatingBadge>
+                            ⭐ {item.rating.toFixed(1)}
+                        </S.RatingBadge>
+
+                        <S.Dot/>
+
+                        <span>{item.year}</span>
+
+                        <S.Dot/>
+
+                        <span>16+</span>
+
+                        <S.Dot/>
+
+                        <span>
+                            {hours} ч {minutes} мин
+                        </span>
+
+                        <S.HdBadge>HD</S.HdBadge>
+                    </S.Meta>
+
+                    <S.Genres>
                         {item.category}
-                    </Category>
+                        {" • "}
+                        {item.country.join(", ")}
+                    </S.Genres>
 
-                    <Facts>
-                        <HeaderRow>
-                            <Meta>
-                                <span>{item.year}</span>
-                                <Dot>•</Dot>
-                                <span>{item.duration} мин</span>
-                            </Meta>
+                    <S.HeroDescription>
+                        <S.Description>
+                            {item.description}
+                        </S.Description>
+                    </S.HeroDescription>
 
-                            <StarsWrapper>
-                                <RatingStars rating={item.rating}/>
-                            </StarsWrapper>
-                        </HeaderRow>
+                    <S.Actions>
+                        <button>
+                            ▶ Смотреть фильм
+                        </button>
 
-                        <FactRow>
-                            <b>Страна:</b> {item.country.join(", ")}
-                        </FactRow>
+                        <FavoriteButton movie={item}/>
 
-                        <FactRow>
-                            <b>Язык:</b> {item.language}
-                        </FactRow>
+                        <button>
+                            ↗ Поделиться
+                        </button>
+                    </S.Actions>
+                </S.HeroContent>
+            </S.Hero>
 
-                        <FactRow>
-                            <b>Режиссёр:</b> {item.director}
-                        </FactRow>
+            <S.Stats>
+                <S.StatItem>
+                    <small>Рейтинг KinoPotok</small>
 
-                        {"writers" in item && item.writers && (
-                            <FactRow>
-                                <b>Сценарий:</b>{" "}
-                                {item.writers.join(", ")}
-                            </FactRow>
+                    <strong>⭐ {item.rating.toFixed(1)}</strong>
+
+                </S.StatItem>
+
+                <S.StatDivider/>
+
+                <S.StatItem>
+                    <small>Рейтинг IMDb</small>
+
+                    <strong>⭐ {item.rating.toFixed(1)}</strong>
+
+                </S.StatItem>
+
+                <S.StatDivider/>
+
+                <S.StatItem>
+                    <small>Бюджет</small>
+
+                    <strong>
+                        {"budget" in item
+                            ? `$${item.budget.toLocaleString()}`
+                            : "—"}
+                    </strong>
+                </S.StatItem>
+
+                <S.StatDivider/>
+
+                <S.StatItem>
+                    <small>Сборы</small>
+
+                    <strong>
+                        {"boxOffice" in item
+                            ? `$${item.boxOffice.toLocaleString()}`
+                            : "—"}
+                    </strong>
+                </S.StatItem>
+
+                <S.StatDivider/>
+            </S.Stats>
+            <S.DescriptionContainer>
+                <S.SectionTitle>
+                    О фильме
+                </S.SectionTitle>
+                <S.AboutText>
+                    {item.description}
+                </S.AboutText>
+            </S.DescriptionContainer>
+            <S.About>
+                <S.AboutContent>
+
+
+                    <S.InfoGrid>
+                        <div>
+                            <b>Режиссёр</b>
+                            <span>{item.director}</span>
+                        </div>
+
+                        {"writers" in item && (
+                            <div>
+                                <b>Сценарий</b>
+
+                                <span>
+                                        {item.writers?.join(", ")}
+                                    </span>
+                            </div>
                         )}
 
-                        {"studio" in item && item.studio && (
-                            <FactRow>
-                                <b>Студии:</b>{" "}
-                                {item.studio.join(", ")}
-                            </FactRow>
+                        <div>
+                            <b>Страна</b>
+
+                            <span>
+                                    {item.country.join(", ")}
+                                </span>
+                        </div>
+
+                        <div>
+                            <b>Язык</b>
+
+                            <span>{item.language}</span>
+                        </div>
+
+                        {"studio" in item && (
+                            <div>
+                                <b>Студия</b>
+
+                                <span>
+                                        {item.studio?.join(", ")}
+                                    </span>
+                            </div>
                         )}
 
-                        {"budget" in item && (
-                            <FactRow>
-                                <b>Бюджет:</b>{" "}
-                                <Money>
-                                    ${item.budget.toLocaleString()}
-                                </Money>
-                            </FactRow>
-                        )}
+                        <div>
+                            <b>Качество</b>
 
-                        {"boxOffice" in item && (
-                            <FactRow>
-                                <b>Касса:</b>{" "}
-                                <Money>
-                                    ${item.boxOffice.toLocaleString()}
-                                </Money>
-                            </FactRow>
-                        )}
+                            <span>4K UHD, HDR</span>
+                        </div>
 
-                        <Divider/>
+                    </S.InfoGrid>
+                    <S.WatchCard>
+                        <img
+                            src={item.poster}
+                            alt={item.title}
+                        />
+                        <S.ProgressInfo>
+                           <MovieReactions item={item}/>
+                        </S.ProgressInfo>
+                    </S.WatchCard>
 
-                        <Description>{item.description}</Description>
-                    </Facts>
+                </S.AboutContent>
+            </S.About>
 
-                    <FavoriteButton movie={item}/>
-                </Info>
-            </Top>
 
-            {item.trailer && (
-                <TrailerSection>
-                    <TrailerTitle>Трейлер</TrailerTitle>
-
-                    <TrailerFrame
-                        src={getYouTubeEmbedUrl(item.trailer)}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                    />
-                </TrailerSection>
-            )}
+            <S.TrailerFrame src={getYouTubeEmbedUrl(item.trailer)}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen/>
 
             <SimilarMovies
                 type={item.type}
                 category={item.category}
                 currentId={item.id}
             />
-        </Container>
+        </S.Container>
     );
 };

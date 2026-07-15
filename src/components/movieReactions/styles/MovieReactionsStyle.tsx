@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-    margin-top: 14px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -20,10 +20,11 @@ export const Button = styled.button<{ $active?: boolean }>`
     justify-content: center;
     gap: 6px;
     width: 100%;
-    padding: 8px 12px;
-    border-radius: 10px;
+    padding: 20px 12px;
+    margin-bottom: 10px;
+    border-radius: 6px;
 
-    background: rgba(255, 255, 255, 0.06);
+    background: inherit;
     color: #e2e8f0;
 
     font-weight: 600;

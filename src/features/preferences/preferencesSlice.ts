@@ -5,7 +5,7 @@ interface PreferencesState {
 }
 
 const initialState: PreferencesState = {
-    moviesViewMode: "list"
+    moviesViewMode: "grid"
 };
 
 const preferencesSlice = createSlice({

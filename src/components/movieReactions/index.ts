@@ -1,1 +1,1 @@
-export {} from "./MovieReactions"
+export {MovieReactions} from "./MovieReactions"
