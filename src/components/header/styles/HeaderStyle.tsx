@@ -53,28 +53,63 @@ export const Container = styled.header`
 `;
 
 export const Logo = styled(Link)`
-    display: flex;
-    align-items: center;
-    font-size: 1.7rem;
-    font-weight: 800;
-    color: #fff;
-    text-decoration: none;
-    flex-shrink: 0;
+    display:flex;
 
-    transition: transform 0.25s ease;
+    align-items:center;
 
-    &:hover {
-        transform: scale(1.04);
+    gap:10px;
+
+    font-size:1.7rem;
+
+    font-weight:800;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    flex-shrink:0;
+
+
+    transition:.25s ease;
+
+
+    &:hover{
+        transform:scale(1.04);
     }
 
-    @media (max-width: 768px) {
-        grid-column: 2;
-        justify-self: center;
+
+    img{
+        width:30px;
+
+        height:30px;
+
+        object-fit:contain;
+
+        animation:${glow} 2.5s ease-in-out infinite;
     }
-    img {
-        width: 60px;
-        height: 60px;
-        animation: ${glow} 2.5s ease-in-out infinite;
+
+
+    span{
+        background:
+                linear-gradient(
+                        90deg,
+                        #8b5cf6,
+                        #3b82f6
+                );
+
+
+        -webkit-background-clip:text;
+
+        -webkit-text-fill-color:transparent;
+
+        background-clip:text;
+    }
+
+
+    @media(max-width:768px){
+        grid-column:2;
+
+        justify-self:center;
     }
 `;
 

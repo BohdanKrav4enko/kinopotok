@@ -1,26 +1,13 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
-import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
+import {useEffect} from "react";
+import {useDispatch} from "react-redux";
 
-import { showNotification } from "../../features/error/notificationSlice";
-import { useAppSelector } from "../../hooks";
+import {showNotification} from "../../features/error/notificationSlice";
+import {useAppSelector} from "../../hooks";
 
-import {
-    initItem,
-    like,
-    dislike,
-} from "../../features/favorites/movieReactionsSlice";
+import {dislike, initItem, like,} from "../../features/favorites/movieReactionsSlice";
 
-import {
-    Button,
-    Count,
-    DislikesFill,
-    Header,
-    LikesFill,
-    RatingBar,
-    Wrapper,
-} from "./styles/MovieReactionsStyle";
+import {Button, Count, DislikesFill, Header, LikesFill, RatingBar, Wrapper,} from "./styles/MovieReactionsStyle";
+import {ThumbsDown, ThumbsUp} from "lucide-react";
 
 type Props = {
     item: {
@@ -93,15 +80,24 @@ export const MovieReactions = ({ item }: Props) => {
                     $active={userVote === "like"}
                     onClick={handleLike}
                 >
-                    <ThumbUpAltIcon color="success" fontSize="small" />
+                    <ThumbsUp
+                        size={19}
+                        fill={userVote === "like" ? "currentColor" : "none"}
+                    />
+
                     <Count>{likes}</Count>
                 </Button>
+
 
                 <Button
                     $active={userVote === "dislike"}
                     onClick={handleDislike}
                 >
-                    <ThumbDownAltIcon color="error" fontSize="small" />
+                    <ThumbsDown
+                        size={19}
+                        fill={userVote === "dislike" ? "currentColor" : "none"}
+                    />
+
                     <Count>{dislikes}</Count>
                 </Button>
             </Header>

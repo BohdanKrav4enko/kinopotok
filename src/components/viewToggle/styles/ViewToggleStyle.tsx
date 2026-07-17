@@ -2,52 +2,81 @@ import styled from "styled-components";
 
 export const ToggleWrapper = styled.div`
     display: flex;
-    align-items: center;
-    justify-content: space-between;
 
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 8px;
 
-    .title {
-        font-size: 1.4rem;
-        font-weight: 700;
-        color: #fff;
-    }
+    overflow: hidden;
 
-    .controls {
-        display: flex;
-        gap: 8px;
+    background: rgba(255,255,255,.03);
+
+    backdrop-filter: blur(10px);
+
+    @media (max-width: 768px) {
+        border-radius: 10px;
     }
 `;
-export const ToggleButton = styled.button<{ $active?: boolean }>`
-    width: 42px;
-    height: 42px;
+
+export const BaseButton = styled.button<{ $active?: boolean }>`
+    width: 52px;
+    height: 52px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    border-radius: 10px;
-
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: none;
 
     background: ${({ $active }) =>
-    $active ? "rgba(59, 130, 246, 0.25)" : "rgba(255,255,255,0.04)"};
+            $active
+                    ? "rgba(139,92,246,.15)"
+                    : "transparent"};
 
-    color: ${({ $active }) => ($active ? "#60a5fa" : "#9ca3af")};
+    color: ${({ $active }) =>
+            $active
+                    ? "#a78bfa"
+                    : "rgba(255,255,255,.55)"};
 
     cursor: pointer;
 
-    transition: all 0.2s ease;
+    transition: .2s ease;
 
-    font-size: 14px;
-    line-height: 1;
+    &:not(:last-child) {
+        border-right: 1px solid rgba(255,255,255,.08);
+    }
 
     &:hover {
-        transform: translateY(-2px);
-        background: rgba(59, 130, 246, 0.2);
-        color: #fff;
+        background: rgba(255,255,255,.06);
+        color: white;
     }
 
-    &:active {
-        transform: translateY(0);
+    svg {
+        font-size: 22px;
     }
+
+    @media (max-width: 768px) {
+        width: 44px;
+        height: 44px;
+
+        svg {
+            font-size: 18px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        width: 40px;
+        height: 40px;
+
+        svg {
+            font-size: 16px;
+        }
+    }
+`;
+
+export const GridButton = styled(BaseButton)`
+    border-radius: 6px 0 0 6px;
+`;
+
+export const ListButton = styled(BaseButton)`
+    border-radius: 0 6px 6px 0;
 `;

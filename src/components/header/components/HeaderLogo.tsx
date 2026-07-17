@@ -1,4 +1,4 @@
-import img from "../../../../public/icons.svg";
+import img from "../../../../public/logo.webp";
 import {Logo} from "../styles/HeaderStyle.tsx";
 
 type Props = {

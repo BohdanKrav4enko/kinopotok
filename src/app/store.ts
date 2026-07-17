@@ -3,6 +3,7 @@ import favoritesReducer from "../features/favorites/favoritesSlice";
 import movieReactionsReducer from "../features/favorites/movieReactionsSlice";
 import notificationReducer from "../features/error/notificationSlice";
 import preferencesReducer from "../features/preferences/preferencesSlice";
+import catalogReducer from "../features/catalog/catalogSlice";
 import storage from "redux-persist/es/storage";
 import {
     persistStore,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
     reactions: movieReactionsReducer,
     notification: notificationReducer,
     preferences: preferencesReducer,
+    catalog: catalogReducer,
 });
 
 const persistConfig = {

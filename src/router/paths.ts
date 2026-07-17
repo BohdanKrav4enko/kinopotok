@@ -4,12 +4,10 @@ export const ROUTES = {
     TYPE: "/:type",
     DETAILS: "/:type/:slug",
 
-    NEW: "/:type/new",
-    TOP: "/:type/top",
-    CATEGORY_DETAILS: (type: string, name: string) =>
-        `/${type}/category/${encodeURIComponent(name)}`,
-    CATEGORIES: "/:type/categories",
-    CATEGORY: "/:type/category/:name",
+    CATALOG: "/catalog",
+    TOP: "/top",
+    NEW: "/new",
+    CATEGORY: "/category/:name",
 
     SEARCH: "/search",
     FAVORITES: "/favorites",

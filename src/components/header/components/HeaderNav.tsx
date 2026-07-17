@@ -3,8 +3,8 @@ import { Nav, StyledNavLink } from "../styles/HeaderStyle.tsx";
 export const HeaderNav = () => {
     return (
         <Nav>
-            <StyledNavLink to="/all">
-                Все
+            <StyledNavLink to="/">
+                Главная
             </StyledNavLink>
 
             <StyledNavLink to="/movie">

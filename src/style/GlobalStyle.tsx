@@ -26,7 +26,7 @@ html {
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: linear-gradient(180deg, #020617 0%, #0f172a 100%);
+    background:#050817;
     color: #ffffff;
     line-height: 1.5;
 

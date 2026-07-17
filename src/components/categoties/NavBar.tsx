@@ -1,91 +1,73 @@
-import { useLocation } from "react-router-dom";
-import {
-    Bar,
-    Count,
-    NavButton
-} from "./styles/NavBarStyle.tsx";
+import {useLocation} from "react-router-dom";
+import {Bar, Count, NavButton} from "./styles/NavBarStyle.tsx";
 
-import MovieFilterIcon from "@mui/icons-material/MovieFilter";
-import CategoryIcon from "@mui/icons-material/Category";
-import WhatshotIcon from "@mui/icons-material/Whatshot";
-import TrendingUpIcon from "@mui/icons-material/TrendingUp";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import {useFavoritesAnimation} from "../../hooks/useFavoritesAnimation.ts";
+import {ROUTES} from "../../router/paths.ts";
+import {Flame, Grid2X2, Heart, Sparkles} from "lucide-react";
 
-import { useFavoritesAnimation } from "../../hooks/useFavoritesAnimation.ts";
-import { config } from "./contentMeta.ts";
-
-const validTypes = ["movie", "series", "cartoon", "all"] as const;
-
-type ContentType = typeof validTypes[number];
 
 export const NavBar = () => {
     const location = useLocation();
-    const { favoritesCount, animate } = useFavoritesAnimation();
+    const {favoritesCount, animate} = useFavoritesAnimation();
 
-    const raw = location.pathname.split("/")[1];
 
-    const type: ContentType =
-        validTypes.includes(raw as ContentType)
-            ? (raw as ContentType)
-            : "all";
-
-    const current = config[type] ?? config.all;
-
-    const baseRoute = `/${type}`;
-    const categoriesRoute = `/${type}/categories`;
-    const topRoute = `/${type}/top`;
-    const newRoute = `/${type}/new`;
+    const catalogRoute = ROUTES.CATALOG;
+    const topRoute = ROUTES.TOP;
+    const newRoute = ROUTES.NEW;
 
     const isActive = (path: string) =>
         location.pathname === path;
 
     return (
         <Bar>
-            <NavButton
-                to={categoriesRoute}
-                $active={isActive(categoriesRoute)}
-            >
-                <CategoryIcon />
-                Категории
-            </NavButton>
 
             <NavButton
-                to={baseRoute}
-                $active={isActive(baseRoute)}
+                to={catalogRoute}
+                $active={isActive(catalogRoute)}
             >
-                <MovieFilterIcon />
-                {current.label}
+                <Grid2X2 size={20}/>
+                Каталог
             </NavButton>
+
 
             <NavButton
                 to={topRoute}
                 $active={isActive(topRoute)}
             >
-                <WhatshotIcon />
+                <Flame size={20}/>
                 Топ
             </NavButton>
+
 
             <NavButton
                 to={newRoute}
                 $active={isActive(newRoute)}
             >
-                <TrendingUpIcon />
+                <Sparkles size={20}/>
                 Новинки
             </NavButton>
+
 
             <NavButton
                 to="/favorites"
                 $active={isActive("/favorites")}
             >
-                <FavoriteIcon />
+                <Heart
+                    size={20}
+                    fill={isActive("/favorites") ? "currentColor" : "none"}
+                />
+
                 Избранное
+
 
                 {favoritesCount > 0 && (
                     <Count $animate={animate}>
                         {favoritesCount}
                     </Count>
                 )}
+
             </NavButton>
+
         </Bar>
     );
 };

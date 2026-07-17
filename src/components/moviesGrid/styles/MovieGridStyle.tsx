@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
+
+
 export const Grid = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -17,44 +19,39 @@ export const Grid = styled.div`
     }
 `;
 
-export const Card = styled.div`
+export const Card = styled.div<{
+    $variant: "grid" | "home";
+}>`
     position: relative;
     overflow: hidden;
 
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    width: ${({ $variant }) =>
+    $variant === "home" ? "210px" : "100%"};
+
+    flex: 0 0 210px;
+
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.06);
 
     border-radius: 14px;
 
     cursor: pointer;
 
-    transition: all 0.25s ease;
+    transition: .25s;
 
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-
-    &:hover {
-        transform: translateY(-8px) scale(1.02);
-        background: rgba(255, 255, 255, 0.07);
-        border-color: rgba(59, 130, 246, 0.3);
-        box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4);
-    }
-
-    &:active {
-        transform: translateY(-3px) scale(0.99);
-    }
-
-    @media (max-width: 768px) {
-
-        &:hover {
-            transform: none;
-            box-shadow: none;
-        }
+    &:hover{
+        transform: translateY(-8px);
     }
 `;
 
-export const Poster = styled.img`
+export const Poster = styled.img<{
+    $variant: "grid" | "home";
+}>`
     width: 100%;
-    aspect-ratio: 2 / 3;
+    aspect-ratio:${({ $variant }) =>
+            $variant === "home"
+                    ? "2 / 3"
+                    : "2 / 3"};
     border-radius: 14px 14px 0 0 ;
     object-fit: cover;
     margin-bottom: 10px;

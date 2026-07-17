@@ -3,8 +3,8 @@ import {MobileNavLink, MobileNavWrapper} from "../styles/HeaderStyle.tsx";
 export const MobileNav = () => {
     return (
         <MobileNavWrapper>
-            <MobileNavLink to="/all">
-                Все
+            <MobileNavLink to="/">
+                Главная
             </MobileNavLink>
 
             <MobileNavLink to="/movie">

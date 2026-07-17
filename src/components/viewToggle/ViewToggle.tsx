@@ -1,32 +1,27 @@
-import {ToggleButton, ToggleWrapper} from "./styles/ViewToggleStyle.tsx";
-import GridViewIcon from "@mui/icons-material/GridView";
-import ViewListIcon from "@mui/icons-material/ViewList";
+import {LayoutGrid, Rows3} from "lucide-react";
+import * as S from "./styles/ViewToggleStyle";
 
 type Props = {
     viewMode: "grid" | "list";
     setViewMode: (mode: "grid" | "list") => void;
 };
 
-export const ViewToggle = ({viewMode, setViewMode}: Props) => {
+export const ViewToggle = ({ viewMode, setViewMode }: Props) => {
     return (
-        <ToggleWrapper>
-            <div/>
+        <S.ToggleWrapper>
+            <S.GridButton
+                $active={viewMode === "grid"}
+                onClick={() => setViewMode("grid")}
+            >
+                <LayoutGrid size={20} />
+            </S.GridButton>
 
-            <div className="controls">
-                <ToggleButton
-                    $active={viewMode === "list"}
-                    onClick={() => setViewMode("list")}
-                >
-                    <ViewListIcon/>
-                </ToggleButton>
-
-                <ToggleButton
-                    $active={viewMode === "grid"}
-                    onClick={() => setViewMode("grid")}
-                >
-                    <GridViewIcon/>
-                </ToggleButton>
-            </div>
-        </ToggleWrapper>
+            <S.ListButton
+                $active={viewMode === "list"}
+                onClick={() => setViewMode("list")}
+            >
+                <Rows3 size={20} />
+            </S.ListButton>
+        </S.ToggleWrapper>
     );
 };

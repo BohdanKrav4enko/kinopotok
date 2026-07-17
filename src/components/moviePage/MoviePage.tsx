@@ -9,6 +9,7 @@ import {allContent} from "../allContent";
 import {getYouTubeEmbedUrl} from "../../utils";
 import {MovieReactions} from "../movieReactions";
 import {Breadcrumbs} from "../breadcrumbs";
+import {Play, Share2, Star} from "lucide-react";
 
 export const MoviePage = () => {
     const {slug} = useParams();
@@ -36,7 +37,7 @@ export const MoviePage = () => {
 
                     <S.Meta>
                         <S.RatingBadge>
-                            ⭐ {item.rating.toFixed(1)}
+                            <Star fill="currentColor" size={20} /> {item.rating.toFixed(1)}
                         </S.RatingBadge>
 
                         <S.Dot/>
@@ -45,7 +46,7 @@ export const MoviePage = () => {
 
                         <S.Dot/>
 
-                        <span>16+</span>
+                        <span>{item.ageRating}</span>
 
                         <S.Dot/>
 
@@ -70,13 +71,13 @@ export const MoviePage = () => {
 
                     <S.Actions>
                         <button>
-                            ▶ Смотреть фильм
+                            <Play size={20} fill="currentColor" /> Смотреть фильм
                         </button>
 
                         <FavoriteButton movie={item}/>
 
                         <button>
-                            ↗ Поделиться
+                            <Share2 size={20} /> Поделиться
                         </button>
                     </S.Actions>
                 </S.HeroContent>
@@ -86,20 +87,18 @@ export const MoviePage = () => {
                 <S.StatItem>
                     <small>Рейтинг KinoPotok</small>
 
-                    <strong>⭐ {item.rating.toFixed(1)}</strong>
+                    <strong><Star fill="currentColor" size={20} /> {item.rating.toFixed(1)}</strong>
 
                 </S.StatItem>
 
-                <S.StatDivider/>
 
                 <S.StatItem>
                     <small>Рейтинг IMDb</small>
 
-                    <strong>⭐ {item.rating.toFixed(1)}</strong>
+                    <strong><Star fill="currentColor" size={20} /> {item.rating.toFixed(1)}</strong>
 
                 </S.StatItem>
 
-                <S.StatDivider/>
 
                 <S.StatItem>
                     <small>Бюджет</small>
@@ -111,7 +110,6 @@ export const MoviePage = () => {
                     </strong>
                 </S.StatItem>
 
-                <S.StatDivider/>
 
                 <S.StatItem>
                     <small>Сборы</small>
@@ -123,7 +121,6 @@ export const MoviePage = () => {
                     </strong>
                 </S.StatItem>
 
-                <S.StatDivider/>
             </S.Stats>
             <S.DescriptionContainer>
                 <S.SectionTitle>
@@ -134,67 +131,64 @@ export const MoviePage = () => {
                 </S.AboutText>
             </S.DescriptionContainer>
             <S.About>
-                <S.AboutContent>
+                <S.InfoGrid>
+                    <div>
+                        <b>Режиссёр:</b>
+                        <span>{item.director}</span>
+                    </div>
 
-
-                    <S.InfoGrid>
+                    {"writers" in item && (
                         <div>
-                            <b>Режиссёр</b>
-                            <span>{item.director}</span>
+                            <b>Сценарий:</b>
+                            <span>{item.writers?.join(", ")}</span>
                         </div>
+                    )}
 
-                        {"writers" in item && (
-                            <div>
-                                <b>Сценарий</b>
+                    <div>
+                        <b>Страна:</b>
+                        <span>{item.country.join(", ")}</span>
+                    </div>
 
-                                <span>
-                                        {item.writers?.join(", ")}
-                                    </span>
-                            </div>
-                        )}
+                    <div>
+                        <b>Язык:</b>
+                        <span>{item.language}</span>
+                    </div>
 
+                    {"studio" in item && (
                         <div>
-                            <b>Страна</b>
-
-                            <span>
-                                    {item.country.join(", ")}
-                                </span>
+                            <b>Студия:</b>
+                            <span>{item.studio?.join(", ")}</span>
                         </div>
+                    )}
 
-                        <div>
-                            <b>Язык</b>
+                    <div>
+                        <b>Качество:</b>
+                        <span>4K UHD, HDR</span>
+                    </div>
+                </S.InfoGrid>
 
-                            <span>{item.language}</span>
-                        </div>
+                <S.BottomSection>
+                    <S.CastSection>
+                        <S.SideTitle>В главных ролях</S.SideTitle>
 
-                        {"studio" in item && (
-                            <div>
-                                <b>Студия</b>
+                        {item.cast.slice(0, 5).map(actor => (
+                            <S.CastItem key={actor}>
+                                {actor}
+                            </S.CastItem>
+                        ))}
+                    </S.CastSection>
 
-                                <span>
-                                        {item.studio?.join(", ")}
-                                    </span>
-                            </div>
-                        )}
-
-                        <div>
-                            <b>Качество</b>
-
-                            <span>4K UHD, HDR</span>
-                        </div>
-
-                    </S.InfoGrid>
                     <S.WatchCard>
                         <img
                             src={item.poster}
                             alt={item.title}
                         />
+
                         <S.ProgressInfo>
-                           <MovieReactions item={item}/>
+                            <MovieReactions item={item}/>
                         </S.ProgressInfo>
                     </S.WatchCard>
-
-                </S.AboutContent>
+                </S.BottomSection>
             </S.About>
 
 

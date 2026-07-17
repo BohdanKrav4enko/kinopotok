@@ -1,86 +1,149 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-`;
+    width:100%;
 
+    display:flex;
+    flex-direction:column;
+
+    gap:14px;
+`;
 export const Header = styled.div`
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    justify-content: space-between;
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:12px;
 `;
 
 export const Button = styled.button<{ $active?: boolean }>`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    width: 100%;
-    padding: 20px 12px;
-    margin-bottom: 10px;
-    border-radius: 6px;
+    display:flex;
 
-    background: inherit;
-    color: #e2e8f0;
+    align-items:center;
 
-    font-weight: 600;
+    justify-content:center;
 
-    transition: 0.2s;
-    background: ${({ $active }) =>
+    gap:8px;
+
+
+    width:100%;
+
+    padding:16px 14px;
+
+
+    border-radius:14px;
+
+
+    color:#fff;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+
+    background:${({$active}) =>
             $active
-                    ? "rgba(59, 130, 246, 0.15)"
-                    : "rgba(255,255,255,0.05)"};
+                    ? "rgba(124,92,255,.18)"
+                    : "rgba(255,255,255,.04)"
+    };
 
-    border: 1px solid
-    ${({ $active }) =>
+
+    border:1px solid ${({$active}) =>
             $active
-                    ? "rgba(59, 130, 246, 0.5)"
-                    : "rgba(255,255,255,0.08)"};
+                    ? "rgba(124,92,255,.45)"
+                    : "rgba(255,255,255,.08)"
+    };
 
-    &:disabled {
-        cursor: default;
-    }
-    svg {
-        font-size: 18px;
+
+    backdrop-filter:blur(10px);
+
+
+    transition:.25s ease;
+
+
+    svg{
+        width:18px;
+        height:18px;
     }
 
-    &:hover {
-        background: rgba(255, 255, 255, 0.12);
-        transform: translateY(-1px);
+
+    &:hover{
+        transform:translateY(-2px);
+
+        background:
+                rgba(124,92,255,.12);
+
+
+        border-color:
+                rgba(124,92,255,.35);
     }
 
-    &:active {
-        transform: scale(0.97);
+
+    &:active{
+        transform:scale(.98);
+    }
+
+
+    &:disabled{
+        cursor:default;
+        opacity:.6;
     }
 `;
 
 export const Count = styled.span`
-    color: #94a3b8;
-    font-size: 0.9rem;
+    color:#8b93a7;
+
+    font-size:14px;
+
+    font-weight:500;
 `;
 
 export const RatingBar = styled.div`
-    height: 8px;
-    width: 100%;
+    height:10px;
 
-    border-radius: 999px;
-    overflow: hidden;
+    width:100%;
 
-    display: flex;
 
-    background: rgba(255, 255, 255, 0.05);
+    display:flex;
+
+
+    overflow:hidden;
+
+
+    border-radius:999px;
+
+
+    background:
+            rgba(255,255,255,.06);
 `;
-
 export const LikesFill = styled.div`
-    background: #22c55e;
-    transition: width 0.3s ease;
+    height:100%;
+
+    background:
+            linear-gradient(
+                    90deg,
+                    #22c55e,
+                    #4ade80
+            );
+
+
+    transition:
+            width .3s ease;
 `;
 
 export const DislikesFill = styled.div`
-    background: #ef4444;
-    transition: width 0.3s ease;
+    height:100%;
+
+    background:
+            linear-gradient(
+                    90deg,
+                    #ef4444,
+                    #f87171
+            );
+
+
+    transition:
+            width .3s ease;
 `;

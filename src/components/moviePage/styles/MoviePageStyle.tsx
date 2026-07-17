@@ -185,7 +185,7 @@ export const Actions = styled.div`
 
     button {
         height: 52px;
-
+        gap: 6px;
         padding: 0 20px;
 
         display: flex;
@@ -245,118 +245,82 @@ export const Actions = styled.div`
     }
 `;
 
-export const Stats = styled.section`
-    display: flex;
+export const Stats = styled.div`
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
 
-    margin-top: 36px;
-
-    position: relative;
-    z-index: 20;
-
-    background: rgba(17, 21, 34, 0.95);
-
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,.06);
+    border-radius: 16px;
 
     overflow: hidden;
 
-    backdrop-filter: blur(18px);
-
-    @media (max-width: 992px) {
-        flex-wrap: wrap;
-    }
-
-    @media (max-width: 576px) {
-        flex-direction: column;
+    @media (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
     }
 `;
 
 export const StatItem = styled.div`
-    flex: 1;
+    padding:24px;
 
-    min-width: 0;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
 
-    padding: 28px 30px;
 
+    small{
+        color:#8b94a7;
+
+        font-size:13px;
+
+        font-weight:500;
+    }
+
+
+    strong{
+        display:flex;
+
+        align-items:center;
+
+        gap:8px;
+
+
+        color:#fff;
+
+        font-size:22px;
+
+        font-weight:700;
+    }
+
+
+    svg{
+        color:#FFC83D;
+
+        flex-shrink:0;
+    }
+
+
+    &:not(:nth-child(2n)) {
+        border-right: 1px solid rgba(255,255,255,.06);
+    }
+
+    &:nth-child(-n + 2) {
+        border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    @media (min-width:769px) {
+        border-bottom:none !important;
+
+        &:not(:last-child){
+            border-right:1px solid rgba(255,255,255,.06);
+        }
+    }
+`;
+
+export const About = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 8px;
-
-    &:not(:last-child) {
-        border-right: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    @media (max-width: 992px) {
-        flex: 0 0 50%;
-
-        &:nth-child(2n) {
-            border-right: none;
-        }
-
-        &:nth-child(-n + 2) {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        }
-    }
-
-    @media (max-width: 576px) {
-        flex: 1;
-
-        border-right: none !important;
-
-        &:not(:last-child) {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        }
-    }
-
-    small {
-        color: #7d8597;
-
-        font-size: 12px;
-        font-weight: 500;
-
-        text-transform: uppercase;
-        letter-spacing: .08em;
-    }
-
-    strong {
-        color: #ffffff;
-
-        font-size: 28px;
-        font-weight: 700;
-
-        line-height: 1.1;
-    }
-
-    span {
-        color: #a0a8ba;
-
-        font-size: 14px;
-        line-height: 1.5;
-    }
-`;
-export const StatDivider = styled.div`
-    width: 1px;
-    background: rgba(255,255,255,.06);
-
-    @media (max-width:1100px){
-        display:none;
-    }
-`;
-
-export const About = styled.section`
-    margin-top: 42px;
-`;
-
-export const AboutContent = styled.div`
-    display: flex;
-    gap: 42px;
-
-    align-items: start;
-
-    @media (max-width: 550px) {
-        flex-direction: column;
-    }
+    gap: 40px;
 `;
 
 export const SectionTitle = styled.h2`
@@ -381,63 +345,33 @@ export const AboutText = styled.p`
 `;
 
 export const InfoGrid = styled.div`
-    margin-top: 34px;
-    margin-left: 20px;
     display: grid;
-    grid-template-columns: repeat(2, minmax(220px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
 
-    gap: 18px 40px;
-
-    @media (max-width:800px){
-        grid-template-columns:1fr;
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
     }
 
-    div{
-        display:flex;
-        flex-direction:column;
-        gap:8px;
+    div {
+        padding: 20px;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+
+
+        border: 1px solid rgba(255,255,255,.05);
+        border-radius: 14px;
     }
 
-    b{
-        color:#8f98aa;
-        font-size:14px;
-        font-weight:600;
+    b {
+        color: rgba(255,255,255,.7);
     }
 
-    span{
-        color:white;
-        font-size:15px;
-        line-height:1.6;
-    }
-`;
-export const WatchCard = styled.div`
-    position: sticky;
-    top: 100px;
-
-    background: #121624;
-
-    border: 1px solid rgba(255,255,255,.06);
-
-    border-radius: 14px;
-
-    overflow: hidden;
-    box-shadow:
-        0 15px 40px rgba(0,0,0,.35);
-
-    @media (max-width:992px){
-        position: static;
-        max-width: 360px;
-    }
-    @media (max-width: 550px) {
-        width: auto;
-        max-width: 100%;
-        margin: 0 auto;
-    }
-
-    img {
-        object-fit: cover;
-        display: block;
-        height: auto;
+    span {
+        text-align: right;
     }
 `;
 
@@ -462,44 +396,6 @@ export const ProgressInfo = styled.div`
     }
 `;
 
-export const ProgressBar = styled.div`
-    height:6px;
-
-    margin:0 22px 22px;
-
-    border-radius:999px;
-
-    overflow:hidden;
-
-    background:rgba(255,255,255,.08);
-
-    div{
-        width:38%;
-        height:100%;
-
-        background:linear-gradient(
-            90deg,
-            #7B5DFF,
-            #A78BFA
-        );
-
-        border-radius:999px;
-    }
-`;
-
-export const TrailerSection = styled.section`
-    margin-top:70px;
-`;
-
-export const TrailerTitle = styled.h2`
-    color:white;
-
-    font-size:32px;
-    font-weight:700;
-
-    margin-bottom:24px;
-`;
-
 export const TrailerFrame = styled.iframe`
     margin-top: 20px;
     width:100%;
@@ -516,85 +412,68 @@ export const TrailerFrame = styled.iframe`
         0 20px 60px rgba(0,0,0,.35);
 `;
 
-export const Divider = styled.div`
-    height:1px;
+export const BottomSection = styled.div`
+        display: grid;
+        grid-template-columns: 1fr 280px;
+        gap: 32px;
+        align-items: start;
 
-    margin:70px 0;
-
-    background:rgba(255,255,255,.06);
-`;
-
-export const Section = styled.section`
-    margin-top:70px;
-`;
-
-export const SectionHeader = styled.div`
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    margin-bottom:24px;
-
-    h2{
-        color:white;
-        font-size:30px;
-        font-weight:700;
-    }
-
-    a{
-        color:#8b94a7;
-        text-decoration:none;
-
-        transition:.2s;
-
-        &:hover{
-            color:white;
-        }
+    @media (max-width: 550px) {
+        grid-template-columns: 1fr;
     }
 `;
+export const CastSection = styled.div`
+    padding: 24px;
 
-export const GlassCard = styled.div`
-    background:#121624;
 
-    border:1px solid rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.05);
+    border-radius: 16px;
 
-    border-radius:14px;
-
-    padding:24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 `;
+export const SideTitle = styled.h3`
+    margin-bottom: 8px;
 
-export const Badge = styled.div`
-    display:inline-flex;
-    align-items:center;
-
-    height:30px;
-
-    padding:0 12px;
-
-    border-radius:999px;
-
-    background:rgba(123,93,255,.15);
-
-    color:#a78bfa;
-
-    font-size:13px;
-    font-weight:600;
+    font-size: 18px;
+    font-weight: 600;
 `;
+export const CastItem = styled.div`
+    padding: 14px 16px;
 
-export const EmptyBlock = styled.div`
-    height:180px;
+    background: rgba(255,255,255,.03);
 
-    border-radius:14px;
+    border: 1px solid rgba(255,255,255,.05);
+    border-radius: 12px;
 
-    border:1px dashed rgba(255,255,255,.08);
+    transition: .2s;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    &:hover {
+        transform: translateX(4px);
 
-    color:#727b8c;
+        border-color: rgba(255,255,255,.12);
+    }
 `;
+export const WatchCard = styled.div`
+    position: sticky;
+    top: 100px;
 
-export const Spacer = styled.div`
-    height:70px;
+    background: #121624;
+
+    border: 1px solid rgba(255,255,255,.05);
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        display: block;
+    }
+
+    @media (max-width: 550px) {
+        position: static;
+        max-width: 320px;
+        margin: 0 auto;
+    }
 `;

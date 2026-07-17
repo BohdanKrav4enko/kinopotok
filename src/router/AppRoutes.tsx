@@ -1,10 +1,10 @@
 import {Navigate, Route, Routes} from "react-router-dom";
 import {ROUTES} from "./paths";
 import {
-    CategoriesPage,
-    CategoryPage,
+    CatalogPage,
     ContentPage,
     FavoritesPage,
+    Home,
     NewPage,
     NotFound,
     SearchPage,
@@ -16,15 +16,14 @@ export const AppRoutes = () => (
     <Routes>
         <Route path={ROUTES.DETAILS} element={<MoviePage />} />
 
-        <Route path={ROUTES.HOME} element={<Navigate to="/all" />} />
+        <Route path={ROUTES.HOME} element={<Home/>} />
 
         <Route path={ROUTES.TYPE} element={<ContentPage />} />
 
         <Route path={ROUTES.NEW} element={<NewPage />} />
         <Route path={ROUTES.TOP} element={<TopPage />} />
 
-        <Route path={ROUTES.CATEGORIES} element={<CategoriesPage />} />
-        <Route path={ROUTES.CATEGORY} element={<CategoryPage />} />
+        <Route path={ROUTES.CATALOG} element={<CatalogPage />} />
 
         <Route path={ROUTES.SEARCH} element={<SearchPage />} />
         <Route path={ROUTES.FAVORITES} element={<FavoritesPage />} />

@@ -15,28 +15,19 @@ const titles = {
     movie: "Все фильмы",
     series: "Все сериалы",
     cartoon: "Все мультфильмы",
-    all: "Все",
 } as const;
 
-const validTypes = ["movie", "series", "cartoon", "all"] as const;
+const validTypes = ["movie", "series", "cartoon"] as const;
 
-const allContent = [
-    ...movies,
-    ...series,
-    ...cartoon,
-];
 
 export const ContentPage = () => {
     const { type } = useParams();
 
-    if (!type || !validTypes.includes(type as any)) {
+    if (!type || !validTypes.includes(type as typeof validTypes[number])) {
         return <Navigate to="/error" replace />;
     }
 
-    const source =
-        type === "all"
-            ? allContent
-            : contentMap[type as keyof typeof contentMap];
+    const source = contentMap[type as keyof typeof contentMap];
 
     const title =
         titles[type as keyof typeof titles] ?? "Контент";

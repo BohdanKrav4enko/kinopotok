@@ -77,6 +77,16 @@ export const NavButton = styled(NavLink)<{ $active?: boolean }>`
 
         min-width: 60px;
     }
+    svg{
+        width:20px;
+        height:20px;
+
+        transition:.25s;
+    }
+
+    &:hover svg{
+        transform:scale(1.15);
+    }
 `;
 export const Count = styled.span<{ $animate?: boolean }>`
     position: absolute;
