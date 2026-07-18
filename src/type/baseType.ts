@@ -15,7 +15,7 @@ export interface BaseMedia {
     votes: number;
     duration: number;
     ageRating: string;
-
+    quality?: string;
     country: string[];
     language: string;
 
@@ -31,4 +31,14 @@ export interface BaseMedia {
     tags: string[];
     featured: boolean;
     trending: boolean;
+
+    budget?: number;
+    boxOffice?: number;
+
+    seasons?: number;
+    episodes?: number;
+
+    writers?: string[];
+    studio?: string[];
+    awards?: string[];
 }

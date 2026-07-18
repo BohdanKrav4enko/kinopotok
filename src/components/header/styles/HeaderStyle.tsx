@@ -226,40 +226,51 @@ export const Register = styled(Link)`
 export const MobileNavWrapper = styled.nav`
     display: none;
 
-    @media (max-width: 1150px) {
+    @media (max-width:1200px) {
         display: flex;
-        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+
+        padding: 16px 24px 20px;
+
+        background: rgba(5, 8, 23, .98);
+
+        border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+
+    @media (max-width:768px) {
         justify-content: space-around;
-
-        position: sticky;
-        top: 88px;
-
-        z-index: 99;
-
-        padding: 10px 12px;
-
-        background: rgba(10, 15, 28, 0.92);
-        backdrop-filter: blur(20px);
-
-        border-bottom: 1px solid rgba(255,255,255,.08);
+        padding: 14px 16px 18px;
+        gap: 8px;
     }
 `;
 
 export const MobileNavLink = styled(NavLink)`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
+    position: relative;
 
     color: #9ca3af;
 
-    font-size: 12px;
-
     &.active {
-        color: #60a5fa;
+        color: #fff;
     }
 
-    svg {
-        font-size: 22px;
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        width: 100%;
+        height: 2px;
+
+        background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+
+        transform: scaleX(0);
+        transition: transform 0.25s ease;
+    }
+
+    &.active::after,
+    &:hover::after {
+        transform: scaleX(1);
     }
 `;

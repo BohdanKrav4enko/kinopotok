@@ -3,6 +3,8 @@ import {MovieCard} from "../../../components/moviesGrid/card/MovieCard.tsx";
 import type {MediaItem} from "../../../components/allContent.ts";
 import {useNavigate} from "react-router-dom";
 import {ROUTES} from "../../../router/paths.ts";
+import {useRef} from "react";
+import {ChevronLeft, ChevronRight} from "lucide-react";
 
 type Props = {
     title: string;
@@ -11,6 +13,21 @@ type Props = {
 
 export const MovieSection = ({title, movies}: Props) => {
 
+    const listRef = useRef<HTMLDivElement>(null);
+
+    const scrollLeft = () => {
+        listRef.current?.scrollBy({
+            left: -900,
+            behavior: "smooth",
+        });
+    };
+
+    const scrollRight = () => {
+        listRef.current?.scrollBy({
+            left: 900,
+            behavior: "smooth",
+        });
+    };
     const navigate = useNavigate();
 
     const movieSectionHandler = (title: string) => {
@@ -29,14 +46,26 @@ export const MovieSection = ({title, movies}: Props) => {
         <S.Section>
 
             <S.Header>
-
                 <S.Title>{title}</S.Title>
 
-                <S.More onClick={() => movieSectionHandler(title)}>Смотреть все</S.More>
+                <S.Actions>
+                    <S.More onClick={() => movieSectionHandler(title)}>
+                        Смотреть все
+                    </S.More>
 
+                    <S.Arrows>
+                        <S.ArrowButton onClick={scrollLeft}>
+                            <ChevronLeft size={20}/>
+                        </S.ArrowButton>
+
+                        <S.ArrowButton onClick={scrollRight}>
+                            <ChevronRight size={20}/>
+                        </S.ArrowButton>
+                    </S.Arrows>
+                </S.Actions>
             </S.Header>
 
-            <S.Grid>
+            <S.Grid ref={listRef}>
 
                 {movies.map(movie => (
                     <MovieCard

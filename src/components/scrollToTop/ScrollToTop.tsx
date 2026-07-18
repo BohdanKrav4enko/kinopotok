@@ -1,6 +1,6 @@
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import {Button} from "./styles/ScrollToTopStyle.tsx";
 import {useScrollTop} from "../../hooks/useScrollTop.ts";
+import {ChevronUp} from "lucide-react";
 
 
 export const ScrollToTop = () => {
@@ -10,7 +10,7 @@ export const ScrollToTop = () => {
 
     return (
         <Button onClick={scrollToTop}>
-            <KeyboardArrowUpIcon />
+            <ChevronUp size={24} strokeWidth={2.5} />
         </Button>
     );
 };

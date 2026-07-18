@@ -1,17 +1,17 @@
-import {useEffect, useState} from "react";
-import {useLocation, useNavigate} from "react-router-dom";
 import * as React from "react";
+import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 import {useDebounce} from "../../hooks";
 import {
-    SearchInput,
-    Wrapper,
+    AllResultsButton,
     Dropdown,
-    Suggestion,
-    Poster,
     Info,
-    Title,
     Meta,
-    AllResultsButton
+    Poster,
+    SearchInput,
+    Suggestion,
+    Title,
+    Wrapper
 } from "./styles/SearchStyle";
 import SearchIcon from "@mui/icons-material/Search";
 import {allContent} from "../allContent";
@@ -20,15 +20,10 @@ export const Search = () => {
     const [value, setValue] = useState("");
     const [isFocused, setIsFocused] = useState(false);
     const navigate = useNavigate();
-    const location = useLocation();
 
     const debouncedValue = useDebounce(value, 300);
 
     const clearSearch = () => setValue("");
-
-    useEffect(() => {
-        setValue("");
-    }, [location.pathname]);
 
     const suggestions = debouncedValue
         ? allContent
@@ -60,7 +55,7 @@ export const Search = () => {
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Поиск..."
+                placeholder="Поиск фильмов, сериалов..."
                 onFocus={() => setIsFocused(true)}
                 onBlur={handleBlur}
             />

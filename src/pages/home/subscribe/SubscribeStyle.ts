@@ -124,7 +124,7 @@ export const Input = styled.input`
 
     border: 1px solid rgba(255,255,255,.08);
 
-    border-radius: 12px;
+    border-radius: 6px;
 
     background: rgba(255,255,255,.06);
 
@@ -146,7 +146,7 @@ export const Button = styled.button`
 
     border: none;
 
-    border-radius: 12px;
+    border-radius: 6px;
 
     background: linear-gradient(
             90deg,

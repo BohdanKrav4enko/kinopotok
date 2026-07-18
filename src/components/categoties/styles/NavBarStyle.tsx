@@ -1,120 +1,137 @@
 import styled from "styled-components";
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export const Bar = styled.div`
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    z-index: 1000;
+
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
 
-    padding: 12px 16px;
+    gap: 18px;
 
-    background: rgba(255, 255, 255, 0.02);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
 
-    backdrop-filter: blur(12px);
+    background: rgba(5, 8, 23, .94);
 
-    @media (max-width: 1150px) {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
+    backdrop-filter: blur(18px);
 
-        justify-content: space-around;
+    border-top: 1px solid rgba(255,255,255,.06);
 
-        border-bottom: none;
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 -10px 35px rgba(0,0,0,.35);
 
-        z-index: 1000;
+    @media (min-width: 768px) {
+        gap: 28px;
+    }
+
+    @media (min-width: 1200px) {
+        gap: 36px;
+    }
+    @media (max-width: 480px) {
+        gap: 20px;
+    }
+    @media (max-width: 480px) {
+        gap: 4px;
     }
 `;
-export const NavButton = styled(NavLink)<{ $active?: boolean }>`
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+
+export const NavButton = styled(NavLink)`
     position: relative;
 
-    gap: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-    padding: 10px 14px;
+    gap: 5px;
 
-    border-radius: 12px;
+    min-width: 68px;
 
-    font-size: 0.95rem;
+    padding: 8px 12px;
+
+    border-radius: 14px;
+
+    text-decoration: none;
+
+    color: #8b93a7;
+
+    font-size: 12px;
     font-weight: 600;
 
-    cursor: pointer;
+    transition: .25s;
 
-    white-space: nowrap;
-
-    transition: all 0.2s ease;
-
-    color: ${({ $active }) => ($active ? "#60a5fa" : "#cbd5e1")};
-
-    background: ${({ $active }) =>
-            $active ? "rgba(59, 130, 246, 0.15)" : "transparent"};
-
-    border: 1px solid transparent;
-
-    svg {
-        font-size: 22px;
-    }
-
-    &:hover {
-        transform: translateY(-2px);
-    }
-
-    &:active {
-        transform: scale(0.95);
-    }
-    
-    @media (max-width: 768px) {
-        flex-direction: column;
-        gap: 2px;
-
-        font-size: 0.7rem;
-        padding: 6px 10px;
-
-        min-width: 60px;
-    }
     svg{
-        width:20px;
-        height:20px;
+        width:22px;
+        height:22px;
 
         transition:.25s;
     }
 
+    &:hover{
+        color:white;
+
+        background:rgba(255,255,255,.04);
+    }
+
     &:hover svg{
-        transform:scale(1.15);
+        transform:translateY(-2px);
+    }
+
+    &.active{
+        color:#7c5cff;
+
+        background:rgba(124,92,255,.12);
+
+        box-shadow:inset 0 0 0 1px rgba(124,92,255,.25);
+    }
+
+    &.active svg{
+        transform:scale(1.1);
+    }
+
+    &:active{
+        transform:scale(.96);
     }
 `;
+
 export const Count = styled.span<{ $animate?: boolean }>`
-    position: absolute;
-    top: -6px;
-    right: -6px;
+    position:absolute;
 
-    min-width: 18px;
-    height: 18px;
-    padding: 0 5px;
+    top:4px;
+    right:10px;
 
-    border-radius: 999px;
+    min-width:18px;
+    height:18px;
 
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
-    color: #fff;
+    padding:0 5px;
 
-    font-size: 11px;
-    font-weight: 700;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    border-radius:999px;
 
-    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.35);
+    background:linear-gradient(
+            135deg,
+            #8b5cf6,
+            #6b4eff
+    );
 
-    border: 2px solid rgba(10, 15, 28, 0.85);
-    
-    transform: scale(${({ $animate }) => ($animate ? 1.2 : 1)});
-    transition: transform 0.2s ease;
+    color:white;
 
-    pointer-events: none;
+    font-size:10px;
+    font-weight:700;
+
+    border:2px solid #050817;
+
+    box-shadow:0 6px 18px rgba(107,78,255,.45);
+
+    transform:scale(${({ $animate }) => ($animate ? 1.2 : 1)});
+
+    transition:transform .2s;
 `;

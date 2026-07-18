@@ -18,8 +18,10 @@ export const ToggleWrapper = styled.div`
 `;
 
 export const BaseButton = styled.button<{ $active?: boolean }>`
-    width: 52px;
-    height: 52px;
+    position: relative;
+
+    width: 44px;
+    height: 44px;
 
     display: flex;
     align-items: center;
@@ -40,10 +42,6 @@ export const BaseButton = styled.button<{ $active?: boolean }>`
     cursor: pointer;
 
     transition: .2s ease;
-
-    &:not(:last-child) {
-        border-right: 1px solid rgba(255,255,255,.08);
-    }
 
     &:hover {
         background: rgba(255,255,255,.06);
@@ -75,6 +73,20 @@ export const BaseButton = styled.button<{ $active?: boolean }>`
 
 export const GridButton = styled(BaseButton)`
     border-radius: 6px 0 0 6px;
+
+    &::after {
+        content: "";
+
+        position: absolute;
+
+        top: 8px;
+        bottom: 8px;
+        right: 0;
+
+        width: 1px;
+
+        background: rgba(255,255,255,.08);
+    }
 `;
 
 export const ListButton = styled(BaseButton)`

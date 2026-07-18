@@ -16,6 +16,11 @@ const titles = {
     series: "Все сериалы",
     cartoon: "Все мультфильмы",
 } as const;
+const subtitles = {
+    movie: "Откройте для себя лучшие фильмы всех жанров.",
+    series: "Смотрите популярные сериалы и последние новинки.",
+    cartoon: "Подборка лучших анимационных фильмов и мультфильмов.",
+} as const;
 
 const validTypes = ["movie", "series", "cartoon"] as const;
 
@@ -31,11 +36,14 @@ export const ContentPage = () => {
 
     const title =
         titles[type as keyof typeof titles] ?? "Контент";
+    const subtitle =
+        subtitles[type as keyof typeof titles] ?? "Контент";
 
     return (
         <PreferencesProvider
             items={source}
             title={title}
+            subtitle={subtitle}
         />
     );
 };

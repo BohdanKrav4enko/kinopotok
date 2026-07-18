@@ -1,11 +1,11 @@
 import {useNavigate} from "react-router-dom";
 import * as S from "../styles/MoviesListStyle";
+import {MetaItem} from "../styles/MoviesListStyle";
 import type {MediaItem} from "../../allContent.ts";
 import {toggleFavorite} from "../../../features/favorites/favoritesSlice.ts";
 import {useAppDispatch, useAppSelector} from "../../../hooks";
 import {MovieBadges} from "../../movieBadges";
-import {MetaItem} from "../styles/MoviesListStyle";
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import {getMediaInfo} from "../../../utils/getMediaInfo.tsx";
 
 type Props = {
     items: MediaItem[];
@@ -36,19 +36,28 @@ export const MovieList = ({ items }: Props) => {
                     <S.Poster src={item.poster}/>
                         <MovieBadges year={item.year} rating={item.rating} />
                     </S.PosterWrapper>
-                    <S.StyledFavoriteIcon
-                        $active={isFavorite(item)}
-                        onClick={(e) => {
-                        e.stopPropagation();
-                        dispatch(toggleFavorite(item));
-                    }}/>
                     <S.Info>
-                        <S.Title>
-                            {item.title}
-                        </S.Title>
+                        <S.Header>
+                            <S.Title>{item.title}</S.Title>
 
+                            <S.StyledFavoriteIcon
+                                $active={isFavorite(item)}
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    dispatch(toggleFavorite(item));
+                                }}
+                            />
+                        </S.Header>
                         <S.Meta>
-                             <S.StyledLink to={`/${item.type}/category/${encodeURIComponent(item.category)}`}>{item.category}</S.StyledLink>
+                            {item.genres.map((genre) => (
+                                <S.StyledLink
+                                    key={genre}
+                                    to={`/genre/${genre}`}
+                                    onClick={(e) => e.stopPropagation()}
+                                >
+                                    {genre}
+                                </S.StyledLink>
+                            ))}
                         </S.Meta>
 
                         <S.Label>Режиссёр: {item.director}</S.Label>
@@ -59,8 +68,8 @@ export const MovieList = ({ items }: Props) => {
                             {item.description}
                         </S.Description>
                         <MetaItem>
-                            <AccessTimeIcon/>
-                            {item.duration} мин
+                            {getMediaInfo(item).icon}
+                            {getMediaInfo(item).text}
                         </MetaItem>
 
                     </S.Info>

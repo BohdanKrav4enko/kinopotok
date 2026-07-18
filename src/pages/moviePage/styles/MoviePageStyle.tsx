@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 
 export const Container = styled.div`
     max-width: 1450px;
@@ -10,9 +11,11 @@ export const Hero = styled.section`
     position: relative;
 
     width: 100vw;
+    margin-left: calc(50% - 50vw);
+    
     height: 720px;
 
-    margin-left: calc(50% - 50vw);
+    
 
     overflow: hidden;
 
@@ -28,7 +31,7 @@ export const Hero = styled.section`
     }
 `;
 
-export const HeroBackground = styled.img`
+export const HeroBackground = styled.img<{ $isPoster: boolean }>`
     position: absolute;
     inset: 0;
 
@@ -36,6 +39,16 @@ export const HeroBackground = styled.img`
     height: 100%;
 
     object-fit: cover;
+    object-position: center;
+
+    transition: .3s;
+
+    ${({ $isPoster }) =>
+            $isPoster &&
+            `
+            filter: blur(24px) brightness(.55);
+            transform: scale(1.2);
+        `}
 `;
 
 export const HeroOverlay = styled.div`
@@ -204,7 +217,11 @@ export const Actions = styled.div`
 
         white-space: nowrap;
     }
-
+    button svg {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+    }
     button:first-child {
         background: #6c4dff;
         color: #fff;
@@ -287,7 +304,7 @@ export const StatItem = styled.div`
 
         color:#fff;
 
-        font-size:22px;
+        font-size: clamp(16px, 4vw, 22px);
 
         font-weight:700;
     }
@@ -351,9 +368,12 @@ export const InfoGrid = styled.div`
 
     @media (max-width: 768px) {
         grid-template-columns: 1fr;
+        gap: 10px;
     }
-
-    div {
+    @media (max-width: 480px) {
+        gap: 4px;
+    }
+    > div {
         padding: 20px;
 
         display: flex;
@@ -475,5 +495,45 @@ export const WatchCard = styled.div`
         position: static;
         max-width: 320px;
         margin: 0 auto;
+    }
+`;
+export const GenresLinks = styled.div`
+    display:flex;
+
+    flex-wrap:wrap;
+
+    justify-content:flex-end;
+
+    gap:6px;
+`;
+export const InfoItem = styled.div`
+    padding:20px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:16px;
+
+
+    border:1px solid rgba(255,255,255,.05);
+
+    border-radius:14px;
+`;
+export const GenreLink = styled(Link)`
+    color:#fff;
+
+    font-size:14px;
+
+    text-decoration:none;
+
+    transition:.25s;
+
+
+    &:hover{
+        color:#8d74ff;
+        text-decoration:underline;
     }
 `;

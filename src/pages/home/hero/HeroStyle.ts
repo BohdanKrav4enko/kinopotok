@@ -248,7 +248,7 @@ export const PrimaryButton = styled.button`
     padding: 0 34px;
 
     border: none;
-    border-radius: 14px;
+    border-radius: 6px;
 
     display: flex;
     align-items: center;
@@ -301,7 +301,7 @@ export const SecondaryButton = styled.button`
     justify-content:center;
     gap: 10px;
 
-    border-radius: 14px;
+    border-radius: 6px;
 
     border: 1px solid rgba(255,255,255,.12);
 

@@ -8,9 +8,13 @@ import {
     NewPage,
     NotFound,
     SearchPage,
-    TopPage
+    TopPage,
+    GenresPage,
+    MoviePage,
+    GenrePage,
+    CountryPage
 } from "../pages";
-import {MoviePage} from "../components";
+
 
 export const AppRoutes = () => (
     <Routes>
@@ -24,6 +28,11 @@ export const AppRoutes = () => (
         <Route path={ROUTES.TOP} element={<TopPage />} />
 
         <Route path={ROUTES.CATALOG} element={<CatalogPage />} />
+
+        <Route path={ROUTES.GENRES} element={<GenresPage />} />
+        <Route path={ROUTES.COUNTRY} element={<CountryPage />} />
+
+        <Route path={ROUTES.GENRE} element={<GenrePage />} />
 
         <Route path={ROUTES.SEARCH} element={<SearchPage />} />
         <Route path={ROUTES.FAVORITES} element={<FavoritesPage />} />

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, {css, keyframes} from "styled-components";
 
 export const Container = styled.div`
     display: flex;
@@ -51,60 +51,91 @@ export const Actions = styled.div`
     }
 `;
 
-export const MobileFiltersButton = styled.button`
+
+const glow = keyframes`
+    0%,100%{
+        box-shadow:
+            0 0 4px rgba(108,77,255,.12),
+            0 0 10px rgba(59,130,246,.08);
+
+        filter:
+            drop-shadow(0 0 2px #6c4dff)
+            drop-shadow(0 0 4px #3b82f6);
+    }
+
+    50%{
+        box-shadow:
+            0 0 6px rgba(108,77,255,.18),
+            0 0 14px rgba(59,130,246,.12);
+
+        filter:
+            drop-shadow(0 0 3px #6c4dff)
+            drop-shadow(0 0 6px #3b82f6);
+    }
+`;
+
+export const MobileFiltersButton = styled.button<{
+    $active?: boolean;
+}>`
     display: none;
 
     height: 52px;
-
     padding: 0 20px;
 
     align-items: center;
     justify-content: center;
-    gap: 8px;
 
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 6px;
 
     background: #121624;
-
     color: white;
-
-    font-size: 15px;
-    font-weight: 600;
 
     cursor: pointer;
 
     transition: .25s;
 
+    svg {
+        width: 20px;
+        height: 20px;
+        transition: .25s;
+    }
+
     &:hover {
-        background: rgba(255,255,255,.05);
-        border-color: rgba(108,77,255,.45);
+        background: rgba(255, 255, 255, .05);
+        border-color: rgba(108, 77, 255, .45);
     }
 
     &:active {
-        transform: scale(.98);
+        transform: scale(.97);
     }
 
-    @media (max-width: 1080px) {
-        display: flex;
+    ${({ $active }) =>
+            $active &&
+            css`
+                color: #8b5cf6;
+                border-color: rgba(139,92,246,.35);
+                background: rgba(108,77,255,.08);
 
-        flex: initial;
-        min-width: auto;
+                animation: ${glow} 2.8s ease-in-out infinite;
 
-        height: 44px;
-        padding: 0 14px;
+                svg{
+                    color:#8b5cf6;
+                }
+            `}
+}
+    @media (max-width:1080px){
+        display:flex;
 
-        border-radius: 10px;
-
-        font-size: 13px;
-        font-weight: 500;
+        height:44px;
+        padding:0 14px;
+        font-size:13px;
     }
 
-    @media (max-width: 480px) {
-        height: 40px;
-        padding: 0 12px;
-
-        font-size: 12px;
+    @media (max-width:480px){
+        height:40px;
+        padding:0 12px;
+        font-size:12px;
     }
 `;
 export const FiltersBackdrop = styled.div`
@@ -185,7 +216,7 @@ export const CloseButton = styled.button`
     margin-top: 8px;
 
     border: none;
-    border-radius: 12px;
+    border-radius: 6px;
 
     background: #6c4dff;
 

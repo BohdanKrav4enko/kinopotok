@@ -16,7 +16,52 @@ export const Section = styled.section`
         padding: 24px 16px;
     }
 `;
+export const Actions = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 18px;
+`;
+export const Arrows = styled.div`
+    display: flex;
+    gap: 10px;
 
+    @media (max-width: 768px) {
+        display: none;
+    }
+`;
+export const ArrowButton = styled.button`
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.04);
+    color: #fff;
+
+    cursor: pointer;
+
+    transition: .25s;
+
+    &:hover {
+        background: #6C4DFF;
+        border-color: #6C4DFF;
+        transform: scale(1.05);
+    }
+
+    &:active {
+        transform: scale(.96);
+    }
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+`;
 export const Header = styled.div`
     display: flex;
     justify-content: space-between;

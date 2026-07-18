@@ -1,21 +1,26 @@
 import * as S from "./GenresStyle";
-import {movies} from "../../../components/movies.tsx";
+import {useNavigate} from "react-router-dom";
+import {ROUTES} from "../../../router/paths.ts";
+import {allContent} from "../../../components/allContent.ts";
 
 export const Genres = () => {
 
     const genres: {
         name: string;
-        poster: string;
-        backdrop: string;
+        image: string;
+        fallback: string;
     }[] = [];
 
     const usedGenres = new Set<string>();
 
-    const sortedMovies = [...movies].sort(
+    const navigate = useNavigate();
+
+    const sortedMovies = [...allContent].sort(
         (a, b) => b.rating - a.rating
     );
 
     for (const movie of sortedMovies) {
+
         const genre = movie.genres.find(
             (g) => !usedGenres.has(g)
         );
@@ -24,8 +29,8 @@ export const Genres = () => {
 
         genres.push({
             name: genre,
-            poster: movie.poster,
-            backdrop: movie.backdrop,
+            image: movie.backdrop,
+            fallback: movie.poster,
         });
 
         usedGenres.add(genre);
@@ -33,25 +38,39 @@ export const Genres = () => {
         if (genres.length === 8) break;
     }
 
+
     return (
         <S.Section>
 
             <S.Header>
+                <S.Title>
+                    Жанры
+                </S.Title>
 
-                <S.Title>Жанры</S.Title>
-
-                {/*<S.More>Смотреть все</S.More>*/}
-
+                <S.More onClick={() => navigate(ROUTES.GENRES)}>
+                    Смотреть все
+                </S.More>
             </S.Header>
+
 
             <S.Grid>
 
                 {genres.map((genre) => (
                     <S.Card
                         key={genre.name}
-                        $image={genre.poster}
+                        onClick={() => navigate(`/genre/${genre.name}`)}
                     >
+
+                        <S.Image
+                            src={genre.image}
+                            onError={(e) => {
+                                e.currentTarget.src = genre.fallback;
+                            }}
+                        />
+
+
                         <S.Overlay/>
+
 
                         <S.Name>
                             {genre.name}

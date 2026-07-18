@@ -1,6 +1,6 @@
 import {useSearchParams} from "react-router-dom";
 import {Container, Count, Header, Query, TitleText} from "./styles/SearchPageStyle.ts";
-import {EmptyMessage} from "../../components/EmptyMessage.tsx";
+import {EmptyMessage} from "../../components/emptyMessege/EmptyMessage.tsx";
 import {PreferencesProvider} from "../../components/preferencesProvider";
 import SearchIcon from '@mui/icons-material/Search';
 import {allContent} from "../../components/allContent.ts";
@@ -30,7 +30,10 @@ export const SearchPage = () => {
             {results.length > 0 ? (
                 <PreferencesProvider items={results}/>
             ) : (
-                <EmptyMessage/>
+                <EmptyMessage
+                    title="Ничего не найдено"
+                    subtitle="Не нашли то, что искали? Попробуйте изменить запрос — у нас ещё много интересного."
+                />
             )}
         </Container>
     );

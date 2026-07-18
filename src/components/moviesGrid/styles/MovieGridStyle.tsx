@@ -99,7 +99,7 @@ export const Title = styled.h2`
 export const Subtitle = styled.p`
     color: #94a3b8;
     font-size: 0.95rem;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 `;
 export const MetaItem = styled.div`
     display: flex;
@@ -197,4 +197,7 @@ export const StyledFavoriteIcon = styled(FavoriteIcon)<{
 `;
 export const PosterWrapper = styled.div`
     position: relative;
+`;
+export const MetaWrapper = styled.div`
+    padding:0 6px 6px;
 `;

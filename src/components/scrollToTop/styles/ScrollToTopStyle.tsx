@@ -2,58 +2,59 @@ import styled from "styled-components";
 
 export const Button = styled.button`
     position: fixed;
-    right: 18px;
-    bottom: 18px;
+
+    right:16px;
+    bottom:88px;
+
     z-index: 1001;
 
-    width: 52px;
-    height: 52px;
+    width: 54px;
+    height: 54px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    border: none;
-
-    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,.06);
+    border-radius: 6px;
 
     cursor: pointer;
 
-    color: #60a5fa;
+    color: #fff;
 
-    background: rgba(59, 130, 246, 0.18);
+    background: rgba(124,92,255,.14);
 
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(18px);
 
     box-shadow:
-        0 10px 25px rgba(59, 130, 246, 0.25),
-        0 0 20px rgba(59, 130, 246, 0.15),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+            0 10px 30px rgba(107,78,255,.28),
+            inset 0 0 0 1px rgba(255,255,255,.04);
 
-    transition: all 0.25s ease;
+    transition: .25s;
 
-    svg {
-        font-size: 22px;
+    svg{
+        width:22px;
+        height:22px;
+
+        transition:.25s;
     }
 
-    &:hover {
+    &:hover{
         transform: translateY(-3px);
 
-        background: rgba(59, 130, 246, 0.28);
+        background: rgba(124,92,255,.22);
+
+        border-color: rgba(124,92,255,.35);
 
         box-shadow:
-            0 14px 35px rgba(59, 130, 246, 0.35),
-            0 0 28px rgba(59, 130, 246, 0.25);
+                0 18px 38px rgba(107,78,255,.38);
+
+        svg{
+            transform: translateY(-2px);
+        }
     }
 
-    &:active {
-        transform: scale(0.95);
-        box-shadow:
-            0 8px 20px rgba(59, 130, 246, 0.2);
-    }
-
-    @media (max-width: 768px) {
-        right: 14px;
-        bottom: 90px;
+    &:active{
+        transform: scale(.96);
     }
 `;

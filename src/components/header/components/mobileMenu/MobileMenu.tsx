@@ -1,12 +1,11 @@
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
-import { Overlay, Panel, MenuGroup } from "./styles/MobileMenuStyle";
+import {MenuGroup, Overlay, Panel} from "./styles/MobileMenuStyle";
 
-import { MobileMenuTopBar } from "./MobileMenuTopBar";
-import { MobileMenuAuth } from "./MobileMenuAuth";
-import { MobileMenuQuickLinks } from "./MobileMenuQuickLinks";
-import { MobileMenuMainLinks } from "./MobileMenuMainLinks";
-import { MobileMenuFooter } from "./MobileMenuFooter";
+import {MobileMenuTopBar} from "./MobileMenuTopBar";
+import {MobileMenuQuickLinks} from "./MobileMenuQuickLinks";
+import {MobileMenuMainLinks} from "./MobileMenuMainLinks";
+import {MobileMenuFooter} from "./MobileMenuFooter";
 
 type Props = {
     open: boolean;
@@ -37,7 +36,7 @@ export const MobileMenu = ({ open, onClose }: Props) => {
                 />
 
                 <MenuGroup>
-                    <MobileMenuAuth />
+                    {/*<MobileMenuAuth />*/}
                     <MobileMenuQuickLinks onClose={onClose} />
                 </MenuGroup>
 

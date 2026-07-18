@@ -1,34 +1,94 @@
-import { Grid, Title, Wrapper } from "./styles/SimilarMoviesStyle";
-import { allContent } from "../allContent";
+import { allContent, type MediaItem } from "../allContent";
 import { MovieCards } from "../moviesGrid";
-import type { MediaItem } from "../allContent";
-
+import {useRef} from "react";
+import * as S from "./styles/SimilarMoviesStyle"
+import {ChevronLeft, ChevronRight} from "lucide-react";
 type Props = {
     type: MediaItem["type"];
-    category: string;
     currentId: number;
 };
 
-export const SimilarMovies = ({ type, category, currentId }: Props) => {
+export const SimilarMovies = ({  currentId }: Props) => {
+    const current = allContent.find(movie => movie.id === currentId);
+    const listRef = useRef<HTMLDivElement>(null);
 
-    const similar: MediaItem[] = allContent
-        .filter(
-            (item) =>
-                item.type === type &&
-                item.category === category &&
-                item.id !== currentId
-        )
-        .slice(0, 5);
+    const scrollLeft = () => {
+        listRef.current?.scrollBy({
+            left: -900,
+            behavior: "smooth",
+        });
+    };
 
-    if (similar.length === 0) return null;
+    if (!current) return null;
+
+
+
+    const scrollRight = () => {
+        listRef.current?.scrollBy({
+            left: 900,
+            behavior: "smooth",
+        });
+    };
+
+    const similar = allContent
+        .filter(movie => movie.id !== current.id)
+        .filter(movie => movie.type === current.type)
+        .map(movie => {
+            let score = 0;
+
+            score += movie.genres.filter(genre =>
+                current.genres.includes(genre)
+            ).length * 3;
+
+            score += movie.tags.filter(tag =>
+                current.tags.includes(tag)
+            ).length * 2;
+
+            if (movie.director === current.director) {
+                score += 2;
+            }
+
+            if (
+                movie.country.some(country =>
+                    current.country.includes(country)
+                )
+            ) {
+                score += 1;
+            }
+
+            return {
+                movie,
+                score,
+            };
+        })
+        .filter(item => item.score > 0)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 6)
+        .map(item => item.movie);
+
+    if (!similar.length) {
+        return null;
+    }
 
     return (
-        <Wrapper>
-            <Title>🎬 Похожие {type === "movie" ? "фильмы" : type === "series" ? "сериалы" : "мультфильмы"}</Title>
+        <S.Wrapper>
+            <S.Header>
+                <S.Title>Рекомендуем посмотреть</S.Title>
 
-            <Grid>
+                <S.Buttons>
+                    <S.ArrowButton onClick={scrollLeft}>
+                        <ChevronLeft />
+                    </S.ArrowButton>
+
+                    <S.ArrowButton onClick={scrollRight}>
+                        <ChevronRight />
+                    </S.ArrowButton>
+                </S.Buttons>
+            </S.Header>
+
+            <S.Grid ref={listRef}>
                 <MovieCards items={similar} />
-            </Grid>
-        </Wrapper>
+            </S.Grid>
+        </S.Wrapper>
     );
 };

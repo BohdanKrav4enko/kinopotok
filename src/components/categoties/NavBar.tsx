@@ -3,7 +3,7 @@ import {Bar, Count, NavButton} from "./styles/NavBarStyle.tsx";
 
 import {useFavoritesAnimation} from "../../hooks/useFavoritesAnimation.ts";
 import {ROUTES} from "../../router/paths.ts";
-import {Flame, Grid2X2, Heart, Sparkles} from "lucide-react";
+import {Drama, Flame, Grid2X2, Heart, Sparkles} from "lucide-react";
 
 
 export const NavBar = () => {
@@ -11,9 +11,6 @@ export const NavBar = () => {
     const {favoritesCount, animate} = useFavoritesAnimation();
 
 
-    const catalogRoute = ROUTES.CATALOG;
-    const topRoute = ROUTES.TOP;
-    const newRoute = ROUTES.NEW;
 
     const isActive = (path: string) =>
         location.pathname === path;
@@ -22,8 +19,14 @@ export const NavBar = () => {
         <Bar>
 
             <NavButton
-                to={catalogRoute}
-                $active={isActive(catalogRoute)}
+                to={ROUTES.GENRES}
+            >
+                <Drama size={20}/>
+                Жанры
+            </NavButton>
+
+            <NavButton
+                to={ROUTES.CATALOG}
             >
                 <Grid2X2 size={20}/>
                 Каталог
@@ -31,8 +34,7 @@ export const NavBar = () => {
 
 
             <NavButton
-                to={topRoute}
-                $active={isActive(topRoute)}
+                to={ROUTES.TOP}
             >
                 <Flame size={20}/>
                 Топ
@@ -40,8 +42,7 @@ export const NavBar = () => {
 
 
             <NavButton
-                to={newRoute}
-                $active={isActive(newRoute)}
+                to={ROUTES.NEW}
             >
                 <Sparkles size={20}/>
                 Новинки
@@ -50,7 +51,6 @@ export const NavBar = () => {
 
             <NavButton
                 to="/favorites"
-                $active={isActive("/favorites")}
             >
                 <Heart
                     size={20}

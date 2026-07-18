@@ -1,168 +1,176 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-    display: flex;
-    align-items: center;
-
-    gap: 8px;
-
     position: relative;
 
-    height: 38px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 
-    padding: 0 12px;
+    width: clamp(340px, 20vw, 440px);
+    height: 48px;
 
-    border-radius: 10px;
+    padding: 0 16px;
 
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
 
-    width: clamp(220px, 18vw, 320px);
+    background: rgba(255,255,255,.03);
+    border: 1px solid rgba(255,255,255,.06);
 
-    flex-shrink: 1;
+    backdrop-filter: blur(18px);
 
-    transition: all 0.2s ease;
+    transition: .25s;
 
-    &:focus-within {
-        border-color: rgba(59, 130, 246, 0.5);
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+    &:focus-within{
+        border-color: rgba(124,92,255,.35);
+
+        box-shadow:
+                0 0 0 4px rgba(124,92,255,.12);
     }
 
-    @media (max-width: 768px) {
-        width: 100%;
+    svg{
+        width:18px;
+        height:18px;
+
+        color:#8b93a7;
+
+        flex-shrink:0;
+
+        transition:.25s;
+    }
+
+    &:focus-within svg{
+        color:#fff;
+    }
+
+    @media(max-width:768px){
+        width:100%;
     }
 `;
 
 export const SearchInput = styled.input`
-    width: 100%;
-    min-width: 0;
+    flex:1;
 
-    padding: 10px 14px;
+    min-width:0;
 
-    border-radius: 12px;
+    color:#fff;
 
-    color: #fff;
+    font-size:15px;
 
-    transition: all 0.25s ease;
+    background:transparent;
 
-    font-size: clamp(14px, 1vw, 16px);
-
-    &::placeholder {
-        color: #9ca3af;
+    &::placeholder{
+        color:#8b93a7;
     }
 `;
 
 export const Dropdown = styled.div`
-  position: absolute;
-  top: 110%;
-  left: 0;
+    position:absolute;
 
-  width: 100%;
+    top:calc(100% + 10px);
+    left:0;
 
-  margin-top: 6px;
+    width:100%;
 
-  background: rgba(15, 23, 42, 0.95);
-  backdrop-filter: blur(10px);
+    overflow:hidden;
 
-  border-radius: 12px;
+    border-radius: 0 0 10px 10px;
 
-  overflow: hidden;
+    background:#121624;
 
-  border: 1px solid rgba(255, 255, 255, 0.08);
+    border:1px solid rgba(255,255,255,.06);
 
-  z-index: 50;
+    box-shadow:
+            0 24px 60px rgba(0,0,0,.45);
+
+    z-index:100;
 `;
 
 export const Suggestion = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    display:flex;
+    align-items:center;
+    gap:14px;
 
-    padding: 10px 12px;
+    padding:12px 14px;
 
-    cursor: pointer;
+    cursor:pointer;
 
-    color: #e5e7eb;
+    transition:.25s;
 
-    transition: all 0.2s ease;
-
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-
-    &:last-child {
-        border-bottom: none;
+    &:not(:last-child){
+        border-bottom:1px solid rgba(255,255,255,.05);
     }
 
-    &:hover {
-        background: rgba(59, 130, 246, 0.15);
-        transform: translateX(2px);
+    &:hover{
+        background:rgba(124,92,255,.08);
     }
 `;
+
 export const Poster = styled.img`
-    width: 42px;
-    height: 60px;
+    width:46px;
+    height:66px;
 
-    border-radius: 6px;
+    border-radius: 2px;
 
-    object-fit: cover;
+    object-fit:cover;
 
-    flex-shrink: 0;
-
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+    flex-shrink:0;
 `;
+
 export const Info = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
+    flex:1;
 
-    min-width: 0;
+    min-width:0;
+
+    display:flex;
+    flex-direction:column;
+    gap:4px;
 `;
+
 export const Title = styled.div`
-    font-size: 14px;
-    font-weight: 600;
-    color: #fff;
+    color:#fff;
 
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-size:15px;
+    font-weight:600;
+
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 `;
+
 export const Meta = styled.div`
-    font-size: 12px;
-    color: #9ca3af;
+    display:flex;
+    gap:8px;
 
-    display: flex;
-    gap: 6px;
+    color:#8b93a7;
 
-    flex-wrap: wrap;
+    font-size:13px;
+
+    flex-wrap:wrap;
 `;
+
 export const AllResultsButton = styled.button`
-    width: 100%;
+    width:100%;
+    height:48px;
 
-    padding: 12px 14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background:rgba(255,255,255,.03);
 
-    cursor: pointer;
+    border-top:1px solid rgba(255,255,255,.06);
 
-    background: rgba(59, 130, 246, 0.12);
+    color:#fff;
 
-    color: #e5e7eb;
+    font-size:14px;
+    font-weight:600;
 
-    font-size: 13px;
-    font-weight: 500;
+    transition:.25s;
 
-    border: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    &:hover{
+        background:rgba(124,92,255,.12);
 
-    transition: all 0.2s ease;
-
-    &:hover {
-        background: rgba(59, 130, 246, 0.25);
-        color: #fff;
-    }
-
-    &:active {
-        transform: scale(0.98);
+        color:#fff;
     }
 `;

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Filter } from "lucide-react";
+import {Filter, FilterX} from "lucide-react";
 import * as S from "./FiltersBarStyle";
 
 import { FilterDropdown } from "../filterDropdown/FilterDropdown";
@@ -18,6 +18,10 @@ export const FiltersBar = ({genres, countries, years, ratings,}: FiltersProps) =
     const filters = useAppSelector(state => state.catalog.filters);
     const viewMode = useAppSelector(state => state.preferences.moviesViewMode);
     const sortBy = useAppSelector(state => state.catalog.sortBy);
+
+    const hasActiveFilters = Object.values(filters).some(
+        (value) => value !== ""
+    );
 
     return (
         <>
@@ -76,9 +80,14 @@ export const FiltersBar = ({genres, countries, years, ratings,}: FiltersProps) =
                 <S.Actions>
 
                     <S.MobileFiltersButton
+                        $active={hasActiveFilters}
                         onClick={() => setFiltersOpen(true)}
                     >
-                        <Filter size={20} />
+                        {hasActiveFilters ? (
+                            <FilterX size={20} />
+                        ) : (
+                            <Filter size={20} />
+                        )}
                     </S.MobileFiltersButton>
 
                     <SortSelect

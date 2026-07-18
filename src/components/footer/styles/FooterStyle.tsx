@@ -1,125 +1,224 @@
 import styled from "styled-components";
-import {Link} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-export const Container = styled.footer`
-    position: relative;
-    margin-top: 100px;
-    padding: 60px 24px;
+export const Footer = styled.footer`
+    margin-top: 80px;
+    
 
-    overflow: hidden;
+    background: linear-gradient(
+            180deg,
+            #050817 0%,
+            #040611 100%
+    );
 
-    background: radial-gradient(
-            circle at top,
-            rgba(59, 130, 246, 0.15),
-            transparent 60%
-    ),
-    radial-gradient(
-            circle at bottom,
-            rgba(139, 92, 246, 0.12),
-            transparent 60%
-    ),
-    rgba(10, 12, 20, 0.95);
+    border-top: 1px solid rgba(255,255,255,.05);
+`;
 
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+export const Container = styled.div`
+    max-width: 1500px;
 
-    backdrop-filter: blur(20px);
+    margin: 0 auto 60px;
 
-    @media (max-width: 768px) {
-        padding: 40px 16px;
+    padding: 60px 55px 36px;
+
+    @media (max-width:1200px){
+        padding:48px 40px 30px;
+    }
+    @media(max-width:1150px){
+        margin-bottom: 60px;
+    }
+
+    @media (max-width:768px){
+        padding:40px 20px 60px;
     }
 `;
-export const Hero = styled.div`
-    text-align: center;
-    margin-bottom: 40px;
-`;
-export const Title = styled.h2`
-    font-size: 2rem;
-    font-weight: 800;
 
-    color: #ffffff;
+export const Top = styled.div`
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
 
-    letter-spacing: -0.03em;
+    gap:60px;
 
-    margin-bottom: 10px;
+    @media(max-width:1000px){
+        grid-template-columns:repeat(2,1fr);
+        gap:40px;
+    }
 
-    @media (max-width: 768px) {
-        font-size: 1.5rem;
+    @media(max-width:650px){
+        grid-template-columns:1fr;
+        gap:36px;
+
+        text-align:center;
     }
 `;
-export const Subtitle = styled.p`
-    color: #94a3b8;
-    font-size: 0.95rem;
-    max-width: 520px;
-    margin: 0 auto;
-`;
-export const Actions = styled.div`
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
 
-    margin-top: 30px;
-`;
-export const ActionButton = styled(Link)<{ $primary?: boolean }>`
-    padding: 10px 14px;
-    border-radius: 12px;
+export const Brand = styled.div`
+    display:flex;
+    flex-direction:column;
 
-    font-size: 0.9rem;
-    font-weight: 600;
-
-    text-decoration: none;
-
-    transition: all 0.25s ease;
-
-    color: ${({ $primary }) => ($primary ? "#fff" : "#94a3b8")};
-
-    background: ${({ $primary }) =>
-    $primary ? "rgba(59,130,246,0.2)" : "rgba(255,255,255,0.04)"};
-
-    border: 1px solid
-        ${({ $primary }) =>
-    $primary ? "rgba(59,130,246,0.4)" : "rgba(255,255,255,0.06)"};
-
-    &:hover {
-        transform: translateY(-3px);
-
-        background: rgba(59,130,246,0.25);
-        color: #ffffff;
-        border-color: rgba(59,130,246,0.5);
+    @media(max-width:650px){
+        align-items:center;
     }
 `;
+
+export const Description = styled.p`
+    margin:20px 0 0;
+
+    max-width:340px;
+
+    color:#8b93a7;
+
+    font-size:15px;
+    line-height:28px;
+
+    @media(max-width:650px){
+        max-width:420px;
+    }
+`;
+
+export const Column = styled.div`
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+
+    @media(max-width:650px){
+        align-items:center;
+    }
+`;
+
+export const ColumnTitle = styled.h3`
+    margin:0 0 10px;
+
+    color:white;
+
+    font-size:14px;
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    text-transform:uppercase;
+`;
+
+export const FooterLink = styled(NavLink)`
+    position:relative;
+
+    width:fit-content;
+
+    color:#8b93a7;
+
+    text-decoration:none;
+
+    font-size:15px;
+
+    transition:.25s;
+
+    &::before{
+        content:"";
+
+        position:absolute;
+
+        left:-14px;
+        top:50%;
+
+        width:5px;
+        height:5px;
+
+        border-radius:50%;
+
+        background:#7c5cff;
+
+        opacity:0;
+
+        transform:translateY(-50%);
+
+        transition:.25s;
+    }
+
+    &:hover{
+        color:white;
+
+        transform:translateX(6px);
+    }
+
+    &:hover::before{
+        opacity:1;
+    }
+
+    &.active{
+        color:#fff;
+    }
+
+    @media(max-width:650px){
+
+        &::before{
+            display:none;
+        }
+
+        &:hover{
+            transform:none;
+        }
+    }
+`;
+
 export const Bottom = styled.div`
-    margin-top: 50px;
+    margin-top:60px;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding-top:32px;
 
-    color: #64748b;
+    border-top:1px solid rgba(255,255,255,.05);
 
-    font-size: 0.85rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 
-    @media (max-width: 768px) {
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
+    gap:24px;
+
+    @media(max-width:768px){
+        flex-direction:column;
+
+        align-items:center;
+
+        text-align:center;
     }
 `;
-export const Socials = styled.div`
-    display: flex;
-    gap: 10px;
+
+export const Copyright = styled.p`
+    margin:0;
+
+    color:#6d768a;
+
+    font-size:14px;
 `;
-export const Dot = styled.span`
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
 
-    background: rgba(148, 163, 184, 0.6);
+export const BottomLinks = styled.div`
+    display:flex;
 
-    transition: all 0.2s ease;
+    align-items:center;
 
-    &:hover {
-        background: #60a5fa;
-        transform: scale(1.4);
+    gap:28px;
+
+    flex-wrap:wrap;
+
+    @media(max-width:768px){
+        justify-content:center;
+        gap:18px;
+    }
+`;
+
+export const BottomLink = styled(NavLink)`
+    color:#7e879b;
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    transition:.25s;
+
+    &:hover{
+        color:white;
+    }
+
+    &.active{
+        color:white;
     }
 `;

@@ -18,7 +18,10 @@ html,
     min-height: 100vh;
     font-family: "Roboto", sans-serif;
 }
-
+html,
+body {
+    overflow-x: clip;
+}
 html {
     font-size: 16px;
     scroll-behavior: smooth;
@@ -68,8 +71,49 @@ a {
     text-decoration: none;
 }
 
+
 ul,
-    ol {
+ol {
     list-style: none;
+}
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #7c5cff #0b1020;
+}
+
+/* Chrome, Edge, Safari */
+*::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #0b1020;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+            180deg,
+            #8b5cf6,
+            #6b4eff
+    );
+
+    border-radius: 999px;
+
+    border: 2px solid #0b1020;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+            180deg,
+            #9b6cff,
+            #7c5cff
+    );
+}
+
+*::-webkit-scrollbar-corner {
+    background: #0b1020;
 }
 `;

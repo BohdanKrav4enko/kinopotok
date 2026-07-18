@@ -7,7 +7,9 @@ export const ROUTES = {
     CATALOG: "/catalog",
     TOP: "/top",
     NEW: "/new",
-    CATEGORY: "/category/:name",
+    GENRE: "/genre/:name",
+    GENRES: "/genres",
+    COUNTRY: "/country/:name",
 
     SEARCH: "/search",
     FAVORITES: "/favorites",

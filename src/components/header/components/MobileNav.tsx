@@ -1,4 +1,4 @@
-import {MobileNavLink, MobileNavWrapper} from "../styles/HeaderStyle.tsx";
+import { MobileNavLink, MobileNavWrapper } from "../styles/HeaderStyle";
 
 export const MobileNav = () => {
     return (

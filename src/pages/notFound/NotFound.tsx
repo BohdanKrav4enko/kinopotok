@@ -1,24 +1,30 @@
 import { useNavigate } from "react-router-dom";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
-import { Wrapper, Card, Icon, Title, Text, Button } from "./styles/NotFoundStyle";
+import * as S from "./styles/NotFoundStyle";
 
 export const NotFound = () => {
     const navigate = useNavigate();
 
     return (
-        <Wrapper>
-            <Card>
-                <Icon>
+        <S.Wrapper>
+            <S.Card>
+                <S.Label>Ошибка</S.Label>
+
+                <S.Icon>
                     <SentimentVeryDissatisfiedIcon />
-                </Icon>
+                </S.Icon>
 
-                <Title>404</Title>
-                <Text>Такой страницы не существует</Text>
+                <S.Title>404</S.Title>
 
-                <Button onClick={() => navigate("/")}>
+                <S.Text>
+                    Похоже, эта страница исчезла из каталога.
+                    Но тысячи отличных фильмов уже ждут вас на главной.
+                </S.Text>
+
+                <S.Button onClick={() => navigate("/")}>
                     Вернуться на главную
-                </Button>
-            </Card>
-        </Wrapper>
+                </S.Button>
+            </S.Card>
+        </S.Wrapper>
     );
 };

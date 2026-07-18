@@ -40,7 +40,7 @@ export const series = [
             "https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg",
 
         backdrop:
-            "https://image.tmdb.org/t/p/original/eSzpy96DwBujGFj0xMbXBcGcfxX.jpg",
+            "https://images7.alphacoders.com/617/617964.jpg",
 
         trailer: "https://www.youtube.com/watch?v=HhesaQXLuRY",
 
@@ -92,7 +92,7 @@ export const series = [
             "https://image.tmdb.org/t/p/w500/1XS1oqL89opfnbLl8WnZY1O1uJx.jpg",
 
         backdrop:
-            "https://image.tmdb.org/t/p/original/suopoADq0k8YZr4dQXcU6pToj6s.jpg",
+            "https://media.myshows.me/shows/760/d/d1/dd10e6a042a3766f7c3173a1397dcd0d.jpg",
 
         trailer: "https://www.youtube.com/watch?v=KPLWWIOCOOQ",
 
@@ -144,7 +144,7 @@ export const series = [
             "https://image.tmdb.org/t/p/w500/hlLXt2tOPT6RRnjiUmoxyG1LTFi.jpg",
 
         backdrop:
-            "https://image.tmdb.org/t/p/original/nm0Ymx3A3Xj7xFplk7oiVE4F3Jt.jpg",
+            "https://static.okko.tv/images/v4/65e63d61-5300-4a3e-b99b-36cfe9aee3c9?scale=1&quality=80",
 
         trailer: "https://www.youtube.com/watch?v=s9APLXM9Ei8",
 

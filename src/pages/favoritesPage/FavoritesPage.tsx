@@ -1,5 +1,5 @@
 import {useAppSelector} from "../../hooks";
-import {EmptyMessage} from "../../components/EmptyMessage.tsx";
+import {EmptyMessage} from "../../components";
 import {PreferencesProvider} from "../../components/preferencesProvider";
 
 export const FavoritesPage = () => {
@@ -7,7 +7,10 @@ export const FavoritesPage = () => {
     return (
         <>
             {favorites.length === 0 ? (
-                <EmptyMessage/>
+                <EmptyMessage
+                    title="Сохрани свои любимые фильмы"
+                    subtitle="Создай собственную коллекцию, добавляя фильмы и сериалы в избранное."
+                />
             ) : (
                 <PreferencesProvider subtitle={"Все твои сохранённые фильмы и сериалы в одном месте."} title={"Избранное"} items={favorites}/>
             )}

@@ -1,20 +1,19 @@
-import {MoviesGrid} from "../moviesGrid";
-import {MoviesList} from "../moviesList";
-import {useAppSelector} from "../../hooks";
-import type {PreferencesProviderProps} from "../allContent.ts";
-import {FiltersBar} from "../filters";
+import { MoviesGrid } from "../moviesGrid";
+import { MoviesList } from "../moviesList";
+import { useAppSelector } from "../../hooks";
+import type { PreferencesProviderProps } from "../allContent.ts";
+import { FiltersBar } from "../filters";
+import { EmptyMessage } from "../emptyMessege";
 
+export const PreferencesProvider = (props: PreferencesProviderProps) => {
+    const { items, title, subtitle } = props;
 
-export const PreferencesProvider = (props: PreferencesProviderProps ) => {
-
-    const {items, title, subtitle} = props;
-
-    const viewMode = useAppSelector((state) => state.preferences.moviesViewMode
+    const viewMode = useAppSelector(
+        (state) => state.preferences.moviesViewMode
     );
-    const filters = useAppSelector(state => state.catalog.filters);
 
-    const sortBy = useAppSelector(state => state.catalog.sortBy);
-
+    const filters = useAppSelector((state) => state.catalog.filters);
+    const sortBy = useAppSelector((state) => state.catalog.sortBy);
 
     const years = [
         "2020-н.в.",
@@ -33,7 +32,7 @@ export const PreferencesProvider = (props: PreferencesProviderProps ) => {
         "5+",
     ];
 
-    const filteredItems = items.filter(movie => {
+    const filteredItems = items.filter((movie) => {
         if (
             filters.genre &&
             !movie.genres.includes(filters.genre)
@@ -80,13 +79,8 @@ export const PreferencesProvider = (props: PreferencesProviderProps ) => {
         return true;
     });
 
-    const genres = [...new Set(
-        items.flatMap(movie => movie.genres)
-    )];
-    const countries = [...new Set(
-        items.flatMap(movie => movie.country)
-    )];
-
+    const genres = [...new Set(items.flatMap((movie) => movie.genres))];
+    const countries = [...new Set(items.flatMap((movie) => movie.country))];
 
     const sortedItems = [...filteredItems].sort((a, b) => {
         switch (sortBy) {
@@ -105,29 +99,39 @@ export const PreferencesProvider = (props: PreferencesProviderProps ) => {
         }
     });
 
-
-    return <>
-        <FiltersBar
-            genres={genres}
-            countries={countries}
-            years={years}
-            ratings={ratings}
-            filters={filters}
-        />
-
-        {viewMode === "grid" ? (
-            <MoviesGrid
-                subtitle={subtitle}
-                items={sortedItems}
-                title={title}
+    return (
+        <>
+            <FiltersBar
+                genres={genres}
+                countries={countries}
+                years={years}
+                ratings={ratings}
+                filters={filters}
             />
-        ) : (
-            <MoviesList
-                subtitle={subtitle}
-                items={sortedItems}
-                title={title}
-            />
-        )}
-    </>
+
+            {items.length === 0 ? (
+                <EmptyMessage
+                    title="Здесь пока пусто"
+                    subtitle="Когда здесь появятся фильмы или сериалы, они сразу отобразятся."
+                />
+            ) : sortedItems.length === 0 ? (
+                <EmptyMessage
+                    title="Ничего не найдено"
+                    subtitle="Попробуйте изменить параметры фильтрации — возможно, следующий фильм станет вашим любимым."
+                />
+            ) : viewMode === "grid" ? (
+                <MoviesGrid
+                    title={title}
+                    subtitle={subtitle}
+                    items={sortedItems}
+                />
+            ) : (
+                <MoviesList
+                    title={title}
+                    subtitle={subtitle}
+                    items={sortedItems}
+                />
+            )}
+        </>
+    );
 };
-

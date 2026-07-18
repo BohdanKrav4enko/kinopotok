@@ -24,7 +24,7 @@ export const Trigger = styled.button`
     gap: 10px;
 
     border: 1px solid rgba(255,255,255,.08);
-    border-radius: 10px;
+    border-radius: 6px;
 
     background: #121624;
 
@@ -88,7 +88,7 @@ export const Dropdown = styled.div`
     background: #121624;
 
     border: 1px solid rgba(255,255,255,.06);
-    border-radius: 14px;
+    border-radius: 0 0 8px 8px;
 
     overflow: hidden;
 

@@ -32,11 +32,7 @@ export const Breadcrumbs = () => {
 
                     <Crumb
                         onClick={() =>
-                            navigate(
-                                `/${type}/category/${encodeURIComponent(
-                                    item.category
-                                )}`
-                            )
+                            navigate(`/genre/${item.category}`)
                         }
                     >
                         {item.category}
