@@ -13,7 +13,6 @@ export const HeaderLogo = ({onClick}: Props) => {
             onClick={onClick}
         >
             <img src={img} alt="Logo" />
-            КиноПоток
         </Logo>
     );
 };

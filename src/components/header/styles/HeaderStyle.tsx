@@ -1,115 +1,97 @@
-import styled, {keyframes} from "styled-components";
+import styled from "styled-components";
 import {Link, NavLink} from "react-router-dom";
 
-const glow = keyframes`
-  0%, 100% {
-    filter:
-      drop-shadow(0 0 4px #00e5ff)
-      drop-shadow(0 0 8px #7c4dff)
-      drop-shadow(0 0 12px #ff2bd6);
-    transform: scale(1);
-  }
-
-  50% {
-    filter:
-      drop-shadow(0 0 8px #00e5ff)
-      drop-shadow(0 0 16px #7c4dff)
-      drop-shadow(0 0 24px #ff2bd6);
-    transform: scale(1.03);
-  }
-`;
 
 export const Container = styled.header`
     position: sticky;
     top: 0;
     z-index: 100;
 
-    padding: 18px 48px;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 24px;
+    gap: 28px;
 
-    flex-wrap: nowrap;
+    padding: 0 clamp(16px, 4vw, 48px);
 
-    background: rgba(10, 15, 28, 0.85);
-    backdrop-filter: blur(20px);
+    min-height: 82px;
 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(6, 10, 20, 0.82);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
 
-    @media (max-width: 1024px) {
-        padding: 14px 24px;
-        gap: 16px;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+
+    transition: .25s ease;
+
+    &::before{
+        content:"";
+        position:absolute;
+        inset:0;
+
+        background:
+                linear-gradient(
+                        180deg,
+                        rgba(41,121,255,.08),
+                        transparent 35%
+                );
+
+        pointer-events:none;
     }
-    
-    @media (max-width: 768px) {
-        display: grid;
-        grid-template-columns: 1fr auto 1fr;
-        grid-template-rows: auto auto;
-        row-gap: 12px;
-        align-items: center;
+
+    @media (max-width:1024px){
+        gap:20px;
+        min-height:74px;
+    }
+
+    @media (max-width:768px){
+        display:grid;
+        grid-template-columns:1fr auto 1fr;
+        grid-template-rows:auto auto;
+
+        row-gap:12px;
+
+        padding:0 16px;
+        min-height:72px;
     }
 `;
 
 export const Logo = styled(Link)`
-    display:flex;
+    display: flex;
+    align-items: center;
+    transition: transform .2s ease;
 
-    align-items:center;
-
-    gap:10px;
-
-    font-size:1.7rem;
-
-    font-weight:800;
-
-    color:#fff;
-
-    text-decoration:none;
-
-    flex-shrink:0;
-
-
-    transition:.25s ease;
-
-
-    &:hover{
-        transform:scale(1.04);
+    &:hover {
+        transform: scale(1.04);
     }
 
-
-    img{
-        width:30px;
-
-        height:30px;
-
-        object-fit:contain;
-
-        animation:${glow} 2.5s ease-in-out infinite;
+    img {
+        display: block;
+        width: 220px;
+        height: auto;
+        user-select: none;
+        -webkit-user-drag: none;
     }
 
-
-    span{
-        background:
-                linear-gradient(
-                        90deg,
-                        #8b5cf6,
-                        #3b82f6
-                );
-
-
-        -webkit-background-clip:text;
-
-        -webkit-text-fill-color:transparent;
-
-        background-clip:text;
+    @media (max-width: 992px) {
+        img {
+            width: 190px;
+        }
     }
 
+    @media (max-width: 768px) {
+        grid-column: 2;
+        justify-self: center;
 
-    @media(max-width:768px){
-        grid-column:2;
+        img {
+            width: 170px;
+        }
+    }
 
-        justify-self:center;
+    @media (max-width: 480px) {
+        img {
+            width: 150px;
+        }
     }
 `;
 

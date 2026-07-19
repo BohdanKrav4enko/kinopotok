@@ -176,10 +176,10 @@ export const Title = styled.h1`
 
     span {
         background: linear-gradient(
-                90deg,
-                #8b5cf6 0%,
-                #6b4eff 45%,
-                #3b82f6 100%
+                180deg,
+                #47b3ff 0%,
+                #1a8fff 45%,
+                #006cff 100%
         );
 
         -webkit-background-clip: text;
@@ -243,47 +243,69 @@ export const Buttons = styled.div`
 `;
 
 export const PrimaryButton = styled.button`
+    position: relative;
+    overflow: hidden;
+
     height: 56px;
-
     padding: 0 34px;
-
-    border: none;
-    border-radius: 6px;
 
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
 
+    border: 1px solid rgba(82, 140, 255, .35);
+    border-radius: 10px;
+
     background: linear-gradient(
-            135deg,
-            #7c5cff 0%,
-            #5b49ff 45%,
-            #3d8bff 100%
+            180deg,
+            #2693ff 0%,
+            #0d6efd 55%,
+            #005eff 100%
     );
 
     color: #fff;
 
     font-size: 15px;
     font-weight: 700;
-    letter-spacing: .2px;
 
     cursor: pointer;
 
-    transition: .3s ease;
-
     box-shadow:
-            0 10px 30px rgba(91,73,255,.28);
+            0 10px 30px rgba(45,111,255,.35),
+            inset 0 1px rgba(255,255,255,.25);
+
+    transition:
+            transform .25s ease,
+            box-shadow .25s ease,
+            filter .25s ease;
+
+    &::before{
+        content:"";
+        position:absolute;
+        inset:0;
+
+        background:linear-gradient(
+                180deg,
+                rgba(255,255,255,.18),
+                transparent 45%
+        );
+
+        pointer-events:none;
+    }
 
     &:hover{
-        transform: translateY(-3px);
+        transform:translateY(-3px);
+
+        filter:brightness(1.05);
 
         box-shadow:
-                0 18px 40px rgba(91,73,255,.42);
+                0 18px 45px rgba(45,111,255,.45),
+                0 0 25px rgba(45,111,255,.22);
     }
 
     &:active{
-        transform: translateY(-1px);
+        transform:translateY(-1px);
     }
 
     @media(max-width:500px){
@@ -292,41 +314,74 @@ export const PrimaryButton = styled.button`
 `;
 
 export const SecondaryButton = styled.button`
-    height: 56px;
+    position: relative;
+    overflow: hidden;
 
+    height: 56px;
     padding: 0 34px;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 10px;
 
-    border-radius: 6px;
+    border-radius: 10px;
 
-    border: 1px solid rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.08);
 
-    background: rgba(255,255,255,.03);
+    background: rgba(17,23,40,.9);
 
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
 
-    color: #fff;
+    color:#fff;
 
-    font-size: 15px;
-    font-weight: 600;
+    font-size:15px;
+    font-weight:600;
 
-    cursor: pointer;
+    cursor:pointer;
 
-    transition: .3s ease;
+    box-shadow:
+            inset 0 1px rgba(255,255,255,.05),
+            0 8px 25px rgba(0,0,0,.28);
+
+    transition:
+            transform .25s ease,
+            border-color .25s ease,
+            box-shadow .25s ease,
+            background .25s ease;
+
+    &::before{
+        content:"";
+        position:absolute;
+        inset:0;
+
+        background:linear-gradient(
+                180deg,
+                rgba(52,120,255,.08),
+                transparent 40%
+        );
+
+        opacity:0;
+        transition:.25s;
+    }
 
     &:hover{
-        background: rgba(255,255,255,.07);
-        border-color: rgba(124,92,255,.55);
+        transform:translateY(-3px);
 
-        transform: translateY(-3px);
+        border-color:rgba(52,120,255,.35);
+
+        box-shadow:
+                0 18px 40px rgba(0,0,0,.4),
+                0 0 20px rgba(52,120,255,.15);
+
+        &::before{
+            opacity:1;
+        }
     }
 
     &:active{
-        transform: translateY(-1px);
+        transform:translateY(-1px);
     }
 
     @media(max-width:500px){

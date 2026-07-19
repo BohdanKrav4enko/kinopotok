@@ -9,26 +9,89 @@ export const List = styled.div`
 `;
 
 export const ListCard = styled.div`
+    position: relative;
+    overflow: hidden;
+
     display: flex;
     gap: 16px;
-    position: relative;
+
     cursor: pointer;
-    
-    border-radius: 16px;
 
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 18px;
 
-    transition: all 0.25s ease;
-    &:hover {
-        transform: translateY(-4px);
-        background: rgba(255, 255, 255, 0.07);
-        border-color: rgba(59, 130, 246, 0.3);
+    background: linear-gradient(
+            180deg,
+            rgba(17, 23, 40, .92),
+            rgba(10, 15, 28, .98)
+    );
+
+    border: 1px solid rgba(255, 255, 255, .08);
+
+    box-shadow:
+            0 12px 30px rgba(0,0,0,.35),
+            inset 0 1px rgba(255,255,255,.05);
+
+    transition:
+            transform .3s ease,
+            border-color .3s ease,
+            box-shadow .3s ease;
+
+    &::before{
+        content:"";
+        position:absolute;
+        inset:0;
+
+        background: linear-gradient(
+                180deg,
+                rgba(52,120,255,.08),
+                transparent 35%
+        );
+
+        opacity:0;
+        transition:.3s;
+
+        pointer-events:none;
     }
 
-    @media (max-width: 768px) {
-        flex-direction: row;
-        align-items: flex-start;
+    &::after{
+        content:"";
+        position:absolute;
+        left:15%;
+        right:15%;
+        bottom:-24px;
+
+        height:42px;
+
+        border-radius:50%;
+
+        background:#2d7dff;
+
+        filter:blur(34px);
+
+        opacity:0;
+        transition:.3s;
+
+        pointer-events:none;
+    }
+
+    &:hover{
+        transform: translateY(-6px);
+
+        border-color: rgba(52,120,255,.45);
+
+        box-shadow:
+                0 22px 50px rgba(0,0,0,.5),
+                0 0 30px rgba(52,120,255,.18);
+
+        &::before,
+        &::after{
+            opacity:1;
+        }
+    }
+
+    @media (max-width:768px){
+        flex-direction:row;
+        align-items:flex-start;
     }
 `;
 

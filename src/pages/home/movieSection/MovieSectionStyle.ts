@@ -114,7 +114,7 @@ export const Grid = styled.div`
     overflow-x: auto;
     overflow-y: hidden;
 
-    padding-bottom: 10px;
+    padding: 14px 12px 18px;
 
     scrollbar-width: none;
 

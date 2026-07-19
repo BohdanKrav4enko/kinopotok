@@ -140,30 +140,68 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
-    height: 52px;
+    position: relative;
+    overflow: hidden;
 
+    height: 52px;
     padding: 0 28px;
 
-    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 
-    border-radius: 6px;
+    border: 1px solid rgba(34, 144, 255, .35);
+    border-radius: 10px;
 
     background: linear-gradient(
-            90deg,
-            #6B4EFF,
-            #3C82FF
+            180deg,
+            #32a8ff 0%,
+            #0d82ff 45%,
+            #005eff 100%
     );
 
-    color: white;
+    color: #fff;
 
+    font-size: 15px;
     font-weight: 600;
 
     cursor: pointer;
 
-    transition: .25s;
+    transition:
+            transform .25s ease,
+            box-shadow .25s ease,
+            filter .25s ease;
+
+    box-shadow:
+            0 10px 30px rgba(0,110,255,.35),
+            inset 0 1px rgba(255,255,255,.22);
+
+    &::before{
+        content:"";
+        position:absolute;
+        inset:0;
+
+        background:linear-gradient(
+                180deg,
+                rgba(255,255,255,.18),
+                transparent 45%
+        );
+
+        pointer-events:none;
+    }
 
     &:hover{
-        transform: translateY(-2px);
-        box-shadow: 0 10px 30px rgba(107,78,255,.35);
+        transform:translateY(-2px);
+
+        filter:brightness(1.05);
+
+        box-shadow:
+                0 18px 42px rgba(0,110,255,.48),
+                0 0 22px rgba(0,110,255,.25);
+    }
+
+    &:active{
+        transform:translateY(0);
     }
 `;

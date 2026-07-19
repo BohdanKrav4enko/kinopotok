@@ -26,21 +26,60 @@ export const Card = styled.div<{
     overflow: hidden;
 
     width: ${({ $variant }) =>
-    $variant === "home" ? "210px" : "100%"};
+            $variant === "home" ? "210px" : "100%"};
 
     flex: 0 0 210px;
 
-    background: rgba(255,255,255,.04);
-    border: 1px solid rgba(255,255,255,.06);
+    background: linear-gradient(
+            180deg,
+            rgba(17, 23, 40, .92),
+            rgba(10, 15, 28, .98)
+    );
 
-    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 18px;
 
     cursor: pointer;
 
-    transition: .25s;
+    transition:
+            transform .3s ease,
+            box-shadow .3s ease,
+            border-color .3s ease;
+
+    box-shadow:
+            0 12px 30px rgba(0,0,0,.35),
+            inset 0 1px rgba(255,255,255,.05);
+
+    &::before{
+        content:"";
+        position:absolute;
+        inset:0;
+
+        background:
+                linear-gradient(
+                        180deg,
+                        rgba(52,120,255,.08),
+                        transparent 35%
+                );
+
+        opacity:0;
+        transition:.3s;
+
+        pointer-events:none;
+    }
 
     &:hover{
-        transform: translateY(-8px);
+        transform: translateY(-10px) scale(1.02);
+
+        border-color: rgba(52,120,255,.45);
+
+        box-shadow:
+                0 22px 50px rgba(0,0,0,.55),
+                0 0 30px rgba(52,120,255,.18);
+
+        &::before{
+            opacity:1;
+        }
     }
 `;
 

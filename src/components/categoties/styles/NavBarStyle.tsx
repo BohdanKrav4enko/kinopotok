@@ -13,30 +13,43 @@ export const Bar = styled.div`
     align-items: center;
     justify-content: center;
 
-    gap: 18px;
+    gap: clamp(8px, 3vw, 36px);
 
     padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
 
-    background: rgba(5, 8, 23, .94);
+    background: rgba(6, 10, 20, 0.82);
 
-    backdrop-filter: blur(18px);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
 
-    border-top: 1px solid rgba(255,255,255,.06);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
 
-    box-shadow: 0 -10px 35px rgba(0,0,0,.35);
+    box-shadow:
+            0 -12px 40px rgba(0, 0, 0, 0.4),
+            inset 0 1px rgba(255, 255, 255, 0.04);
 
-    @media (min-width: 768px) {
-        gap: 28px;
+    overflow: hidden;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+
+        background: linear-gradient(
+                0deg,
+                rgba(41, 121, 255, 0.08),
+                transparent 45%
+        );
     }
 
-    @media (min-width: 1200px) {
-        gap: 36px;
+    @media (max-width: 768px) {
+        padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
     }
+
     @media (max-width: 480px) {
-        gap: 20px;
-    }
-    @media (max-width: 480px) {
-        gap: 4px;
+        gap: 8px;
+        padding: 8px 10px calc(8px + env(safe-area-inset-bottom));
     }
 `;
 

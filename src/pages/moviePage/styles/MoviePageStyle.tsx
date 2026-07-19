@@ -197,15 +197,17 @@ export const Actions = styled.div`
     margin-top: 10px;
 
     button {
+        position: relative;
+        overflow: hidden;
+
         height: 52px;
-        gap: 6px;
         padding: 0 20px;
+        gap: 6px;
 
         display: flex;
         align-items: center;
         justify-content: center;
 
-        border: none;
         border-radius: 10px;
 
         font-size: 15px;
@@ -213,34 +215,79 @@ export const Actions = styled.div`
 
         cursor: pointer;
 
-        transition: .25s;
-
-        white-space: nowrap;
+        transition:
+                transform .25s ease,
+                box-shadow .25s ease,
+                border-color .25s ease,
+                background .25s ease;
     }
+
     button svg {
         width: 20px;
         height: 20px;
         flex-shrink: 0;
     }
+
+
     button:first-child {
-        background: #6c4dff;
+        border: 1px solid rgba(34,144,255,.35);
+
+        background: linear-gradient(
+                180deg,
+                #39b4ff 0%,
+                #1188ff 55%,
+                #0066ff 100%
+        );
+
         color: #fff;
 
-        box-shadow: 0 10px 25px rgba(108, 77, 255, .35);
+        box-shadow:
+                0 10px 28px rgba(0,110,255,.35),
+                inset 0 1px rgba(255,255,255,.22);
 
-        &:hover {
-            background: #7b5dff;
-            transform: translateY(-2px);
+        &::before{
+            content:"";
+            position:absolute;
+            inset:0;
+
+            background:linear-gradient(
+                    180deg,
+                    rgba(255,255,255,.18),
+                    transparent 45%
+            );
+        }
+
+        &:hover{
+            transform:translateY(-2px);
+
+            box-shadow:
+                    0 18px 42px rgba(0,110,255,.45),
+                    0 0 24px rgba(0,110,255,.22);
         }
     }
 
     button:last-child {
-        background: rgba(255,255,255,.08);
         border: 1px solid rgba(255,255,255,.08);
+
+        background: rgba(17,23,40,.92);
+
+        backdrop-filter: blur(18px);
+
         color: #fff;
 
-        &:hover {
-            background: rgba(255,255,255,.12);
+        box-shadow:
+                inset 0 1px rgba(255,255,255,.05);
+
+        &:hover{
+            transform: translateY(-2px);
+
+            border-color: rgba(34,144,255,.35);
+
+            background: rgba(20,28,48,.95);
+
+            box-shadow:
+                    0 12px 28px rgba(0,0,0,.35),
+                    0 0 18px rgba(34,144,255,.12);
         }
     }
 
@@ -248,20 +295,19 @@ export const Actions = styled.div`
         flex-shrink: 0;
     }
 
-    @media (max-width: 560px) {
-        flex-wrap: wrap;
+    @media (max-width:560px){
+        flex-wrap:wrap;
 
-        button:first-child {
-            width: 100%;
+        button:first-child{
+            width:100%;
         }
 
         > *:nth-child(2),
-        button:last-child {
-            flex: 1;
+        button:last-child{
+            flex:1;
         }
     }
 `;
-
 export const Stats = styled.div`
     margin-top: 10px;
     display: grid;
